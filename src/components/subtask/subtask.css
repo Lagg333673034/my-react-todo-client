@@ -1,0 +1,13 @@
+.subtask{
+    display: flex;
+    padding: 5px;
+    margin: 5px 5px 5px 5px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.subtask__btns{
+    display: inline-flex;
+}

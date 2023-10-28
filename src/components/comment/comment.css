@@ -1,0 +1,19 @@
+.comment{
+    display: flex;
+    padding: 5px;
+    margin: 5px 5px 5px 5px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.comment__body{
+    display: flex;
+    flex-wrap: wrap;
+}
+.comment__btns{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-content: flex-start;
+}

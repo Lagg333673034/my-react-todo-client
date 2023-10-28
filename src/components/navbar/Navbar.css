@@ -1,0 +1,13 @@
+.navbar{
+    display: flex;
+    justify-content: flex-start;
+    height: 40px;
+    width: 100%;
+    background-color: lightgray;
+    vertical-align: middle;
+}
+.navbar__project {
+    margin: auto 5px auto 10px;
+    font-size: 24px;
+    font-weight: 700;
+}
