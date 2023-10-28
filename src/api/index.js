@@ -3,7 +3,6 @@ import axios from 'axios';
 //let host = "http://localhost:5000/api";
 let host = "https://todo-server-rijd.onrender.com/api";
 
-
 const urlProject = `${host}/project`;
 const urlTask = `${host}/task`;
 const urlSubtask = `${host}/subtask`;
