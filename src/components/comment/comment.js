@@ -1,7 +1,6 @@
-import React,{useState,useEffect} from 'react';
-import {deleteSubtask} from "../../api";
+import React from 'react';
 import './comment.css';
-import {deleteComment,createComment,fetchComments} from "../../api/index";
+import {deleteComment} from "../../api/index";
 import moment from 'moment';
 
 const Comment = ({comment,lvl}) => {

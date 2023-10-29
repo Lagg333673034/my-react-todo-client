@@ -1,5 +1,5 @@
 const defaultState = {
-    //projects: [],
+    projectFetchAll: [],
     //projectAddModalVisible: false,
     //projectUpdModalVisible: false,
     projectModalVisible: false,
@@ -8,6 +8,10 @@ const defaultState = {
 
 export const projectReducer = (state = defaultState, action) => {
     switch(action.type){
+
+        case "PROJECT_FETCH_ALL":
+            return {...state, projectFetchAll: action.payload};
+
         /*case "PROJECT_FETCH_ALL":
             return {...state, projects: action.payload};
         case "PROJECT_CREATE":

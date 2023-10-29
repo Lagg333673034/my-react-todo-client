@@ -29,17 +29,17 @@ const PageProjects = () => {
     },[modalVisible]);
     /*--------------------------------------------------------------------------------*/
     const [projects, setProjectsData] = useState({});
-    const [loading, setLoading] = useState(false);
+    const [projectsLoading, setProjectsLoading] = useState(false);
     useEffect(()=>{
         if(!projectModalVisible) {
-            setLoading(true);
+            setProjectsLoading(true);
             fetchProjects()
                 .then(response => setProjectsData(response.data))
-                .finally(() => setLoading(false));
+                .finally(() => setProjectsLoading(false));
         }
     },[projectModalVisible,searchProjectsString]);
     useEffect(()=>{
-        if(!loading && !projectModalVisible) {
+        if(!projectsLoading && !projectModalVisible) {
             let timerId = setInterval(() => {
                 fetchProjects()
                     .then(response => setProjectsData(response.data));
@@ -48,7 +48,7 @@ const PageProjects = () => {
                 clearInterval(timerId);
             }
         }
-    },[loading,projectModalVisible,searchProjectsString]);
+    },[projectsLoading,projectModalVisible,searchProjectsString]);
     /*--------------------------------------------------------------------------------*/
     return(
         <div>
@@ -64,7 +64,7 @@ const PageProjects = () => {
             </div>
             <div className="title">
                 Проекты
-                {loading ? <div><Loader/></div> : <div style={{visibility: 'hidden'}}><Loader/></div>}
+                {projectsLoading ? <div><Loader/></div> : <div style={{visibility: 'hidden'}}><Loader/></div>}
             </div>
             <div>
                 {
@@ -76,10 +76,7 @@ const PageProjects = () => {
                             (project.description && project.description.toLowerCase().includes(searchProjectsString.toLowerCase()))
                         )
                         .map((project, project_index) =>
-                            <Project
-                                key={project_index}
-                                project={project}
-                            />
+                            <Project key={project_index} project={project}/>
                         )
                 }
             </div>

@@ -1,6 +1,6 @@
-/*import * as api from '../api';
+import * as api from '../api';
 
-export const createProject = (newProject) => async(dispatch) => {
+/*export const createProject = (newProject) => async(dispatch) => {
     try {
         const {data} = await api.createProject(newProject);
         dispatch({type:"PROJECT_CREATE",payload:data});
@@ -29,7 +29,7 @@ export const deleteProject = (id) => async(dispatch) => {
     } catch (e) {
         console.log(e);
     }
-};
+};*/
 
 export const fetchProjects = () => async(dispatch) => {
     try {
@@ -39,4 +39,3 @@ export const fetchProjects = () => async(dispatch) => {
         console.log(e);
     }
 };
-*/

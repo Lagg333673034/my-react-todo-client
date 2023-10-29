@@ -1,12 +1,10 @@
 import React,{useState,useEffect} from 'react';
 import './modal.css';
-import {useDispatch,useSelector} from 'react-redux';
-import SubtaskModal from './subtaskModal';
-import {fetchTask,createTask,updateTask,fetchSubtasks,createSubtask} from "../../api";
+import {useDispatch} from 'react-redux';
+import {fetchTask} from "../../api";
 import {useParams} from "react-router-dom";
 import moment from 'moment';
-import Subtask from "../subtask/subtask";
-import {createComment, fetchComments, fetchTasks} from "../../api/index";
+import {createComment,fetchComments} from "../../api/index";
 import Comment from "../comment/comment";
 
 const CommentModal = ({show}) => {
@@ -47,7 +45,7 @@ const CommentModal = ({show}) => {
             setAllComments(tempComments);
             setlvl0Comments(tempComments);
         }
-    },[tempComments]);
+    },[currentTaskId,tempComments]);
     useEffect(()=>{
         let timerId = setInterval(() => {
             if(currentTaskId) {
@@ -60,7 +58,7 @@ const CommentModal = ({show}) => {
         return ()=>{
             clearInterval(timerId);
         }
-    },[tempComments]);
+    },[currentTaskId,tempComments]);
 
     const showSubComments = (comments,comment,lvl) => {
         let temp_comments = comments;

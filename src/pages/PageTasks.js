@@ -3,12 +3,14 @@ import {useDispatch,useSelector} from 'react-redux';
 import TaskModal from '../components/modal/taskModal';
 import CommentModal from '../components/modal/commentModal';
 import FileModal from '../components/modal/fileModal';
-import Task from '../components/task/task';
+import Tasklist from '../components/tasklist/tasklist';
 import {fetchProject,fetchTasks,updateTask} from "../api";
-import useInput from "../components/hooks/useInput";
+
 import {useParams} from "react-router-dom";
 import './PageTasks.css';
 import moment from 'moment';
+import {DragDropContext} from 'react-beautiful-dnd';
+
 
 const PageTasks = () => {
     const dispatch = useDispatch();
@@ -62,12 +64,12 @@ const PageTasks = () => {
         ) {
             let timerId = setInterval(() => {
                 fetchTasks(currentProjectId).then(response => setTasksData(response.data));
-            }, 2000);
+            }, 3000);
             return ()=>{
                 clearInterval(timerId)
             }
         }
-    },[taskModalVisible,commentModalVisible,fileModalVisible]);
+    },[loading,currentProjectId,taskModalVisible,commentModalVisible,fileModalVisible]);
     /*--------------------------------------------------------------------------*/
     const [project, setProjectData] = useState({});
     useEffect(()=>{
@@ -76,38 +78,47 @@ const PageTasks = () => {
         }
     },[currentProjectId]);
     /*--------------------------------------------------------------------------*/
-    const [cols,setCols] = useState([
+    const columns = [
         {title:"В очереди",status:"1"},
         {title:"В работе",status:"2"},
         {title:"Завершено",status:"3"}
-    ]);
-    const [currentTask,setCurrentTask] = useState(null);
+    ];
+    /*--------------------------------------------------------------------------*/
+    const onDragEnd = result => {
+        const {destination, source, draggableId} = result;
+        if(!destination){
+            return;
+        }
+        if(
+            destination.droppableId === source.droppableId
+        ){
+            return;
+        }
 
-    function dragOverHandler(e) {
-        e.preventDefault();
-    }
-    function dragStartHandler(e, col, task) {
-        setCurrentTask(task);
-    }
-    function dropConditionHandler(e,col) {
-        if(col.status === '1'){
+        const column = destination.droppableId;
+        const draggableTask =
+            tasks &&
+            tasks.length>0 &&
+            tasks.filter(task => task._id === draggableId)[0];
+
+        if (column === '1') {
             updateTask(
-                currentTask._id,
+                draggableTask._id,
                 {
                     timeInWorkStart: '',
                     timeInWorkFinish: '',
-                    timeInWork:String(
-                        (currentTask.timeInWork && currentTask.timeInWork.length>0 ? Number(currentTask.timeInWork) : 0)
+                    timeInWork: String(
+                        (draggableTask.timeInWork && draggableTask.timeInWork.length > 0 ? Number(draggableTask.timeInWork) : 0)
                         +
-                        (currentTask.timeInWorkStart && currentTask.timeInWorkStart.length>0 ? (moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf() - Number(currentTask.timeInWorkStart)) : 0)
+                        (draggableTask.timeInWorkStart && draggableTask.timeInWorkStart.length > 0 ? (moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf() - Number(draggableTask.timeInWorkStart)) : 0)
                     ),
                     dateFinish: '',
                 }
             );
         }
-        if(col.status === '2'){
+        if (column === '2') {
             updateTask(
-                currentTask._id,
+                draggableTask._id,
                 {
                     timeInWorkStart: String(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf()),
                     timeInWorkFinish: '',
@@ -116,29 +127,23 @@ const PageTasks = () => {
                 }
             );
         }
-        if(col.status === '3'){
+        if (column === '3') {
             updateTask(
-                currentTask._id,
+                draggableTask._id,
                 {
                     //timeInWorkStart: String(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf()),
                     timeInWorkFinish: String(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf()),
                     timeInWork: String(
-                        (currentTask.timeInWork && currentTask.timeInWork.length>0 ? Number(currentTask.timeInWork) : 0)
+                        (draggableTask.timeInWork && draggableTask.timeInWork.length > 0 ? Number(draggableTask.timeInWork) : 0)
                         +
-                        (currentTask.timeInWorkStart && currentTask.timeInWorkStart.length>0 ? (moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf() - Number(currentTask.timeInWorkStart)) : 0)
+                        (draggableTask.timeInWorkStart && draggableTask.timeInWorkStart.length > 0 ? (moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf() - Number(draggableTask.timeInWorkStart)) : 0)
                     ),
                     dateFinish: String(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf())
                 }
             );
         }
-
-        updateTask(
-            currentTask._id,
-            {
-                status: String(col.status)
-            }
-        );
-    }
+        updateTask(draggableTask._id, {status: column});
+    };
     /*--------------------------------------------------------------------------*/
     return(
         <>
@@ -155,43 +160,26 @@ const PageTasks = () => {
         <div className="title">
             {project.title}
         </div>
-        <div>
-            {cols.length && cols.length>0 && cols.map((col,col_index) =>
-                <div
-                    key={col_index}
-                    className="condition"
-                    onDragOver={(e) => dragOverHandler(e)}
-                    onDrop={(e) => dropConditionHandler(e, col)}
-                >
-                    <div className="condition__title">{col.title}</div>
-                    {tasks.length && tasks.length > 0 &&
-                    tasks
-                        .filter(task =>
-                            (task.number && task.number.toLowerCase().includes(searchTasksString.toLowerCase())) ||
-                            (task.title && task.title.toLowerCase().includes(searchTasksString.toLowerCase())) ||
-                            (task.description && task.description.toLowerCase().includes(searchTasksString.toLowerCase()))
-                        )
-                        .sort((a, b) => b.priority.localeCompare(a.priority))
-                        .map((task, task_index) => {
-                            if (
-                                (col.status && col.status > 0) &&
-                                (task.status && task.status > 0) &&
-                                (task.status === col.status)
-                            )
-                                return (
-                                    <Task
-                                        key={task_index}
-                                        task_index={col_index+task_index}
-                                        draggable={true}
-                                        onDragOver={(e) => dragOverHandler(e)}
-                                        onDragStart={(e) => dragStartHandler(e, col, task)}
-                                        task={task}
-                                    />
-                                )
-                    })}
-                </div>
-            )}
-        </div>
+        <DragDropContext onDragEnd={onDragEnd}>
+            {
+                columns &&
+                columns.length>0 &&
+                columns.map((column,column_index) => {
+                    const columnTasks =
+                    tasks &&
+                    tasks.length>0 &&
+                    tasks.filter(task => task.status === column.status);
+                    return (
+                        <Tasklist
+                            key={column_index}
+                            column={column}
+                            tasks={columnTasks}
+                            searchTasksString={searchTasksString}
+                        />
+                    )
+                })
+            }
+        </DragDropContext>
         {taskModalVisible ? <TaskModal show={taskModalVisible}/>  : ''}
         {commentModalVisible ? <CommentModal show={commentModalVisible}/>  : ''}
         {fileModalVisible ? <FileModal show={fileModalVisible}/>  : ''}

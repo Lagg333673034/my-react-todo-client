@@ -1,11 +1,6 @@
-import React,{useState,useEffect} from 'react';
-import {deleteSubtask} from "../../api";
+import React from 'react';
 import './file.css';
-import {deleteComment, createComment, fetchComments, deleteFile,fetchFile,fetchFile0,fetchFile1} from "../../api/index";
-import moment from 'moment';
-import axios from 'axios';
-import {Link} from 'react-router-dom';
-
+import {deleteFile,fetchFile} from "../../api/index";
 
 const File = ({file}) => {
     let currentTaskId = localStorage.getItem('taskCurrentId');

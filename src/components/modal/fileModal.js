@@ -42,7 +42,7 @@ const FileModal = ({show}) => {
             fetchFiles(currentTaskId)
                 .then(response => setFiles(response.data));
         }
-    },[]);
+    });
     useEffect(()=>{
         let timerId = setInterval(() => {
             if(currentTaskId && currentTaskId.length && currentTaskId.length>5) {
@@ -54,7 +54,7 @@ const FileModal = ({show}) => {
         return ()=>{
             clearInterval(timerId);
         }
-    },[]);
+    });
     /*--------------------------------------------------------------------------------*/
     const uploadFile = () => {
         const formData = new FormData();

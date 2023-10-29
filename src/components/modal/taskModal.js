@@ -2,12 +2,10 @@ import React,{useState,useEffect} from 'react';
 import './modal.css';
 import {useDispatch,useSelector} from 'react-redux';
 import SubtaskModal from './subtaskModal';
-import {fetchTask,createTask,updateTask,fetchSubtasks,createSubtask} from "../../api";
+import {fetchTask,createTask,updateTask,fetchSubtasks} from "../../api";
 import {useParams} from "react-router-dom";
 import moment from 'moment';
 import Subtask from "../subtask/subtask";
-import {createComment, fetchComments, fetchTasks} from "../../api/index";
-import Comment from "../comment/comment";
 
 const TaskModal = ({show}) => {
     const dispatch = useDispatch();
@@ -71,7 +69,7 @@ const TaskModal = ({show}) => {
                 .then(response => setSubtasks(response.data))
                 .finally(() => setLoading(false));
         }
-    },[subtaskModalVisible]);
+    },[currentTaskId,subtaskModalVisible]);
     useEffect(()=>{
         if((!loading && !subtaskModalVisible && currentTaskId)) {
             let timerId = setInterval(() => {
@@ -81,7 +79,7 @@ const TaskModal = ({show}) => {
                 clearInterval(timerId);
             }
         }
-    },[loading,subtaskModalVisible]);
+    },[loading,currentTaskId,subtaskModalVisible]);
     /*--------------------------------------------------------------------------------*/
     const modalClose = () => {
         setTaskData({});
@@ -93,54 +91,6 @@ const TaskModal = ({show}) => {
             modalClose();
         }
     });
-    /*--------------------------------------------------------------------------------*/
-    const [comments, setComments] = useState({});
-    const [commentData, setCommentData] = useState('');
-    useEffect(()=>{
-        if(currentTaskId) {
-            fetchComments(currentTaskId, null)
-                .then(response => setComments(response.data));
-        }
-    },[]);
-    useEffect(()=>{
-        let timerId = setInterval(() => {
-            if(currentTaskId) {
-                fetchComments(currentTaskId, null)
-                    .then(response => setComments(response.data));
-            }
-        }, 2000);
-        return ()=>{
-            clearInterval(timerId);
-        }
-    },[]);
-    const messageSend = (e) => {
-        e.preventDefault();
-        let commentId = '';
-        if(localStorage.getItem('selectedCommenId')){
-            commentId = localStorage.getItem('selectedCommenId');
-        }
-
-        createComment(
-            currentTaskId,
-            commentId,
-            {
-                dateCreate: String(moment(new Date(), "YYYY-MM-DD").valueOf()),
-                username: String(commentData.username || ''),
-                message: String(commentData.message || ''),
-            }
-        );
-        setCommentData({});
-        localStorage.removeItem('selectedCommenId');
-    };
-    /*--------------------------------------------------------------------------------*/
-    const [files,setFiles] = useState(null);
-    const [file,setFile] = useState(null);
-    const selectFile = (e) => {
-        setFile(e.target.files[0]);
-    };
-    const addFile = () => {
-
-    };
     /*--------------------------------------------------------------------------------*/
     return(
         <div style={(show) ? {display: 'block'} : {display: 'none'}} className="modal">
