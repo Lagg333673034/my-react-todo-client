@@ -1,40 +1,74 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import {deleteProject} from "../../api";
+import {deleteProject} from "../../actions/projectActions";
 import './project.css';
 import {useNavigate} from "react-router-dom";
 import {TASKS_ROUTE} from "../../routes/consts";
+
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
+import {ThemeProvider,createTheme} from '@mui/material/styles';
+import {buttonIconTheme} from '../../css/buttons';
 
 const Project = ({project}) => {
     const dispatch = useDispatch();
     const router = useNavigate();
     /*----------------------------------------------------------------------------------*/
     const selectCurrentProject = () => {
-        localStorage.setItem('projectCurrentId',project._id);
+        dispatch({type:'PROJECT_CURRENT', payload: project});
         router(`${TASKS_ROUTE}/${project._id}`);
     };
-    /*----------------------------------------------------------------------------------*/
     const updCurrentProject = () => {
-        localStorage.setItem('projectCurrentId',project._id);
+        dispatch({type:'PROJECT_CURRENT', payload: project});
         dispatch({type:'PROJECT_MODAL_VISIBLE', payload: true});
     };
-    /*----------------------------------------------------------------------------------*/
     const delCurrentProject = (project) => {
-        deleteProject(project._id);
+        dispatch(deleteProject(project._id));
     };
     /*----------------------------------------------------------------------------------*/
     return (
-        <div className="project">
-            <div style={{width:'100%'}}>
-                <span style={{width:'100%',fontWeight:'700',color:'darkblue'}}>{project.title}</span><br/>
-                {project.description ? <span style={{width:'100%',fontStyle:'italic'}}>({project.description})</span> : ''}
-            </div>
-            <div className="project__btns">
-                <button className="btn btnSelect" type="button" onClick={selectCurrentProject}>Выбрать</button>
-                <button className="btn btnUpd" type="button" onClick={updCurrentProject}>Редактировать</button>
-                <button className="btn btnDel" type="button" onClick={() => delCurrentProject(project)}>Удалить</button>
-            </div>
-        </div>
+        <Card sx={{padding:'5px 10px 5px 10px',border:'2px solid #565bf76e',borderRadius:'15px'}}>
+            <Grid container direction="row" justifyContent="center" alignItems="center">
+                <Grid item xs>
+                    {project.title ?
+                        <div style={{width:'100%',fontSize:'1.5em',color:'blue',margin:'0 0 5px 0'}}>
+                            {project.title}</div> : ''}
+                    {project.description ?
+                        <div style={{width:'100%',fontSize:'1em',color:'gray',margin:'0',fontStyle:'italic'}}>
+                            {project.description}</div> : ''}
+                </Grid>
+                <Grid item xs="auto">
+                    <Stack spacing={1} direction="column" justifyContent="space-between" alignItems="stretch">
+                        <ThemeProvider theme={buttonIconTheme}>
+                        <IconButton
+                            color="primary" size="small"
+                            onClick={selectCurrentProject}
+                        >
+                            <FormatListNumberedIcon />
+                        </IconButton>
+                        <IconButton
+                            color="success" size="small"
+                            onClick={updCurrentProject}>
+                            <EditIcon />
+                        </IconButton>
+                        <IconButton
+                            color="error" size="small"
+                            onClick={() => delCurrentProject(project)}>
+                            <DeleteIcon />
+                        </IconButton>
+                        </ThemeProvider>
+                    </Stack>
+                </Grid>
+            </Grid>
+        </Card>
     );
 };
 

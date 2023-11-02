@@ -1,31 +1,38 @@
 import React,{useState,useEffect} from 'react';
 import './modal.css';
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import {fetchTask} from "../../api";
 import {useParams} from "react-router-dom";
 import moment from 'moment';
-import {createComment,fetchComments} from "../../api/index";
+import {createComment,fetchComments} from "../../actions/commentActions";
 import Comment from "../comment/comment";
 
 const CommentModal = ({show}) => {
     const dispatch = useDispatch();
-    const [taskData,setTaskData] = useState({});
     /*--------------------------------------------------------------------------------*/
-    const currentProjectId = useParams().id;
-    const currentTaskId = localStorage.getItem('taskCurrentId');
+    const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
+    const [taskCurrentState, setTaskCurrentState] = useState(taskCurrent);
     useEffect(()=>{
-        if(
-            currentProjectId && currentProjectId.length>5 &&
-            currentTaskId && currentTaskId.length>5
-        ) {
-            fetchTask(currentProjectId,currentTaskId).then(response => setTaskData(response.data[0]));
-        }
-    },[currentProjectId,currentTaskId]);
+        setTaskCurrentState(taskCurrent);
+    },[taskCurrent]);
+    /*--------------------------------------------------------------------------------*/
+    const commentCurrent = useSelector((state)=>state.commentReducer.commentCurrent);
+    const [commentCurrentState, setCommentCurrentState] = useState(commentCurrent);
+    useEffect(()=>{
+        setCommentCurrentState(commentCurrent);
+    },[commentCurrent]);
+    /*--------------------------------------------------------------------------------*/
+    const commentToComment = useSelector((state)=>state.commentReducer.commentToComment);
+    const [commentToCommentState, setCommentToCommentState] = useState(commentToComment);
+    useEffect(()=>{
+        setCommentToCommentState(commentToComment);
+    },[commentToComment]);
     /*--------------------------------------------------------------------------------*/
     const modalClose = () => {
-        setTaskData({});
-        localStorage.removeItem('taskCurrentId');
+        setCommentCurrentState({});
         dispatch({type:'COMMENT_MODAL_VISIBLE', payload: false});
+        dispatch({type:'COMMENT_CURRENT', payload: null});
+        dispatch({type:'COMMENT_TO_COMMENT', payload: null});
     };
     document.addEventListener('keyup', function(event){
         if(event.keyCode === 27) {
@@ -33,67 +40,31 @@ const CommentModal = ({show}) => {
         }
     });
     /*--------------------------------------------------------------------------------*/
-    const [tempComments, setTempComments] = useState({});
-    const [allComments, setAllComments] = useState({});
-    const [lvl0Comments, setlvl0Comments] = useState({});
-    let lvlComment = 0;
-
-    useEffect(()=>{
-        if(currentTaskId) {
-            fetchComments(currentTaskId,"null")
-                .then(response => setTempComments(response.data));
-            setAllComments(tempComments);
-            setlvl0Comments(tempComments);
-        }
-    },[currentTaskId,tempComments]);
-    useEffect(()=>{
-        let timerId = setInterval(() => {
-            if(currentTaskId) {
-                fetchComments(currentTaskId,"null")
-                    .then(response => setTempComments(response.data));
-                setAllComments(tempComments);
-                setlvl0Comments(tempComments);
+    //const [commentData, setCommentData] = useState({username:'',message:''});
+    const commentAdd = (e) => {
+        //e.preventDefault();
+        if(taskCurrentState && taskCurrentState._id && taskCurrentState._id.length>0) {
+            let commentToCommentId = '';
+            if (commentToCommentState && commentToCommentState._id && commentToCommentState._id.length > 0) {
+                commentToCommentId = commentToCommentState;
             }
-        }, 2000);
-        return ()=>{
-            clearInterval(timerId);
-        }
-    },[currentTaskId,tempComments]);
 
-    const showSubComments = (comments,comment,lvl) => {
-        let temp_comments = comments;
-        let temp_lvl = Number(lvl)+1;
-        return(
-            temp_comments
-                .filter(c => c.commentId === comment._id)
-                .map((c, c_index) =>
-                    <div key={c_index}>
-                        <Comment comment={c} lvl={temp_lvl}/>
-                        {showSubComments(allComments,c,temp_lvl)}
-                    </div>
+            dispatch(
+                createComment(
+                    taskCurrentState._id,
+                    commentToCommentId,
+                    {
+                        dateCreate: String(moment(new Date(), "YYYY-MM-DD").valueOf()),
+                        username: String(commentCurrentState.username || ''),
+                        message: String(commentCurrentState.message || ''),
+                    }
                 )
-        )
-    };
-    /*--------------------------------------------------------------------------------*/
-    const [commentData, setCommentData] = useState({username:'',message:''});
-    const messageSend = (e) => {
-        e.preventDefault();
-        let commentId = '';
-        if(localStorage.getItem('selectedCommenId')){
-            commentId = localStorage.getItem('selectedCommenId');
+            );
+            setCommentCurrentState({username: '', message: ''});
+            //localStorage.removeItem('selectedCommenId');
+            dispatch({type:'COMMENT_TO_COMMENT', payload: null});
+            modalClose();
         }
-
-        createComment(
-            currentTaskId,
-            commentId,
-            {
-                dateCreate: String(moment(new Date(), "YYYY-MM-DD").valueOf()),
-                username: String(commentData.username || ''),
-                message: String(commentData.message || ''),
-            }
-        );
-        setCommentData({username:'',message:''});
-        localStorage.removeItem('selectedCommenId');
     };
     /*--------------------------------------------------------------------------------*/
     return(
@@ -102,25 +73,6 @@ const CommentModal = ({show}) => {
                 <div className="modal-title"></div>
                 <div className="modal-content">
                     <div style={{width:'100%'}}>
-                        <div className="title">
-                            Комментарии к задаче<br/>
-                            {taskData.title}
-                        </div>
-                        <div style={{height:'300px',border:'1px solid gray', overflowY:'auto'}}>
-                            {
-                                lvl0Comments &&
-                                lvl0Comments.length > 0 &&
-                                lvl0Comments
-                                    .filter(comment => comment.commentId === "")
-                                    .map((comment, comment_index) =>
-                                        <div key={comment_index}>
-                                            <Comment comment={comment} lvl={lvlComment}/>
-                                            {showSubComments(allComments,comment,lvlComment)}
-                                        </div>
-                                )
-
-                            }
-                        </div>
                         <div>
                             <div className="inputOut">
                                 Имя пользователя
@@ -129,8 +81,8 @@ const CommentModal = ({show}) => {
                                     type="text"
                                     id="username"
                                     autoComplete="off"
-                                    value={commentData.username ? commentData.username : ''}
-                                    onChange={(e) => setCommentData({...commentData, username:e.target.value})}
+                                    value={commentCurrentState && commentCurrentState.username ? commentCurrentState.username : ''}
+                                    onChange={(e) => setCommentCurrentState({...commentCurrentState, username:e.target.value})}
                                 />
                             </div>
                             <div className="inputOut">
@@ -140,31 +92,37 @@ const CommentModal = ({show}) => {
                                     type="text"
                                     id="message"
                                     autoComplete="off"
-                                    value={commentData.message ? commentData.message : ''}
-                                    onChange={(e) => setCommentData({...commentData, message:e.target.value})}
+                                    value={commentCurrentState && commentCurrentState.message ? commentCurrentState.message : ''}
+                                    onChange={(e) => setCommentCurrentState({...commentCurrentState, message:e.target.value})}
                                 />
                             </div>
                             <button
                                 className="btn btnAdd"
                                 type="button"
-                                onClick={messageSend}
+                                onClick={commentAdd}
                             >
                                 Отправить комментарий
                             </button>
                             <div>
-                                {localStorage.getItem('selectedCommenId') ?
-                                    <div>
-                                        к комм.: {localStorage.getItem('selectedCommenId')}
-                                        <button
-                                            className="btn btnDel iconDel"
-                                            type="button"
-                                            onClick={()=>localStorage.removeItem('selectedCommenId')}
-                                        >
-                                            &#10007;
-                                        </button>
-                                    </div>
-                                    :
-                                    ''}
+                                {
+                                    commentToCommentState &&
+                                    commentToCommentState._id &&
+                                    commentToCommentState._id.length>0 ?
+                                        <div>
+                                            к комм.:
+                                            {commentToCommentState && commentToCommentState.username}
+                                            ({moment(Number(commentToCommentState.dateCreate)).format("DD.MM.YYYY  HH:mm:ss")})
+                                            <button
+                                                className="btn btnDel iconDel"
+                                                type="button"
+                                                onClick={()=>dispatch({type:'COMMENT_TO_COMMENT', payload: null})}
+                                            >
+                                                &#10007;
+                                            </button>
+                                        </div>
+                                        :
+                                        ''
+                                }
                             </div>
                         </div>
                     </div>

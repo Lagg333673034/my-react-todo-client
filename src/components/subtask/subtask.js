@@ -1,44 +1,37 @@
-import React from 'react';
-import {deleteSubtask} from "../../api";
+import React,{useState} from 'react';
+//import {deleteSubtask,updateSubtask} from "../../api";
+import {deleteSubtask,updateSubtask} from "../../actions/subtaskActions";
+import {useDispatch,useSelector} from 'react-redux';
 import './subtask.css';
-import {updateSubtask} from "../../api/index";
 
 const Subtask = ({subtask}) => {
+    const dispatch = useDispatch();
     /*--------------------------------------------------------------------------*/
     const updSubtask = (subtask) => {
-        updateSubtask(
-            subtask._id,
-            {
-                done: String('true'),
-            }
-        );
+        dispatch({type:'SUBTASK_CURRENT', payload: subtask});
+        dispatch({type:'SUBTASK_MODAL_VISIBLE', payload: true});
+    };
+    const doneSubtask = (subtask) => {
+        dispatch(updateSubtask(subtask._id, {done: 'true'}));
     };
     const delSubtask = (subtask) => {
-        deleteSubtask(subtask._id);
+        dispatch(deleteSubtask(subtask._id));
     };
     /*--------------------------------------------------------------------------*/
     return (
-        <div className="subtask" style={subtask.done && subtask.done !== '' ? {background: 'gray'}:{}}>
+        <div className="subtask" style={subtask.done && subtask.done !== '' ? {background: 'gray'} : {}}>
             <div style={subtask.done && subtask.done !== '' ? {textDecoration:'line-through'} : {}}>
                 {subtask.description ? <span style={{width: '100%',}}>{subtask.description}</span> : ''}
             </div>
             <div className="subtask__btns">
-                {!(subtask.done && subtask.done !== '') ?
-                    <button
-                        className="btn btnUpd" type="button"
-                        onClick={() => updSubtask(subtask)}
-                    >
-                        &#10004;
-                    </button>
+                <button className="btn btnUpd" type="button" onClick={() => updSubtask(subtask)}>upd</button>
+                {
+                    !(subtask.done && subtask.done !== '') ?
+                    <button className="btn btnUpd" type="button" onClick={() => doneSubtask(subtask)}>done</button>
                     :
                     ""
                 }
-                <button
-                    className="btn btnDel iconDel" type="button"
-                    onClick={() => delSubtask(subtask)}
-                >
-                    &#10007;
-                </button>
+                <button className="btn btnDel iconDel" type="button" onClick={() => delSubtask(subtask)}>&#10007;</button>
             </div>
         </div>
     );

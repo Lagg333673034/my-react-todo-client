@@ -1,31 +1,26 @@
 import React,{useState,useEffect} from 'react';
 import './modal.css';
-import {useDispatch} from 'react-redux';
-import {fetchTask} from "../../api";
+import {useDispatch,useSelector} from 'react-redux';
 import {useParams} from "react-router-dom";
-import {createFile, fetchFiles} from "../../api/index";
+import {createFile,fetchFiles} from "../../actions/fileActions";
 import File from '../file/file';
 import {useRef} from 'react';
 
-const FileModal = ({show}) => {
+const FileListModal = ({show}) => {
     const dispatch = useDispatch();
-    const [taskData,setTaskData] = useState({});
+    let fileListModalVisibleSelector = useSelector((state)=>state.fileReducer.fileListModalVisible);
     /*--------------------------------------------------------------------------------*/
-    const currentProjectId = useParams().id;
-    const currentTaskId = localStorage.getItem('taskCurrentId');
+    const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
+    const [taskCurrentState, setTaskCurrentState] = useState(taskCurrent);
     useEffect(()=>{
-        if(
-            currentProjectId && currentProjectId.length>5 &&
-            currentTaskId && currentTaskId.length>5
-        ) {
-            fetchTask(currentProjectId,currentTaskId).then(response => setTaskData(response.data[0]));
-        }
-    },[currentProjectId,currentTaskId]);
+        setTaskCurrentState(taskCurrent);
+    },[taskCurrent]);
     /*--------------------------------------------------------------------------------*/
     const modalClose = () => {
-        setTaskData({});
-        localStorage.removeItem('taskCurrentId');
-        dispatch({type:'FILE_MODAL_VISIBLE', payload: false});
+        fileListModalVisibleSelector = false; //это или убирать/обнулить  -=currentTaskId=-
+        setFiles({});
+        setFile({});
+        dispatch({type:'FILE_LIST_MODAL_VISIBLE', payload: false});
     };
     document.addEventListener('keyup', function(event){
         if(event.keyCode === 27) {
@@ -33,35 +28,46 @@ const FileModal = ({show}) => {
         }
     });
     /*--------------------------------------------------------------------------------*/
-    const [files,setFiles] = useState(null);
-    const [file,setFile] = useState(null);
-    const fileRef = useRef(null);
+    const fileFetchAll = useSelector((state)=>state.fileReducer.files);
+    const [files, setFiles] = useState(fileFetchAll);
+    const [filesLoading, setFilesLoading] = useState(false);
+    useEffect(()=>{
+        if(fileListModalVisibleSelector) {
+            setFiles(fileFetchAll);
+        }
+    },[fileFetchAll]);
 
     useEffect(()=>{
-        if(currentTaskId && currentTaskId.length && currentTaskId.length>5) {
-            fetchFiles(currentTaskId)
-                .then(response => setFiles(response.data));
+        if(
+            taskCurrentState && taskCurrentState._id && taskCurrentState._id.length>0 &&
+            !filesLoading && fileListModalVisibleSelector
+        ) {
+            setFilesLoading(true);
+            dispatch(fetchFiles(taskCurrentState._id)).finally(() => setFilesLoading(false));
         }
-    });
+    },[fileFetchAll]);
     useEffect(()=>{
-        let timerId = setInterval(() => {
-            if(currentTaskId && currentTaskId.length && currentTaskId.length>5) {
-                fetchFiles(currentTaskId)
-                    .then(response => setFiles(response.data))
-                    .catch(error => console.log(error));
+        const timer = setTimeout(() => {
+            if(
+                taskCurrentState && taskCurrentState._id && taskCurrentState._id.length>0 &&
+                fileListModalVisibleSelector
+            ){
+                dispatch(fetchFiles(taskCurrentState._id));
             }
-        }, 2000);
-        return ()=>{
-            clearInterval(timerId);
-        }
+        }, 5000);
+        return () => clearTimeout(timer);
     });
     /*--------------------------------------------------------------------------------*/
+    const [file,setFile] = useState(null);
+    const fileRef = useRef(null);
     const uploadFile = () => {
-        const formData = new FormData();
-        formData.append('taskId', currentTaskId);
-        formData.append('file', file);
-        createFile(formData);
-        fileRef.current.value = null;
+        if(taskCurrentState && taskCurrentState._id && taskCurrentState._id.length) {
+            const formData = new FormData();
+            formData.append('taskId', taskCurrentState._id);
+            formData.append('file', file);
+            dispatch(createFile(formData));
+            fileRef.current.value = null;
+        }
     };
     /*--------------------------------------------------------------------------------*/
     return(
@@ -74,7 +80,7 @@ const FileModal = ({show}) => {
                     <div style={{width:'100%'}}>
                         <div className="title">
                             Файлы к задаче<br/>
-                            {taskData.title}
+                            {taskCurrentState ? taskCurrentState.title : ''}
                         </div>
                         <div style={{height:'300px',border:'1px solid gray', overflowY:'auto'}}>
                             {
@@ -103,4 +109,4 @@ const FileModal = ({show}) => {
     )
 };
 
-export default FileModal;
+export default FileListModal;

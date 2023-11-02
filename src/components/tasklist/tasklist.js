@@ -10,7 +10,6 @@ const Tasklist = ({column,tasks,searchTasksString}) => {
         <Droppable droppableId={column.status}>
             {(provided)=>(
                 <div
-                    className="condition"
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                 >
@@ -24,7 +23,7 @@ const Tasklist = ({column,tasks,searchTasksString}) => {
                             )
                             .sort((a, b) => b.priority.localeCompare(a.priority))
                             .map((task,task_index) =>
-                                <Task key={task._id} index={task_index} task={task}/>
+                                <Task key={String(task._id)} index={task_index} task={task}/>
                             )
                     }
                     {provided.placeholder}

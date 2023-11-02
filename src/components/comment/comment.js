@@ -1,19 +1,24 @@
 import React from 'react';
 import './comment.css';
-import {deleteComment} from "../../api/index";
+import {deleteComment} from "../../actions/commentActions";
+import {useDispatch} from 'react-redux';
 import moment from 'moment';
 
 const Comment = ({comment,lvl}) => {
+    const dispatch = useDispatch();
+    /*--------------------------------------------------------------------------*/
     let temp_lvl = Number(lvl)*20 + 5;
     if(temp_lvl > 100){
         temp_lvl=100;
     }
     /*--------------------------------------------------------------------------*/
     const addSubComment = (comment) => {
-        localStorage.setItem('selectedCommenId',comment._id);
+        //localStorage.setItem('selectedCommenId',comment._id);
+        dispatch({type:'COMMENT_TO_COMMENT', payload: comment});
+        dispatch({type:'COMMENT_MODAL_VISIBLE', payload: true});
     };
     const delComment = (comment) => {
-        deleteComment(comment._id);
+        dispatch(deleteComment(comment._id));
     };
     /*--------------------------------------------------------------------------*/
     return (

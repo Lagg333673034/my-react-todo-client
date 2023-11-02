@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-//let host = "http://localhost:5000/api";
-let host = "https://todo-server-rijd.onrender.com/api";
+let host = "http://localhost:5000/api";
+//let host = "https://todo-server-rijd.onrender.com/api";
 
 const urlProject = `${host}/project`;
 const urlTask = `${host}/task`;
@@ -36,7 +36,7 @@ export const fetchComment = async (taskId,commentId,id) => axios.get(`${urlComme
 export const createFile = async (newFile) => axios.post(urlFile,newFile);
 export const deleteFile = async (taskId,fileNameUuid) => axios.delete(`${urlFile}/${taskId}/${fileNameUuid}`);
 export const fetchFiles = async (taskId) => axios.get(`${urlFile}/${taskId}`);
-export const fetchFile = async (taskId,fileNameUuid,file) => {
+export const downloadFile = async (taskId,fileNameUuid,file) => {
     const responce = await fetch(`${urlFile}/${taskId}/${fileNameUuid}`);
     if (responce.status === 200) {
         const blob = await responce.blob();

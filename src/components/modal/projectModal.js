@@ -1,36 +1,48 @@
 import React,{useState,useEffect} from 'react';
 import './modal.css';
-import {useDispatch} from 'react-redux';
-import {fetchProject,createProject,updateProject} from "../../api";
+import {useDispatch,useSelector} from 'react-redux';
+import {fetchProject,createProject,updateProject} from "../../actions/projectActions";
+
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import SaveIcon from '@mui/icons-material/Save';
+import AddIcon from '@mui/icons-material/Add';
+import CloseIcon from '@mui/icons-material/Close';
+import {ThemeProvider,createTheme} from '@mui/material/styles';
+//import { makeStyles } from '@mui/styles';
+import Stack from '@mui/material/Stack';
+import {inputTheme} from '../../css/inputs';
+
+
 
 const ProjectModal = ({show}) => {
     /*--------------------------------------------------------------------------------*/
     const dispatch = useDispatch();
     const [projectData,setProjectData] = useState({title:'',description:''});
     /*--------------------------------------------------------------------------------*/
-    const currentProjectId = localStorage.getItem('projectCurrentId');
+    const projectCurrent = useSelector((state)=>state.projectReducer.projectCurrent);
+    const [projectCurrentState, setProjectCurrentState] = useState(projectCurrent);
     useEffect(()=>{
-        if(currentProjectId && currentProjectId.length>5) {
-            fetchProject(currentProjectId).then(response => setProjectData(response.data[0]));
-        }
-    },[currentProjectId]);
+        setProjectCurrentState(projectCurrent);
+        setProjectData(projectCurrent);
+    },[projectCurrent]);
     /*--------------------------------------------------------------------------------*/
     const projectAdd = (e) => {
-        e.preventDefault();
-        createProject(projectData);
+        dispatch(createProject(projectData));
         modalClose();
     };
-    /*--------------------------------------------------------------------------------*/
     const projectUpd = (e) => {
-        e.preventDefault();
-        updateProject(currentProjectId,projectData);
+        if(projectCurrentState && projectCurrentState._id) {
+            dispatch(updateProject(projectCurrentState._id, projectData));
+        }
         modalClose();
     };
     /*--------------------------------------------------------------------------------*/
     const modalClose = () => {
-        setProjectData({});
-        localStorage.removeItem('projectCurrentId');
-        dispatch({type:'PROJECT_MODAL_VISIBLE', payload: false});
+        setProjectData({title:'',description:''});
+        dispatch({type:"PROJECT_CURRENT",payload:null});
+        dispatch({type:'PROJECT_MODAL_VISIBLE',payload:false});
     };
     document.addEventListener('keyup', function(event){
         if(event.keyCode === 27) {
@@ -42,39 +54,77 @@ const ProjectModal = ({show}) => {
         <div style={(show) ? {display: 'block'} : {display: 'none'}} className="modal">
             <div className="modal-main">
                 <div className="modal-title">
-                    {currentProjectId && currentProjectId.length>5 ? 'Редактировать проект' : 'Добавить проект'}
+                    {
+                        projectCurrentState &&
+                        projectCurrentState._id &&
+                        projectCurrentState._id.length>5 ?
+                            'Редактировать проект'
+                            :
+                            'Добавить проект'
+                    }
                 </div>
                 <div className="modal-content">
-                    <div className="inputOut">
-                        Название проекта
-                        <input
-                            className="inputIn"
-                            type="text"
-                            id="projectTitle"
-                            value={projectData.title ? projectData.title : ''}
+                    <Stack spacing={0} direction="column" sx={{width:'100%'}}>
+                        <ThemeProvider theme={inputTheme}>
+                        <TextField
+                            label="Название проекта"
+                            variant="outlined"
+                            value={projectData && projectData.title ? projectData.title : ''}
                             autoComplete="off"
                             onChange={(e) => setProjectData({...projectData, title:e.target.value})}
                         />
-                    </div>
-                    <div className="inputOut">
-                        Описание проекта
-                        <input
-                            className="inputIn"
-                            type="text"
-                            id="projectDescription"
-                            value={projectData.description ? projectData.description : ''}
+                        <TextField
+                            label="Описание проекта"
+                            ariant="outlined"
+                            multiline
+                            rows={4}
+                            value={projectData && projectData.description ? projectData.description : ''}
                             autoComplete="off"
                             onChange={(e) => setProjectData({...projectData, description:e.target.value})}
                         />
-                    </div>
+                        </ThemeProvider>
+                    </Stack>
                 </div>
                 <div className="modal-footer">
-                    <button className="btn btnClose" type="button" onClick={modalClose}>Закрыть</button>
-                    {currentProjectId && currentProjectId.length>5 ?
-                        <button className="btn btnAdd" type="button" onClick={projectUpd}>Сохранить изменения</button>
-                        :
-                        <button className="btn btnAdd" type="button" onClick={projectAdd}>Добавить проект</button>
-                    }
+                    <Grid
+                        container direction="row" justifyContent="center" alignItems="center"
+                    >
+                        <Grid item xs="auto">
+                            {projectCurrentState && projectCurrentState._id && projectCurrentState._id.length>5 ?
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    startIcon={<SaveIcon/>}
+                                    onClick={projectUpd}
+                                >
+                                    Сохранить изменения
+                                </Button>
+                                :
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    startIcon={<AddIcon/>}
+                                    onClick={projectAdd}
+                                >
+                                    Добавить проект
+                                </Button>
+                            }
+                        </Grid>
+                        <Grid item xs></Grid>
+                        <Grid item xs="auto">
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                                startIcon={<CloseIcon/>}
+                                onClick={modalClose}
+                            >
+                                Закрыть
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </div>
             </div>
         </div>

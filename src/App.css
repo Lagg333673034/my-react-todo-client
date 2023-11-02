@@ -3,124 +3,19 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #e9e9e9;
 }
-
 #root{
     width: 100%;
 }
-
-
-.pageTitleOut{
-    width:100%;
-    margin:auto;
-    padding:0;
-    display:flex;
-    justify-content: center;
-}
-.pageTitleIn {
-    margin:auto;
-    padding:0;
-    display: flex;
-}
-
-
-.inputOut{
-    width:auto;
-    display:grid;
-    padding:0px 10px 0px 10px;
-    margin: 1px;
-}
-.inputIn{
-    float:right;
-    width:auto;
-    padding:5px 1px;
-    margin:5px 0px 5px 0px;
-}
-
-
 .title{
-    font-size:24px;
-    margin:5px;
+    font-size:1.7em;
+    padding:5px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.tools {
-    width: 100%;
-    height: 40px;
-    background-color: #dcedff;
-    margin: auto;
-    padding: 0;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.btn{
-    cursor: pointer;
-    padding: 5px;
-    margin: 1px 1px 1px 1px;
-}
-.btnAdd{
-    background-color: #71cd6c;
-}
-.btnUpd{
-    background-color: #fffc4d;
-}
-.btnDel{
-    background-color: #ff5b58;
-}
-.btnClose{
-    background-color: #dbdbdb;
-}
-.btnSelect{
-    background-color: #8786ff;
-}
-.btnDownload{
-    background-color: #348f3a80;
-}
-
-.iconUpd{
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    font-size: 17px;
-    transform: scale(-1,1);
-    border: 2px solid transparent;
-    border-radius: 20%;
-    color: black;
-    background-color: #3093d596;
-}
-.iconDel{
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    font-size: 17px;
-    font-weight: 700;
-    border: 2px solid transparent;
-    border-radius: 20%;
-    color: black;
-    background-color: rgb(255, 91, 88);
-}
-.iconDownload{
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    font-weight: 700;
-    border: 2px solid transparent;
-    border-radius: 20%;
-    color: black;
-    background-color: #348f3a80;
-}
-
-.iconDel:hover,
-.iconUpd:hover,
-.iconDownload:hover{
-    border-color: blue;
 }

@@ -1,33 +1,41 @@
 import React,{useState,useEffect} from 'react';
 import {useDispatch,useSelector} from 'react-redux';
-import TaskModal from '../components/modal/taskModal';
-import CommentModal from '../components/modal/commentModal';
-import FileModal from '../components/modal/fileModal';
 import Tasklist from '../components/tasklist/tasklist';
-import {fetchProject,fetchTasks,updateTask} from "../api";
-
+import TaskModal from '../components/modal/taskModal';
+import CommentListModal from '../components/modal/commentListModal';
+import FileListModal from '../components/modal/fileListModal';
+import SubtaskListModal from '../components/modal/subtaskListModal';
+import {fetchTasks,updateTask} from "../actions/taskActions";
 import {useParams} from "react-router-dom";
 import './PageTasks.css';
 import moment from 'moment';
 import {DragDropContext} from 'react-beautiful-dnd';
+
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import SearchIcon from '@mui/icons-material/Search';
+import Grid from '@mui/material/Grid';
+
 
 
 const PageTasks = () => {
     const dispatch = useDispatch();
     const currentProjectId = useParams().id;
     useEffect(()=>{
-        localStorage.removeItem('taskCurrentId');
+        dispatch({type:"TASK_CURRENT",payload:null});
     },[]);
     /*--------------------------------------------------------------------------*/
     const [searchTasksString,setSearchTasksString] = useState('');
-    /*--------------------------------------------------------------------------*/
-    const [searchTemp, setSearchTemp] = useState('');
+    const [searchTasksStringTemp, setSearchTasksStringTemp] = useState('');
     useEffect(() => {
         const timer = setTimeout(() => {
-            setSearchTasksString(searchTemp)
+            setSearchTasksString(searchTasksStringTemp)
         }, 500);
         return () => clearTimeout(timer)
-    }, [searchTemp]);
+    }, [searchTasksStringTemp]);
     /*--------------------------------------------------------------------------*/
     const taskModalVisibleSelector = useSelector((state)=>state.taskReducer.taskModalVisible);
     const [taskModalVisible, setTaskModalVisible] = useState(taskModalVisibleSelector);
@@ -35,55 +43,61 @@ const PageTasks = () => {
         setTaskModalVisible(taskModalVisibleSelector);
     },[taskModalVisibleSelector]);
     /*--------------------------------------------------------------------------*/
-    const commentModalVisibleSelector = useSelector((state)=>state.commentReducer.commentModalVisible);
-    const [commentModalVisible, setCommentModalVisible] = useState(commentModalVisibleSelector);
+    const commentListModalVisibleSelector = useSelector((state)=>state.commentReducer.commentListModalVisible);
+    const [commentListModalVisible, setCommentListModalVisible] = useState(commentListModalVisibleSelector);
     useEffect(()=>{
-        setCommentModalVisible(commentModalVisibleSelector);
-    },[commentModalVisibleSelector]);
+        setCommentListModalVisible(commentListModalVisibleSelector);
+    },[commentListModalVisibleSelector]);
     /*--------------------------------------------------------------------------*/
-    const fileModalVisibleSelector = useSelector((state)=>state.fileReducer.fileModalVisible);
-    const [fileModalVisible, setFileModalVisible] = useState(fileModalVisibleSelector);
+    const fileListModalVisibleSelector = useSelector((state)=>state.fileReducer.fileListModalVisible);
+    const [fileListModalVisible, setFileListModalVisible] = useState(fileListModalVisibleSelector);
     useEffect(()=>{
-        setFileModalVisible(fileModalVisibleSelector);
-    },[fileModalVisibleSelector]);
+        setFileListModalVisible(fileListModalVisibleSelector);
+    },[fileListModalVisibleSelector]);
     /*--------------------------------------------------------------------------*/
-    const [tasks, setTasksData] = useState({});
-    const [loading, setLoading] = useState(false);
+    const subtaskListModalVisibleSelector = useSelector((state)=>state.subtaskReducer.subtaskListModalVisible);
+    const [subtaskListModalVisible, setSubtaskListModalVisible] = useState(subtaskListModalVisibleSelector);
     useEffect(()=>{
-        if(currentProjectId && currentProjectId.length>5) {
-            setLoading(true);
-            fetchTasks(currentProjectId).then(response => setTasksData(response.data)).finally(() => setLoading(false));
-        }
-    },[currentProjectId]);
+        setSubtaskListModalVisible(subtaskListModalVisibleSelector);
+    },[subtaskListModalVisibleSelector]);
+    /*--------------------------------------------------------------------------------*/
+    const taskFetchAll = useSelector((state)=>state.taskReducer.tasks);
+    const [tasks, setTasks] = useState(taskFetchAll);
+    const [tasksLoading, setTasksLoading] = useState(false);
+    useEffect(()=>{
+        setTasks(taskFetchAll);
+    },[taskFetchAll]);
+
     useEffect(()=>{
         if(
-            !loading &&
-            currentProjectId && currentProjectId.length>5 &&
-            !taskModalVisible && !commentModalVisible && !fileModalVisible
-
+            currentProjectId && currentProjectId.length>0 &&
+            !taskModalVisible && !tasksLoading
         ) {
-            let timerId = setInterval(() => {
-                fetchTasks(currentProjectId).then(response => setTasksData(response.data));
-            }, 3000);
-            return ()=>{
-                clearInterval(timerId)
-            }
+            setTasksLoading(true);
+            setTasks(taskFetchAll);
+            dispatch(fetchTasks(currentProjectId)).finally(() => setTasksLoading(false));
         }
-    },[loading,currentProjectId,taskModalVisible,commentModalVisible,fileModalVisible]);
-    /*--------------------------------------------------------------------------*/
-    const [project, setProjectData] = useState({});
+    },[currentProjectId,taskModalVisible]);
     useEffect(()=>{
-        if(currentProjectId && currentProjectId.length>5) {
-            fetchProject(currentProjectId).then(response => setProjectData(response.data[0]));
-        }
-    },[currentProjectId]);
+        const timer = setTimeout(() => {
+            if(currentProjectId && currentProjectId.length>0){
+                dispatch(fetchTasks(currentProjectId));
+            }
+        }, 5000);
+        return () => clearTimeout(timer);
+    });
+    /*--------------------------------------------------------------------------*/
+    const projectCurrent = useSelector((state)=>state.projectReducer.projectCurrent);
+    const [projectCurrentState, setProjectCurrentState] = useState(projectCurrent);
+    useEffect(()=>{
+        setProjectCurrentState(projectCurrent);
+    },[projectCurrent]);
     /*--------------------------------------------------------------------------*/
     const columns = [
         {title:"В очереди",status:"1"},
         {title:"В работе",status:"2"},
         {title:"Завершено",status:"3"}
     ];
-    /*--------------------------------------------------------------------------*/
     const onDragEnd = result => {
         const {destination, source, draggableId} = result;
         if(!destination){
@@ -101,88 +115,102 @@ const PageTasks = () => {
             tasks.length>0 &&
             tasks.filter(task => task._id === draggableId)[0];
 
-        if (column === '1') {
-            updateTask(
-                draggableTask._id,
-                {
-                    timeInWorkStart: '',
-                    timeInWorkFinish: '',
-                    timeInWork: String(
-                        (draggableTask.timeInWork && draggableTask.timeInWork.length > 0 ? Number(draggableTask.timeInWork) : 0)
-                        +
-                        (draggableTask.timeInWorkStart && draggableTask.timeInWorkStart.length > 0 ? (moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf() - Number(draggableTask.timeInWorkStart)) : 0)
-                    ),
-                    dateFinish: '',
-                }
-            );
+        if(draggableTask) {
+            if (column === '1') {
+                draggableTask.timeInWorkStart = '';
+                draggableTask.timeInWorkFinish = '';
+                draggableTask.timeInWork = String(
+                    (draggableTask.timeInWork && draggableTask.timeInWork.length > 0 ? Number(draggableTask.timeInWork) : 0)
+                    +
+                    (draggableTask.timeInWorkStart && draggableTask.timeInWorkStart.length > 0 ? (moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf() - Number(draggableTask.timeInWorkStart)) : 0)
+                );
+                draggableTask.dateFinish = '';
+                draggableTask.status = column;
+            }
+            if (column === '2') {
+                draggableTask.timeInWorkStart = String(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf());
+                draggableTask.timeInWorkFinish = '';
+                draggableTask.dateFinish = '';
+                draggableTask.status = column;
+            }
+            if (column === '3') {
+                draggableTask.timeInWorkFinish = String(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf());
+                draggableTask.timeInWork = String(
+                    (draggableTask.timeInWork && draggableTask.timeInWork.length > 0 ? Number(draggableTask.timeInWork) : 0)
+                    +
+                    (draggableTask.timeInWorkStart && draggableTask.timeInWorkStart.length > 0 ? (moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf() - Number(draggableTask.timeInWorkStart)) : 0)
+                );
+                draggableTask.dateFinish = String(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf());
+                draggableTask.status = column;
+            }
+            dispatch(updateTask(draggableTask._id, draggableTask));
         }
-        if (column === '2') {
-            updateTask(
-                draggableTask._id,
-                {
-                    timeInWorkStart: String(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf()),
-                    timeInWorkFinish: '',
-                    //timeInWork: '',
-                    dateFinish: '',
-                }
-            );
-        }
-        if (column === '3') {
-            updateTask(
-                draggableTask._id,
-                {
-                    //timeInWorkStart: String(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf()),
-                    timeInWorkFinish: String(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf()),
-                    timeInWork: String(
-                        (draggableTask.timeInWork && draggableTask.timeInWork.length > 0 ? Number(draggableTask.timeInWork) : 0)
-                        +
-                        (draggableTask.timeInWorkStart && draggableTask.timeInWorkStart.length > 0 ? (moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf() - Number(draggableTask.timeInWorkStart)) : 0)
-                    ),
-                    dateFinish: String(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf())
-                }
-            );
-        }
-        updateTask(draggableTask._id, {status: column});
     };
     /*--------------------------------------------------------------------------*/
     return(
         <>
-        <div className="tools">
-            <button
-                className="btn btnAdd"
-                type="button"
-                onClick={() => dispatch({type:'TASK_MODAL_VISIBLE', payload: true})}
-            >
-                Добавить задачу
-            </button>
-            <input type="text" onChange={(e) => setSearchTemp(e.target.value)} placeholder="поиск ..." />
-        </div>
+        <Grid
+            container
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="center"
+        >
+            <Stack spacing={3} direction="row">
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    startIcon={<AddBoxIcon/>}
+                    onClick={() => dispatch({type:'TASK_MODAL_VISIBLE', payload: true})}
+                >
+                    Добавить задачу
+                </Button>
+                <TextField
+                    id="input-with-icon-textfield"
+                    hiddenLabel
+                    placeholder="поиск ..."
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <SearchIcon />
+                            </InputAdornment>
+                        ),
+                    }}
+                    variant="standard"
+                    onChange={(e) => setSearchTasksStringTemp(e.target.value)}
+                />
+            </Stack>
+        </Grid>
         <div className="title">
-            {project.title}
+            {projectCurrentState && projectCurrentState.title}
         </div>
         <DragDropContext onDragEnd={onDragEnd}>
-            {
-                columns &&
-                columns.length>0 &&
-                columns.map((column,column_index) => {
-                    const columnTasks =
-                    tasks &&
-                    tasks.length>0 &&
-                    tasks.filter(task => task.status === column.status);
-                    return (
-                        <Tasklist
-                            key={column_index}
-                            column={column}
-                            tasks={columnTasks}
-                            searchTasksString={searchTasksString}
-                        />
-                    )
-                })
-            }
+            <Grid container direction="row" justifyContent="center" alignItems="flex-start">
+                {
+                    columns &&
+                    columns.length>0 &&
+                    columns.map((column,column_index) => {
+                        const columnTasks =
+                        tasks &&
+                        tasks.length>0 &&
+                        tasks.filter(task => task.status === column.status);
+                        return (
+                            <Grid item xs={4} key={column_index}>
+                                <Tasklist
+                                    column={column}
+                                    tasks={columnTasks}
+                                    searchTasksString={searchTasksString}
+                                />
+                            </Grid>
+                        )
+                    })
+                }
+            </Grid>
         </DragDropContext>
         {taskModalVisible ? <TaskModal show={taskModalVisible}/>  : ''}
-        {commentModalVisible ? <CommentModal show={commentModalVisible}/>  : ''}
-        {fileModalVisible ? <FileModal show={fileModalVisible}/>  : ''}
+        {commentListModalVisible ? <CommentListModal show={commentListModalVisible}/>  : ''}
+        {fileListModalVisible ? <FileListModal show={fileListModalVisible}/>  : ''}
+        {subtaskListModalVisible ? <SubtaskListModal show={subtaskListModalVisible}/>  : ''}
         </>
     )
 };

@@ -1,90 +1,73 @@
 import React,{useState,useEffect} from 'react';
 import './modal.css';
 import {useDispatch,useSelector} from 'react-redux';
-import SubtaskModal from './subtaskModal';
-import {fetchTask,createTask,updateTask,fetchSubtasks} from "../../api";
+import {fetchTask,createTask,updateTask,fetchSubtasks} from "../../actions/taskActions";
 import {useParams} from "react-router-dom";
 import moment from 'moment';
-import Subtask from "../subtask/subtask";
+
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import SaveIcon from '@mui/icons-material/Save';
+import AddIcon from '@mui/icons-material/Add';
+import CloseIcon from '@mui/icons-material/Close';
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
+
 
 const TaskModal = ({show}) => {
     const dispatch = useDispatch();
-    const [taskData,setTaskData] = useState({});
-    /*--------------------------------------------------------------------------------*/
-    const submodalVisible = useSelector((state)=>state.subtaskReducer.subtaskModalVisible);
-    const [subtaskModalVisible, setSubtaskModalVisible] = useState(submodalVisible);
-    useEffect(()=>{
-        setSubtaskModalVisible(submodalVisible);
-    },[submodalVisible]);
     /*--------------------------------------------------------------------------------*/
     const currentProjectId = useParams().id;
-    const currentTaskId = localStorage.getItem('taskCurrentId');
+    /*--------------------------------------------------------------------------------*/
+    const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
+    const [taskCurrentState, setTaskCurrentState] = useState(taskCurrent);
     useEffect(()=>{
-        if(
-            currentProjectId && currentProjectId.length>5 &&
-            currentTaskId && currentTaskId.length>5
-        ) {
-            fetchTask(currentProjectId,currentTaskId).then(response => setTaskData(response.data[0]));
-        }
-    },[currentProjectId,currentTaskId]);
+        setTaskCurrentState(taskCurrent);
+    },[taskCurrent]);
     /*--------------------------------------------------------------------------------*/
     const taskAdd = (e) => {
-        e.preventDefault();
-        createTask(
-            currentProjectId,
-            {
-                number: String(taskData.number || ''),
-                title: String(taskData.title || ''),
-                description: String(taskData.description || ''),
-                dateCreate: String(moment(new Date(), "YYYY-MM-DD").valueOf()),
-                priority: String(taskData.priority || '2'),
-                status: String('1')
-            }
+        dispatch(
+            createTask(
+                currentProjectId,
+                {
+                    number: String(taskCurrentState.number || ''),
+                    title: String(taskCurrentState.title || ''),
+                    description: String(taskCurrentState.description || ''),
+                    dateCreate: String(moment(new Date(), "YYYY-MM-DD").valueOf()),
+                    priority: String(taskCurrentState.priority || '2'),
+                    status: String('1')
+                }
+            )
         );
         modalClose();
         //let t1 = moment(new Date(), "YYYY-MM-DD").valueOf();
         //console.log(moment(t1).format("YYYY-MM-DD"));
     };
     const taskUpd = (e) => {
-        e.preventDefault();
-        updateTask(
-            currentTaskId,
-            {
-                number: String(taskData.number || ''),
-                title: String(taskData.title || ''),
-                description: String(taskData.description || ''),
-                priority: String(taskData.priority || '2'),
-            }
+        dispatch(
+            updateTask(
+                taskCurrentState._id,
+                {
+                    number: String(taskCurrentState.number || ''),
+                    title: String(taskCurrentState.title || ''),
+                    description: String(taskCurrentState.description || ''),
+                    priority: String(taskCurrentState.priority || '2'),
+                }
+            )
         );
         modalClose();
     };
     /*--------------------------------------------------------------------------------*/
-    const [subtasks, setSubtasks] = useState({});
-    const [loading, setLoading] = useState(false);
-
-    useEffect(()=>{
-        if((!subtaskModalVisible && currentTaskId)) {
-            setLoading(true);
-            fetchSubtasks(currentTaskId)
-                .then(response => setSubtasks(response.data))
-                .finally(() => setLoading(false));
-        }
-    },[currentTaskId,subtaskModalVisible]);
-    useEffect(()=>{
-        if((!loading && !subtaskModalVisible && currentTaskId)) {
-            let timerId = setInterval(() => {
-                fetchSubtasks(currentTaskId).then(response => setSubtasks(response.data));
-            }, 2000);
-            return ()=>{
-                clearInterval(timerId);
-            }
-        }
-    },[loading,currentTaskId,subtaskModalVisible]);
-    /*--------------------------------------------------------------------------------*/
     const modalClose = () => {
-        setTaskData({});
-        localStorage.removeItem('taskCurrentId');
+        setTaskCurrentState({});
+        dispatch({type:"TASK_CURRENT",payload:null});
         dispatch({type:'TASK_MODAL_VISIBLE', payload: false});
+        //dispatch({type:"TASK_NEED_REFRESH",payload:true});
     };
     document.addEventListener('keyup', function(event){
         if(event.keyCode === 27) {
@@ -96,92 +79,116 @@ const TaskModal = ({show}) => {
         <div style={(show) ? {display: 'block'} : {display: 'none'}} className="modal">
             <div className="modal-main">
                 <div className="modal-title">
-                    {currentTaskId && currentTaskId.length>5 ? 'Редактировать задачу' : 'Добавить задачу'}
-                </div>
-                <div className="modal-content">
-                    <div style={{width:'100%'}}>
-                        <div className="title">
-                            Задача
-                        </div>
-                        <div className="inputOut">
-                            Номер задачи
-                            <input
-                                className="inputIn"
-                                type="text"
-                                id="taskNumber"
-                                autoComplete="off"
-                                value={taskData.number ? taskData.number : ''}
-                                onChange={(e) => setTaskData({...taskData, number:e.target.value})}
-                            />
-                        </div>
-                        <div className="inputOut">
-                            Заголовок
-                            <input
-                                className="inputIn"
-                                type="text"
-                                id="taskTitle"
-                                autoComplete="off"
-                                value={taskData.title ? taskData.title : ''}
-                                onChange={(e) => setTaskData({...taskData, title:e.target.value})}
-                            />
-                        </div>
-                        <div className="inputOut">
-                            Описание
-                            <input
-                                className="inputIn"
-                                type="text"
-                                id="taskDescription"
-                                autoComplete="off"
-                                value={taskData.description ? taskData.description : ''}
-                                onChange={(e) => setTaskData({...taskData, description:e.target.value})}
-                            />
-                        </div>
-                        <div className="inputOut">
-                            Приоритет
-                            <select
-                                className="inputIn"
-                                id="taskPriority"
-                                value={taskData.priority ? taskData.priority : '2'}
-                                onChange={(e) => setTaskData({...taskData, priority:e.target.value})}
-                            >
-                                <option value="1">Низкий</option>
-                                <option value="2">Нормальный</option>
-                                <option value="3">Высокий</option>
-                            </select>
-                        </div>
-                        <div className="inputOut">
-                            <button
-                                className="btn btnAdd"
-                                type="button"
-                                onClick={() => dispatch({type:'SUBTASK_MODAL_VISIBLE', payload: true})}
-                            >
-                                Добавить подзадачу
-                            </button>
-                            <div style={{height:'200px', border:'1px solid black',overflowY:'auto'}}>
-                                {
-                                    subtasks &&
-                                    subtasks.length > 0 &&
-                                    subtasks.map((subtask, subtask_index) =>
-                                        <Subtask
-                                            key={subtask_index}
-                                            subtask={subtask}
-                                        />
-                                    )
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="modal-footer">
-                    <button className="btn btnClose" type="button" onClick={modalClose}>Закрыть</button>
-                    {currentTaskId && currentTaskId.length>5 ?
-                        <button className="btn btnAdd" type="button" onClick={taskUpd}>Сохранить изменения</button>
-                        :
-                        <button className="btn btnAdd" type="button" onClick={taskAdd}>Добавить задачу</button>
+                    {
+                        taskCurrentState &&
+                        taskCurrentState._id &&
+                        taskCurrentState._id.length>5 ?
+                            'Редактировать задачу'
+                            :
+                            'Добавить задачу'
                     }
                 </div>
+                <div className="modal-content">
+                    <Grid
+                        container
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="center"
+                        spacing={2}
+                    >
+                        <Grid item xs={12}>
+                            <TextField
+                                id="taskNumber"
+                                label="Номер задачи"
+                                variant="outlined"
+                                autoComplete="off"
+                                value={taskCurrentState && taskCurrentState.number ? taskCurrentState.number : ''}
+                                onChange={(e) => setTaskCurrentState({...taskCurrentState, number:e.target.value})}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                id="taskTitle"
+                                label="Заголовок"
+                                variant="outlined"
+                                autoComplete="off"
+                                value={taskCurrentState && taskCurrentState.title ? taskCurrentState.title : ''}
+                                onChange={(e) => setTaskCurrentState({...taskCurrentState, title:e.target.value})}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                id="taskDescription"
+                                label="Описание"
+                                variant="outlined"
+                                autoComplete="off"
+                                value={taskCurrentState && taskCurrentState.description ? taskCurrentState.description : ''}
+                                onChange={(e) => setTaskCurrentState({...taskCurrentState, description:e.target.value})}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <FormControl sx={{ m: 1, minWidth: 120 }}>
+                                <InputLabel id="demo-simple-select-helper-label">Приоритет</InputLabel>
+                                <Select
+                                    labelId="taskPriority-label"
+                                    id="taskPriority"
+                                    label="Приоритет"
+                                    value={taskCurrentState && taskCurrentState.priority ? taskCurrentState.priority : '2'}
+                                    onChange={(e) => setTaskCurrentState({...taskCurrentState, priority:e.target.value})}
+                                >
+                                    <MenuItem value={1}>Низкий</MenuItem>
+                                    <MenuItem value={2}>Нормальный</MenuItem>
+                                    <MenuItem value={3}>Высокий</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    </Grid>
+                </div>
+                <div className="modal-footer">
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        <Grid item xs="auto">
+                            {taskCurrentState && taskCurrentState._id && taskCurrentState._id.length>5 ?
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    startIcon={<SaveIcon/>}
+                                    onClick={taskUpd}
+                                >
+                                    Сохранить изменения
+                                </Button>
+                                :
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    startIcon={<AddIcon/>}
+                                    onClick={taskAdd}
+                                >
+                                    Добавить задачу
+                                </Button>
+                            }
+                        </Grid>
+                        <Grid item xs></Grid>
+                        <Grid item xs="auto">
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                                startIcon={<CloseIcon/>}
+                                onClick={modalClose}
+                            >
+                                Закрыть
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </div>
             </div>
-            {subtaskModalVisible ? <SubtaskModal show={subtaskModalVisible}/>  : ''}
         </div>
     )
 };

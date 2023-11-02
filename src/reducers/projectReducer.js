@@ -1,18 +1,13 @@
 const defaultState = {
-    projectFetchAll: [],
-    //projectAddModalVisible: false,
-    //projectUpdModalVisible: false,
+    projects: [],
+    projectCurrent: null,
     projectModalVisible: false,
-    ///projectNeedRefresh: false
+    //projectNeedRefresh: false
 };
 
 export const projectReducer = (state = defaultState, action) => {
     switch(action.type){
-
         case "PROJECT_FETCH_ALL":
-            return {...state, projectFetchAll: action.payload};
-
-        /*case "PROJECT_FETCH_ALL":
             return {...state, projects: action.payload};
         case "PROJECT_CREATE":
             return {...state, projects: [...state.projects, action.payload]};
@@ -26,25 +21,13 @@ export const projectReducer = (state = defaultState, action) => {
                 ...state,
                 projects: state.projects.filter((project) => project._id !== action.payload)
             };
-            */
 
-
-        /*case "PROJECT_CURRENT_ID":
-            //return {...state, projectCurrentId: action.payload};
-            return {...state, projectCurrentId: localStorage.setItem('projectCurrentId',action.payload)};*/
-
-        /*case "PROJECT_ADD_MODAL_VISIBLE":
-            return {...state, projectAddModalVisible: action.payload};
-        case "PROJECT_UPD_MODAL_VISIBLE":
-            return {...state, projectUpdModalVisible: action.payload};
-            */
+        case "PROJECT_CURRENT":
+            return {...state, projectCurrent: action.payload};
         case "PROJECT_MODAL_VISIBLE":
             return {...state, projectModalVisible: action.payload};
-
-
         /*case "PROJECT_NEED_REFRESH":
             return {...state, projectNeedRefresh: action.payload};*/
-
 
         default:
             return state;

@@ -17,21 +17,21 @@
     border-radius: 15px;
 }
 .modal-title{
-    padding: 5px 5px 5px 15px;
-    font-size: 20px;
+    padding: 10px 10px 10px 20px;
+    font-size: 1.3em;
     font-weight: 700;
     border-bottom: 1px solid gray;
 }
 .modal-content{
-    padding: 5px;
-    font-size: 14px;
+    padding: 10px 15px 5px 15px;
+    font-size: 1em;
     border-bottom: 1px solid gray;
     display: flex;
     align-items: flex-start;
 }
 .modal-footer{
-    padding: 5px 5px 5px 15px;
-    font-size: 14px;
-    border-bottom: 1px solid gray;
+    padding: 15px 15px 15px 15px;
+    font-size: 1em;
+
 }
 
