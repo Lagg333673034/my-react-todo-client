@@ -13,13 +13,28 @@ export const buttonTheme = createTheme({
         }
     }
 );
-export const buttonIconTheme = createTheme({
+export const buttonIconProjectTheme = createTheme({
         components: {
             MuiIconButton: {
                 styleOverrides: {
                     root: {
                         border:'1px solid #80808057',
                         backgroundColor:'transparent',
+                    }
+                }
+            }
+        }
+    }
+);
+export const buttonIconTaskTheme = createTheme({
+        components: {
+            MuiIconButton: {
+                styleOverrides: {
+                    root: {
+                        border:'1px solid #80808057',
+                        backgroundColor:'transparent',
+                        padding:'5px',
+                        margin:'5px',
                     }
                 }
             }

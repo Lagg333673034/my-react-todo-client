@@ -15,6 +15,34 @@ import MessageIcon from '@mui/icons-material/Message';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import {ThemeProvider,createTheme} from '@mui/material/styles';
+import {buttonIconTaskTheme} from '../../css/buttons';
+
+
+
+/*import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';*/
+
+
+
+/*import Backdrop from '@mui/material/Backdrop';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
+import SaveIcon from '@mui/icons-material/Save';
+import PrintIcon from '@mui/icons-material/Print';
+import ShareIcon from '@mui/icons-material/Share';
+import '../../css/speedDial.css';*/
+
+
+import Tooltip from '@mui/material/Tooltip';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Button from '@mui/material/Button';
+import '../../css/tooltip.css';
+import Zoom from '@mui/material/Zoom';
 
 
 
@@ -41,6 +69,36 @@ const Task = ({index,task}) => {
         dispatch(deleteTask(task._id));
     };
     /*--------------------------------------------------------------------------*/
+
+    /*const actions = [
+        { icon: <FileCopyIcon /> },
+        { icon: <SaveIcon /> },
+        { icon: <PrintIcon /> },
+        { icon: <ShareIcon /> },
+    ];
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);*/
+
+    /*--------------------------------------------------------------------------*/
+
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleTooltipClose = () => {
+        setOpen(false);
+    };
+
+    const handleTooltipOpen = () => {
+        if(open){
+            setOpen(false)
+        }else{
+            setOpen(true)
+        }
+    };
+
+
+    /*--------------------------------------------------------------------------*/
     return (
         <Draggable draggableId={String(task._id)} index={index}>
             {(provided,snapshot) => (
@@ -50,10 +108,9 @@ const Task = ({index,task}) => {
                     {...provided.dragHandleProps}
                     ref = {provided.innerRef}
                 >
-
-                    <Card sx={{ minWidth: 275 }}>
-                        <Grid container direction="row" justifyContent="center" alignItems="center">
-                            <Grid item xs>
+                    <Card sx={{margin:'5px',padding:'5px 5px 5px 5px',border:'2px solid #565bf76e',borderRadius:'15px'}}>
+                        <Grid container direction="row" justifyContent="center" alignItems="flex-start">
+                            <Grid item xs={12} sx={{padding:'5px'}}>
                                 {task.number ? <Typography variant="body2">{task.number}</Typography> : ''}
                                 {task.title ? <Typography variant="body2">{task.title}</Typography> : ''}
                                 {task.description ? <Typography variant="body2">{task.description}</Typography> : ''}
@@ -67,8 +124,9 @@ const Task = ({index,task}) => {
                                     moment(Number(task.dateFinish)).format("DD.MM.YYYY  HH:mm:ss")
                                 })</Typography> :''}
                             </Grid>
-                            <Grid item xs="auto">
-                                <Stack spacing={0} direction="column">
+                            <Grid item xs={12} sx={{display:'flex',justifyContent:'space-around',alignContent:'center',flexWrap:'wrap'}}>
+
+                                {/*<ThemeProvider theme={buttonIconTaskTheme}>
                                     <IconButton color="success" size="small" onClick={() => updTask(task)}>
                                         <EditIcon />
                                     </IconButton>
@@ -84,7 +142,114 @@ const Task = ({index,task}) => {
                                     <IconButton color="error" size="small" onClick={() => delTask(task)}>
                                         <DeleteIcon />
                                     </IconButton>
-                                </Stack>
+                                </ThemeProvider>*/}
+
+                                {/*<Backdrop open={open} />
+                                <SpeedDial
+                                    ariaLabel="SpeedDial tooltip example"
+                                    sx={{ }}
+                                    icon={<SpeedDialIcon />}
+                                    onClose={handleClose}
+                                    onOpen={handleOpen}
+                                    open={open}
+                                >
+                                    {actions.map((action,index_action) => (
+                                        <SpeedDialAction
+                                            key={index_action}
+                                            icon={action.icon}
+                                            tooltipOpen
+                                            onClick={handleClose}
+                                        />
+                                    ))}
+                                </SpeedDial>*/}
+
+
+
+
+
+                                <ClickAwayListener onClickAway={handleTooltipClose}>
+                                    <ThemeProvider theme={buttonIconTaskTheme}>
+
+                                        <Tooltip
+                                            placement="left-end"
+                                            disableFocusListener disableHoverListener disableTouchListener
+                                            open={open} onClose={handleTooltipClose}
+                                            TransitionComponent={Zoom}
+                                            title={
+                                                <IconButton color="primary" size="small" onClick={() => subtaskListModal(task)}>
+                                                    <FormatListNumberedIcon />
+                                                </IconButton>
+                                            }
+                                        >
+                                            <Tooltip
+                                                placement="top"
+                                                disableFocusListener disableHoverListener disableTouchListener
+                                                open={open} onClose={handleTooltipClose}
+                                                TransitionComponent={Zoom}
+                                                title={
+                                                    <IconButton color="primary" size="small" onClick={() => subtaskListModal(task)}>
+                                                        <FormatListNumberedIcon />
+                                                    </IconButton>
+                                                }
+                                            >
+                                                <Tooltip
+                                                    placement="top-start"
+
+                                                    disableFocusListener disableHoverListener disableTouchListener
+                                                    open={open} onClose={handleTooltipClose}
+                                                    TransitionComponent={Zoom}
+                                                    title={
+                                                        <IconButton className="top-start" color="primary" size="small" onClick={() => subtaskListModal(task)}>
+                                                            <FormatListNumberedIcon />
+                                                        </IconButton>
+                                                    }
+                                                >
+                                                    <Tooltip
+                                                        placement="top-end"
+                                                        disableFocusListener disableHoverListener disableTouchListener
+                                                        open={open} onClose={handleTooltipClose}
+                                                        TransitionComponent={Zoom}
+                                                        title={
+
+                                                            <IconButton color="primary" size="small" onClick={() => subtaskListModal(task)}>
+                                                                <FormatListNumberedIcon />
+                                                            </IconButton>
+
+                                                        }
+                                                    >
+                                                        <Tooltip
+                                                            placement="right-end"
+                                                            disableFocusListener disableHoverListener disableTouchListener
+                                                            open={open} onClose={handleTooltipClose}
+                                                            TransitionComponent={Zoom}
+                                                            title={
+                                                                <IconButton color="success" size="small" onClick={() => updTask(task)}>
+                                                                    <EditIcon />
+                                                                </IconButton>
+                                                            }
+                                                        >
+                                                            <Tooltip
+                                                                placement="bottom"
+                                                                disableFocusListener disableHoverListener disableTouchListener
+                                                                open={open} onClose={handleTooltipClose}
+                                                                TransitionComponent={Zoom}
+                                                                title={
+                                                                    <IconButton color="success" size="small" onClick={() => updTask(task)}>
+                                                                        <EditIcon />
+                                                                    </IconButton>
+                                                                }
+                                                            >
+                                                                <Button onClick={handleTooltipOpen}>Clickhfghfghfhfgh</Button>
+                                                            </Tooltip>
+                                                        </Tooltip>
+                                                    </Tooltip>
+                                                </Tooltip>
+                                            </Tooltip>
+                                        </Tooltip>
+
+                                    </ThemeProvider>
+                                </ClickAwayListener>
+
                             </Grid>
                         </Grid>
                     </Card>

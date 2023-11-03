@@ -1,0 +1,13 @@
+div.MuiTooltip-tooltip{
+    background-color: transparent;
+}
+
+
+div.MuiPopper-root.top-start{
+    position: relative;
+    right: 50px;
+}
+.top-start{
+    position: relative;
+    right: 50px;
+}

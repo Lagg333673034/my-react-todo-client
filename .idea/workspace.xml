@@ -2,53 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99d0e2a4-5540-4689-89de-678df89c606f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/actions/commentActions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/actions/fileActions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/actions/subtaskActions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/modal/commentListModal.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/modal/subtaskListModal.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/background/background.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/buttons.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/inputs.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/asset-manifest.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/css/main.b93df72c.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/css/main.b93df72c.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/js/main.56c8d3f9.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/js/main.56c8d3f9.js.LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/js/main.56c8d3f9.js.map" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/modal/fileModal.js" afterPath="$PROJECT_DIR$/src/components/modal/fileListModal.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/index.css" afterPath="$PROJECT_DIR$/src/css/background/background.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.css" afterPath="$PROJECT_DIR$/src/App.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/projectActions.js" afterPath="$PROJECT_DIR$/src/actions/projectActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/taskActions.js" afterPath="$PROJECT_DIR$/src/actions/taskActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/index.js" afterPath="$PROJECT_DIR$/src/api/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/comment/comment.js" afterPath="$PROJECT_DIR$/src/components/comment/comment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/file/file.js" afterPath="$PROJECT_DIR$/src/components/file/file.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/commentModal.js" afterPath="$PROJECT_DIR$/src/components/modal/commentModal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/modal.css" afterPath="$PROJECT_DIR$/src/components/modal/modal.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/projectModal.js" afterPath="$PROJECT_DIR$/src/components/modal/projectModal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/subtaskModal.js" afterPath="$PROJECT_DIR$/src/components/modal/subtaskModal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/taskModal.js" afterPath="$PROJECT_DIR$/src/components/modal/taskModal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/navbar/Navbar.css" afterPath="$PROJECT_DIR$/src/components/navbar/Navbar.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/navbar/Navbar.js" afterPath="$PROJECT_DIR$/src/components/navbar/Navbar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/project/project.js" afterPath="$PROJECT_DIR$/src/components/project/project.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/subtask/subtask.js" afterPath="$PROJECT_DIR$/src/components/subtask/subtask.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/task/task.js" afterPath="$PROJECT_DIR$/src/components/task/task.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/tasklist/tasklist.js" afterPath="$PROJECT_DIR$/src/components/tasklist/tasklist.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/PageProjects.js" afterPath="$PROJECT_DIR$/src/pages/PageProjects.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/PageTasks.css" afterPath="$PROJECT_DIR$/src/pages/PageTasks.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/PageTasks.js" afterPath="$PROJECT_DIR$/src/pages/PageTasks.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/commentReducer.js" afterPath="$PROJECT_DIR$/src/reducers/commentReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/fileReducer.js" afterPath="$PROJECT_DIR$/src/reducers/fileReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/projectReducer.js" afterPath="$PROJECT_DIR$/src/reducers/projectReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/subtaskReducer.js" afterPath="$PROJECT_DIR$/src/reducers/subtaskReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/taskReducer.js" afterPath="$PROJECT_DIR$/src/reducers/taskReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/PageProjects.js" afterPath="$PROJECT_DIR$/src/pages/PageProjects.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,27 +16,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="projectModal.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/modal/projectModal.js">
+      <file leaf-file-name="task.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/task/task.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="79" column="36" lean-forward="false" selection-start-line="79" selection-start-column="36" selection-end-line="79" selection-end-column="36" />
+            <state relative-caret-position="228">
+              <caret line="201" column="89" lean-forward="false" selection-start-line="201" selection-start-column="89" selection-end-line="201" selection-end-column="89" />
               <folding>
-                <element signature="e#0#47#0" expanded="true" />
-                <element signature="e#597#637#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#1541#1585#0" expanded="true" />
+                <element signature="e#1959#2090#0" expanded="false" />
+                <element signature="e#2131#2262#0" expanded="false" />
+                <element signature="e#2300#2428#0" expanded="false" />
+                <element signature="e#2460#2583#0" expanded="false" />
+                <element signature="e#2615#2662#0" expanded="false" />
+                <element signature="e#4122#5309#0" expanded="false" />
+                <element signature="e#5482#6677#0" expanded="false" />
+                <element signature="e#6713#7669#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="project.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/project/project.js">
+      <file leaf-file-name="tooltip.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/css/tooltip.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="51" column="31" lean-forward="false" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -98,7 +61,6 @@
       <find>searchTemp</find>
       <find>project</find>
       <find>projectData</find>
-      <find>currentProjectId</find>
       <find>task</find>
       <find>setSubtaskData</find>
       <find>setTempComments</find>
@@ -111,6 +73,9 @@
       <find>font-size</find>
       <find>@mui/styles</find>
       <find>makeStyles</find>
+      <find>currentProjectId</find>
+      <find>oneOf</find>
+      <find>placement</find>
     </findStrings>
     <dirStrings>
       <dir>C:\OpServ\OSPanel\domains\my-react-todo-client\src</dir>
@@ -153,17 +118,22 @@
         <option value="$PROJECT_DIR$/src/css/background/background.js" />
         <option value="$PROJECT_DIR$/src/css/background/background.css" />
         <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/components/tasklist/tasklist.js" />
-        <option value="$PROJECT_DIR$/src/pages/PageTasks.js" />
-        <option value="$PROJECT_DIR$/src/components/task/task.js" />
         <option value="$PROJECT_DIR$/src/components/navbar/Navbar.js" />
-        <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/src/components/modal/modal.css" />
-        <option value="$PROJECT_DIR$/src/pages/PageProjects.js" />
-        <option value="$PROJECT_DIR$/src/components/project/project.js" />
         <option value="$PROJECT_DIR$/src/css/buttons/buttons.js" />
         <option value="$PROJECT_DIR$/src/css/inputs.js" />
         <option value="$PROJECT_DIR$/src/components/modal/projectModal.js" />
+        <option value="$APPLICATION_CONFIG_DIR$/phpstorm64.exe.vmoptions" />
+        <option value="$PROJECT_DIR$/src/components/tasklist/tasklist.js" />
+        <option value="$PROJECT_DIR$/src/pages/PageTasks.css" />
+        <option value="$PROJECT_DIR$/src/pages/PageProjects.js" />
+        <option value="$PROJECT_DIR$/src/App.css" />
+        <option value="$PROJECT_DIR$/src/pages/PageTasks.js" />
+        <option value="$PROJECT_DIR$/src/components/project/project.js" />
+        <option value="$PROJECT_DIR$/src/css/buttons.js" />
+        <option value="$PROJECT_DIR$/src/css/speedDial.css" />
+        <option value="$PROJECT_DIR$/src/css/tooltip.css" />
+        <option value="$PROJECT_DIR$/src/components/task/task.js" />
       </list>
     </option>
   </component>
@@ -191,6 +161,22 @@
     <option name="y" value="14" />
     <option name="width" value="1296" />
     <option name="height" value="788" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -239,14 +225,14 @@
               <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modal" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="project" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
               <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="project" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="task" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
@@ -254,24 +240,12 @@
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="pages" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="reducers" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -284,6 +258,9 @@
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.standard" value="" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.splitter.proportion" value="0.25" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/OpServ/OSPanel/domains/my-react-todo-client/node_modules/@mui/material/node/SpeedDialAction/SpeedDialAction.js" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -331,25 +308,27 @@
       <workItem from="1698830290828" duration="1675000" />
       <workItem from="1698843756719" duration="21237000" />
       <workItem from="1698900537572" duration="19334000" />
+      <workItem from="1698985334427" duration="2336000" />
+      <workItem from="1698987989724" duration="14303000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103755000" />
+    <option name="totallyTimeSpent" value="120394000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2987897" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30786687" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32993197" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -357,6 +336,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -374,58 +354,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/_redirects">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/PageTasks - kopiya.js" />
-    <entry file="file://$PROJECT_DIR$/src/components/hooks/useRequest.js" />
-    <entry file="file://$PROJECT_DIR$/src/components/hooks/useInput.js" />
-    <entry file="file://$PROJECT_DIR$/src/components/tasklist/tasklist.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/Page404.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="77" lean-forward="false" selection-start-line="5" selection-start-column="77" selection-end-line="5" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/PageProjects.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/task/task.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -465,15 +393,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
           <caret line="112" column="102" lean-forward="false" selection-start-line="112" selection-start-column="102" selection-end-line="112" selection-end-column="102" />
-          <folding>
-            <element signature="e#0#47#0" expanded="false" />
-            <element signature="e#680#729#0" expanded="false" />
-            <element signature="e#1023#1078#0" expanded="false" />
-            <element signature="e#1385#1444#0" expanded="false" />
-            <element signature="e#1584#1814#0" expanded="false" />
-            <element signature="e#1870#1948#0" expanded="false" />
-            <element signature="e#2150#3181#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -488,7 +407,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -546,7 +464,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
           <caret line="306" column="2" lean-forward="false" selection-start-line="306" selection-start-column="2" selection-end-line="306" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -561,7 +478,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="383">
           <caret line="29" column="63" lean-forward="true" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -598,9 +514,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="71" lean-forward="false" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
-          <folding>
-            <element signature="e#0#26#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -608,7 +521,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -616,31 +528,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="11" column="15" lean-forward="false" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/PageTasks.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/tasklist/tasklist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@mui/material/legacy/IconButton/IconButton.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="165" column="93" lean-forward="false" selection-start-line="165" selection-start-column="86" selection-end-line="165" selection-end-column="93" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -648,9 +535,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="29" column="66" lean-forward="true" selection-start-line="29" selection-start-column="66" selection-end-line="29" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#26#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -658,7 +542,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -672,27 +555,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/task/task.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modal/modal.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="20" column="18" lean-forward="false" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -714,60 +580,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/PageTasks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="27" column="53" lean-forward="true" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
-          <folding>
-            <element signature="e#1406#1568#0" expanded="false" />
-            <element signature="e#1880#1942#0" expanded="false" />
-            <element signature="e#2294#2370#0" expanded="false" />
-            <element signature="e#2711#2781#0" expanded="false" />
-            <element signature="e#3137#3213#0" expanded="false" />
-            <element signature="e#3544#3583#0" expanded="false" />
-            <element signature="e#3620#3930#0" expanded="false" />
-            <element signature="e#3987#4228#0" expanded="false" />
-            <element signature="e#4502#4557#0" expanded="false" />
-            <element signature="e#4680#4805#0" expanded="false" />
-            <element signature="e#5322#5949#0" expanded="false" />
-            <element signature="e#5982#6253#0" expanded="false" />
-            <element signature="e#6286#6975#0" expanded="false" />
-            <element signature="e#7175#8317#0" expanded="false" />
-            <element signature="e#7725#8280#0" expanded="false" />
-            <element signature="e#8326#8427#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/css/background/background.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/buttons.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="33" lean-forward="true" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/PageProjects.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="70" column="27" lean-forward="false" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-            <element signature="e#841#1015#0" expanded="false" />
-            <element signature="e#1285#1453#0" expanded="false" />
-            <element signature="e#1762#1815#0" expanded="false" />
-            <element signature="e#2151#2196#0" expanded="false" />
-            <element signature="e#2236#2426#0" expanded="false" />
-            <element signature="e#2469#2616#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -791,27 +607,213 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="18" lean-forward="false" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modal/projectModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="79" column="36" lean-forward="false" selection-start-line="79" selection-start-column="36" selection-end-line="79" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#47#0" expanded="false" />
+            <element signature="e#597#637#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/phpstorm64.exe.vmoptions">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/PageTasks.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/tasklist/tasklist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="23" column="25" lean-forward="false" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/PageProjects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="92" column="33" lean-forward="false" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+            <element signature="e#840#1014#0" expanded="false" />
+            <element signature="e#1284#1452#0" expanded="false" />
+            <element signature="e#1761#1814#0" expanded="false" />
+            <element signature="e#2150#2195#0" expanded="false" />
+            <element signature="e#2235#2425#0" expanded="false" />
+            <element signature="e#2468#2615#0" expanded="false" />
+            <element signature="e#2932#3409#0" expanded="false" />
+            <element signature="e#3426#4036#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/PageTasks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="184" column="33" lean-forward="false" selection-start-line="184" selection-start-column="33" selection-end-line="184" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+            <element signature="e#1251#1312#0" expanded="false" />
+            <element signature="e#1564#1726#0" expanded="false" />
+            <element signature="e#2038#2100#0" expanded="false" />
+            <element signature="e#2452#2528#0" expanded="false" />
+            <element signature="e#2869#2939#0" expanded="false" />
+            <element signature="e#3295#3371#0" expanded="false" />
+            <element signature="e#3702#3741#0" expanded="false" />
+            <element signature="e#3778#4088#0" expanded="false" />
+            <element signature="e#4663#4718#0" expanded="false" />
+            <element signature="e#4841#4966#0" expanded="false" />
+            <element signature="e#5000#7220#0" expanded="false" />
+            <element signature="e#5483#6110#0" expanded="false" />
+            <element signature="e#6143#6414#0" expanded="false" />
+            <element signature="e#6447#7136#0" expanded="false" />
+            <element signature="e#7507#7969#0" expanded="false" />
+            <element signature="e#7982#8537#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@mui/material/legacy/IconButton/IconButton.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="194" column="55" lean-forward="true" selection-start-line="194" selection-start-column="55" selection-end-line="194" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/project/project.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="51" column="31" lean-forward="false" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
+        <state relative-caret-position="180">
+          <caret line="46" column="51" lean-forward="false" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modal/projectModal.js">
+    <entry file="file://$PROJECT_DIR$/src/css/buttons.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="79" column="36" lean-forward="false" selection-start-line="79" selection-start-column="36" selection-end-line="79" selection-end-column="36" />
+        <state relative-caret-position="156">
+          <caret line="36" column="33" lean-forward="false" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@mui/material/SpeedDialAction/SpeedDialAction.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#47#0" expanded="true" />
-            <element signature="e#597#637#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@mui/material/SpeedDialAction/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="31" lean-forward="false" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/speedDial.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@mui/material/Backdrop/backdropClasses.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@mui/material/Backdrop/Backdrop.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@mui/material/Backdrop/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="22" lean-forward="false" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@mui/material/node/SpeedDialAction/SpeedDialAction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="212" column="67" lean-forward="true" selection-start-line="212" selection-start-column="67" selection-end-line="212" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@mui/material/legacy/Tooltip/Tooltip.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10855">
+          <caret line="736" column="11" lean-forward="false" selection-start-line="736" selection-start-column="11" selection-end-line="736" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/tooltip.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/task/task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="201" column="89" lean-forward="false" selection-start-line="201" selection-start-column="89" selection-end-line="201" selection-end-column="89" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#1541#1585#0" expanded="true" />
+            <element signature="e#1959#2090#0" expanded="false" />
+            <element signature="e#2131#2262#0" expanded="false" />
+            <element signature="e#2300#2428#0" expanded="false" />
+            <element signature="e#2460#2583#0" expanded="false" />
+            <element signature="e#2615#2662#0" expanded="false" />
+            <element signature="e#4122#5309#0" expanded="false" />
+            <element signature="e#5482#6677#0" expanded="false" />
+            <element signature="e#6713#7669#0" expanded="false" />
           </folding>
         </state>
       </provider>

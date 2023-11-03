@@ -10,15 +10,18 @@ import {useParams} from "react-router-dom";
 import './PageTasks.css';
 import moment from 'moment';
 import {DragDropContext} from 'react-beautiful-dnd';
+import Loader from '../components/loader/loader';
 
+
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import SearchIcon from '@mui/icons-material/Search';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import AddBoxIcon from '@mui/icons-material/AddBox';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-import SearchIcon from '@mui/icons-material/Search';
 import Grid from '@mui/material/Grid';
-
+import {ThemeProvider,createTheme} from '@mui/material/styles';
+import {buttonTheme} from '../css/buttons';
 
 
 const PageTasks = () => {
@@ -83,7 +86,7 @@ const PageTasks = () => {
             if(currentProjectId && currentProjectId.length>0){
                 dispatch(fetchTasks(currentProjectId));
             }
-        }, 5000);
+        }, 1115000);
         return () => clearTimeout(timer);
     });
     /*--------------------------------------------------------------------------*/
@@ -150,25 +153,23 @@ const PageTasks = () => {
     return(
         <>
         <Grid
-            container
-            direction="row"
-            justifyContent="flex-start"
-            alignItems="center"
+            container direction="row" justifyContent="flex-start" alignItems="center"
+            spacing={2} sx={{padding:'5px 5px 5px 5px'}}
         >
-            <Stack spacing={3} direction="row">
-                <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    startIcon={<AddBoxIcon/>}
-                    onClick={() => dispatch({type:'TASK_MODAL_VISIBLE', payload: true})}
-                >
-                    Добавить задачу
-                </Button>
+            <Grid item xs="auto">
+                <ThemeProvider theme={buttonTheme}>
+                    <Button
+                        variant="contained" color="primary" size="small"
+                        startIcon={<AddBoxIcon/>}
+                        onClick={() => dispatch({type:'TASK_MODAL_VISIBLE', payload: true})}
+                    >
+                        Добавить задачу
+                    </Button>
+                </ThemeProvider>
+            </Grid>
+            <Grid item xs>
                 <TextField
-                    id="input-with-icon-textfield"
-                    hiddenLabel
-                    placeholder="поиск ..."
+                    hiddenLabel placeholder="поиск ..."
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
@@ -176,12 +177,12 @@ const PageTasks = () => {
                             </InputAdornment>
                         ),
                     }}
-                    variant="standard"
+                    variant="standard" sx={{width:'100%'}}
                     onChange={(e) => setSearchTasksStringTemp(e.target.value)}
                 />
-            </Stack>
+            </Grid>
         </Grid>
-        <div className="title">
+        <div className="titleTask">
             {projectCurrentState && projectCurrentState.title}
         </div>
         <DragDropContext onDragEnd={onDragEnd}>
@@ -195,7 +196,16 @@ const PageTasks = () => {
                         tasks.length>0 &&
                         tasks.filter(task => task.status === column.status);
                         return (
-                            <Grid item xs={4} key={column_index}>
+                            <Grid
+                                item
+                                xs={4}
+                                key={column_index}
+                                sx={{
+                                    borderRight: column.status == 2 ? '2px solid #00000052':'',
+                                    borderLeft: column.status == 2 ? '2px solid #00000052':'',
+                                    height:'calc(100vh - 150px)'
+                                }}
+                            >
                                 <Tasklist
                                     column={column}
                                     tasks={columnTasks}

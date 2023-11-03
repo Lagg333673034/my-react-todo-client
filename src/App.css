@@ -12,9 +12,16 @@ body{
 #root{
     width: 100%;
 }
-.title{
+.titleProject{
     font-size:1.7em;
-    padding:5px;
+    padding: 5px 5px 5px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.titleTask{
+    font-size:1.7em;
+    padding: 5px 5px 5px 5px;
     display: flex;
     align-items: center;
     justify-content: center;

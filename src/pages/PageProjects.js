@@ -6,15 +6,14 @@ import ProjectModal from '../components/modal/projectModal';
 import Project from '../components/project/project';
 import Loader from '../components/loader/loader';
 
-import Button from '@mui/material/Button';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import SearchIcon from '@mui/icons-material/Search';
+import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-import SearchIcon from '@mui/icons-material/Search';
 import Grid from '@mui/material/Grid';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
 import {buttonTheme} from '../css/buttons';
-
 
 const PageProjects = () => {
     const dispatch = useDispatch();
@@ -63,18 +62,14 @@ const PageProjects = () => {
         <div>
             <Grid
                 container direction="row" justifyContent="flex-start" alignItems="center"
-                spacing={2}
-                sx={{padding:'5px 5px 5px 5px'}}
+                spacing={2} sx={{padding:'5px 5px 5px 5px'}}
             >
                 <Grid item xs="auto">
                     <ThemeProvider theme={buttonTheme}>
                     <Button
-                        variant="contained"
-                        color="primary"
-                        size="small"
+                        variant="contained" color="primary" size="small"
                         startIcon={<AddBoxIcon/>}
                         onClick={() => dispatch({type:'PROJECT_MODAL_VISIBLE', payload: true})}
-
                     >
                         Добавить проект
                     </Button>
@@ -82,9 +77,7 @@ const PageProjects = () => {
                 </Grid>
                 <Grid item xs>
                     <TextField
-                        id="input-with-icon-textfield"
-                        hiddenLabel
-                        placeholder="поиск ..."
+                        hiddenLabel placeholder="поиск ..."
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
@@ -92,20 +85,18 @@ const PageProjects = () => {
                                 </InputAdornment>
                             ),
                         }}
-                        variant="standard"
+                        variant="standard" sx={{width:'100%'}}
                         onChange={(e) => setSearchProjectsStringTemp(e.target.value)}
-                        sx={{width:'100%'}}
                     />
                 </Grid>
             </Grid>
-            <div className="title">
+            <div className="titleProject">
                 Проекты
                 {projectsLoading ? <div><Loader/></div> : <div style={{visibility: 'hidden'}}><Loader/></div>}
             </div>
             <Grid
                 container direction="column" justifyContent="center" alignItems="stretch"
-                spacing={0}
-                sx={{padding:'0 5px 0 5px'}}
+                spacing={0} sx={{padding:'0 5px 0 5px'}}
             >
             {
                 projects &&

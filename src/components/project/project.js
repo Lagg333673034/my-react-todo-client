@@ -7,16 +7,13 @@ import {TASKS_ROUTE} from "../../routes/consts";
 
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ListAltIcon from '@mui/icons-material/ListAlt';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
-import {buttonIconTheme} from '../../css/buttons';
+import {buttonIconProjectTheme} from '../../css/buttons';
 
 const Project = ({project}) => {
     const dispatch = useDispatch();
@@ -36,8 +33,8 @@ const Project = ({project}) => {
     /*----------------------------------------------------------------------------------*/
     return (
         <Card sx={{padding:'5px 10px 5px 10px',border:'2px solid #565bf76e',borderRadius:'15px'}}>
-            <Grid container direction="row" justifyContent="center" alignItems="center">
-                <Grid item xs>
+            <Grid container direction="row" justifyContent="center" alignItems="flex-start">
+                <Grid item xs sx={{padding:'5px'}}>
                     {project.title ?
                         <div style={{width:'100%',fontSize:'1.5em',color:'blue',margin:'0 0 5px 0'}}>
                             {project.title}</div> : ''}
@@ -46,24 +43,17 @@ const Project = ({project}) => {
                             {project.description}</div> : ''}
                 </Grid>
                 <Grid item xs="auto">
-                    <Stack spacing={1} direction="column" justifyContent="space-between" alignItems="stretch">
-                        <ThemeProvider theme={buttonIconTheme}>
-                        <IconButton
-                            color="primary" size="small"
-                            onClick={selectCurrentProject}
-                        >
-                            <FormatListNumberedIcon />
-                        </IconButton>
-                        <IconButton
-                            color="success" size="small"
-                            onClick={updCurrentProject}>
-                            <EditIcon />
-                        </IconButton>
-                        <IconButton
-                            color="error" size="small"
-                            onClick={() => delCurrentProject(project)}>
-                            <DeleteIcon />
-                        </IconButton>
+                    <Stack spacing={1} direction="column">
+                        <ThemeProvider theme={buttonIconProjectTheme}>
+                            <IconButton color="primary" size="medium" onClick={selectCurrentProject}>
+                                <FormatListNumberedIcon />
+                            </IconButton>
+                            <IconButton color="success" size="medium" onClick={updCurrentProject}>
+                                <EditIcon />
+                            </IconButton>
+                            <IconButton color="error" size="medium" onClick={() => delCurrentProject(project)}>
+                                <DeleteIcon />
+                            </IconButton>
                         </ThemeProvider>
                     </Stack>
                 </Grid>
