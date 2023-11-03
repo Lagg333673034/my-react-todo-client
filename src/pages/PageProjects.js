@@ -54,7 +54,7 @@ const PageProjects = () => {
     useEffect(()=>{
         const timer = setTimeout(() => {
             dispatch(fetchProjects());
-        }, 5000);
+        }, 1115000);
         return () => clearTimeout(timer);
     });
     /*--------------------------------------------------------------------------------*/

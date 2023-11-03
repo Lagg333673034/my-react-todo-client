@@ -31,8 +31,8 @@ export const buttonIconTaskTheme = createTheme({
             MuiIconButton: {
                 styleOverrides: {
                     root: {
-                        border:'1px solid #80808057',
-                        backgroundColor:'transparent',
+                        border:'2px solid #898989fa',
+                        backgroundColor:'#ffeea1',
                         padding:'5px',
                         margin:'5px',
                     }
@@ -41,3 +41,25 @@ export const buttonIconTaskTheme = createTheme({
         }
     }
 );
+export const buttonIconTaskHover = {
+    "&:hover": {
+        border:'2px solid blue',
+        backgroundColor:'#c6edbe',
+    },
+};
+export const buttonIconTaskSettingsTheme = createTheme({
+        components: {
+            MuiIconButton: {
+                styleOverrides: {
+                    root: {
+                        border:'2px solid #80808057',
+                        backgroundColor:'#00000021',
+                        padding:'5px',
+                        margin:'5px',
+                    }
+                }
+            }
+        }
+    }
+);
+

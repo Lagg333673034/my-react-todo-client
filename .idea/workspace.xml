@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99d0e2a4-5540-4689-89de-678df89c606f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/PageTasks.js" afterPath="$PROJECT_DIR$/src/pages/PageTasks.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/PageProjects.js" afterPath="$PROJECT_DIR$/src/pages/PageProjects.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/PageProjects.js" afterPath="$PROJECT_DIR$/src/pages/PageProjects.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/PageTasks.js" afterPath="$PROJECT_DIR$/src/pages/PageTasks.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,39 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="task.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/task/task.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="201" column="89" lean-forward="false" selection-start-line="201" selection-start-column="89" selection-end-line="201" selection-end-column="89" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <element signature="e#1541#1585#0" expanded="true" />
-                <element signature="e#1959#2090#0" expanded="false" />
-                <element signature="e#2131#2262#0" expanded="false" />
-                <element signature="e#2300#2428#0" expanded="false" />
-                <element signature="e#2460#2583#0" expanded="false" />
-                <element signature="e#2615#2662#0" expanded="false" />
-                <element signature="e#4122#5309#0" expanded="false" />
-                <element signature="e#5482#6677#0" expanded="false" />
-                <element signature="e#6713#7669#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tooltip.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/css/tooltip.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -76,6 +44,7 @@
       <find>currentProjectId</find>
       <find>oneOf</find>
       <find>placement</find>
+      <find>hover</find>
     </findStrings>
     <dirStrings>
       <dir>C:\OpServ\OSPanel\domains\my-react-todo-client\src</dir>
@@ -90,7 +59,6 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/components/hooks/useInput.js" />
-        <option value="$PROJECT_DIR$/src/components/task/task.css" />
         <option value="$PROJECT_DIR$/src/pages/Page404.js" />
         <option value="$PROJECT_DIR$/src/components/modal/fileModal.js" />
         <option value="$PROJECT_DIR$/src/reducers/taskReducer.js" />
@@ -124,16 +92,17 @@
         <option value="$PROJECT_DIR$/src/css/inputs.js" />
         <option value="$PROJECT_DIR$/src/components/modal/projectModal.js" />
         <option value="$APPLICATION_CONFIG_DIR$/phpstorm64.exe.vmoptions" />
-        <option value="$PROJECT_DIR$/src/components/tasklist/tasklist.js" />
         <option value="$PROJECT_DIR$/src/pages/PageTasks.css" />
-        <option value="$PROJECT_DIR$/src/pages/PageProjects.js" />
         <option value="$PROJECT_DIR$/src/App.css" />
-        <option value="$PROJECT_DIR$/src/pages/PageTasks.js" />
         <option value="$PROJECT_DIR$/src/components/project/project.js" />
-        <option value="$PROJECT_DIR$/src/css/buttons.js" />
         <option value="$PROJECT_DIR$/src/css/speedDial.css" />
+        <option value="$PROJECT_DIR$/src/pages/PageProjects.js" />
         <option value="$PROJECT_DIR$/src/css/tooltip.css" />
         <option value="$PROJECT_DIR$/src/components/task/task.js" />
+        <option value="$PROJECT_DIR$/src/components/task/task.css" />
+        <option value="$PROJECT_DIR$/src/css/buttons.js" />
+        <option value="$PROJECT_DIR$/src/pages/PageTasks.js" />
+        <option value="$PROJECT_DIR$/src/components/tasklist/tasklist.js" />
       </list>
     </option>
   </component>
@@ -238,14 +207,27 @@
               <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
               <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="tasklist" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="pages" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -310,18 +292,17 @@
       <workItem from="1698900537572" duration="19334000" />
       <workItem from="1698985334427" duration="2336000" />
       <workItem from="1698987989724" duration="14303000" />
+      <workItem from="1699024727359" duration="12292000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120394000" />
+    <option name="totallyTimeSpent" value="132686000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30786687" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22087745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -335,6 +316,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -354,13 +336,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/reducers/projectReducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
@@ -625,7 +600,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -633,14 +607,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
           <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/tasklist/tasklist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -653,55 +619,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/PageProjects.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="92" column="33" lean-forward="false" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-            <element signature="e#840#1014#0" expanded="false" />
-            <element signature="e#1284#1452#0" expanded="false" />
-            <element signature="e#1761#1814#0" expanded="false" />
-            <element signature="e#2150#2195#0" expanded="false" />
-            <element signature="e#2235#2425#0" expanded="false" />
-            <element signature="e#2468#2615#0" expanded="false" />
-            <element signature="e#2932#3409#0" expanded="false" />
-            <element signature="e#3426#4036#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/PageTasks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="184" column="33" lean-forward="false" selection-start-line="184" selection-start-column="33" selection-end-line="184" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-            <element signature="e#1251#1312#0" expanded="false" />
-            <element signature="e#1564#1726#0" expanded="false" />
-            <element signature="e#2038#2100#0" expanded="false" />
-            <element signature="e#2452#2528#0" expanded="false" />
-            <element signature="e#2869#2939#0" expanded="false" />
-            <element signature="e#3295#3371#0" expanded="false" />
-            <element signature="e#3702#3741#0" expanded="false" />
-            <element signature="e#3778#4088#0" expanded="false" />
-            <element signature="e#4663#4718#0" expanded="false" />
-            <element signature="e#4841#4966#0" expanded="false" />
-            <element signature="e#5000#7220#0" expanded="false" />
-            <element signature="e#5483#6110#0" expanded="false" />
-            <element signature="e#6143#6414#0" expanded="false" />
-            <element signature="e#6447#7136#0" expanded="false" />
-            <element signature="e#7507#7969#0" expanded="false" />
-            <element signature="e#7982#8537#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@mui/material/legacy/IconButton/IconButton.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="97">
           <caret line="194" column="55" lean-forward="true" selection-start-line="194" selection-start-column="55" selection-end-line="194" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -710,16 +631,8 @@
         <state relative-caret-position="180">
           <caret line="46" column="51" lean-forward="false" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/buttons.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="36" column="33" lean-forward="false" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -727,9 +640,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-357">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -737,7 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="31" lean-forward="false" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -745,7 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -753,7 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -761,9 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -771,7 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="22" lean-forward="false" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -779,42 +682,108 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="212" column="67" lean-forward="true" selection-start-line="212" selection-start-column="67" selection-end-line="212" selection-end-column="67" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/PageProjects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="56" column="14" lean-forward="false" selection-start-line="56" selection-start-column="14" selection-end-line="56" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#47#0" expanded="false" />
+            <element signature="e#840#1014#0" expanded="false" />
+            <element signature="e#1284#1452#0" expanded="false" />
+            <element signature="e#1761#1814#0" expanded="false" />
+            <element signature="e#2150#2195#0" expanded="false" />
+            <element signature="e#2235#2425#0" expanded="false" />
+            <element signature="e#2935#3412#0" expanded="false" />
+            <element signature="e#3429#4039#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@mui/material/legacy/Tooltip/Tooltip.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10855">
-          <caret line="736" column="11" lean-forward="false" selection-start-line="736" selection-start-column="11" selection-end-line="736" selection-end-column="11" />
+        <state relative-caret-position="224">
+          <caret line="736" column="2" lean-forward="false" selection-start-line="736" selection-start-column="2" selection-end-line="736" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/css/tooltip.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="527">
+          <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/task/task.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/buttons.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="34" column="50" lean-forward="false" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+          <folding>
+            <element signature="e#104#376#0" expanded="false" />
+            <element signature="e#430#723#0" expanded="false" />
+            <element signature="e#1331#1699#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/task/task.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="201" column="89" lean-forward="false" selection-start-line="201" selection-start-column="89" selection-end-line="201" selection-end-column="89" />
+        <state relative-caret-position="68">
+          <caret line="84" column="20" lean-forward="false" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="20" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#1541#1585#0" expanded="true" />
-            <element signature="e#1959#2090#0" expanded="false" />
-            <element signature="e#2131#2262#0" expanded="false" />
-            <element signature="e#2300#2428#0" expanded="false" />
-            <element signature="e#2460#2583#0" expanded="false" />
-            <element signature="e#2615#2662#0" expanded="false" />
-            <element signature="e#4122#5309#0" expanded="false" />
-            <element signature="e#5482#6677#0" expanded="false" />
-            <element signature="e#6713#7669#0" expanded="false" />
+            <element signature="e#1385#1516#0" expanded="false" />
+            <element signature="e#1557#1688#0" expanded="false" />
+            <element signature="e#1726#1854#0" expanded="false" />
+            <element signature="e#1886#2009#0" expanded="false" />
+            <element signature="e#2041#2088#0" expanded="false" />
+            <element signature="e#2477#3034#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/PageTasks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="14" column="52" lean-forward="false" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
+          <folding>
+            <element signature="e#1158#1219#0" expanded="false" />
+            <element signature="e#1471#1633#0" expanded="false" />
+            <element signature="e#1945#2007#0" expanded="false" />
+            <element signature="e#2359#2435#0" expanded="false" />
+            <element signature="e#2776#2846#0" expanded="false" />
+            <element signature="e#3202#3278#0" expanded="false" />
+            <element signature="e#3609#3648#0" expanded="false" />
+            <element signature="e#3685#3995#0" expanded="false" />
+            <element signature="e#4570#4625#0" expanded="false" />
+            <element signature="e#4748#4873#0" expanded="false" />
+            <element signature="e#4907#7127#0" expanded="false" />
+            <element signature="e#5390#6017#0" expanded="false" />
+            <element signature="e#6050#6321#0" expanded="false" />
+            <element signature="e#6354#7043#0" expanded="false" />
+            <element signature="e#7414#7876#0" expanded="false" />
+            <element signature="e#7889#8444#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/tasklist/tasklist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-272">
+          <caret line="5" column="56" lean-forward="false" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>

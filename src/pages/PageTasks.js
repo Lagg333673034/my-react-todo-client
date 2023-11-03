@@ -10,19 +10,15 @@ import {useParams} from "react-router-dom";
 import './PageTasks.css';
 import moment from 'moment';
 import {DragDropContext} from 'react-beautiful-dnd';
-import Loader from '../components/loader/loader';
-
 
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import SearchIcon from '@mui/icons-material/Search';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
 import {buttonTheme} from '../css/buttons';
-
 
 const PageTasks = () => {
     const dispatch = useDispatch();
@@ -196,16 +192,7 @@ const PageTasks = () => {
                         tasks.length>0 &&
                         tasks.filter(task => task.status === column.status);
                         return (
-                            <Grid
-                                item
-                                xs={4}
-                                key={column_index}
-                                sx={{
-                                    borderRight: column.status == 2 ? '2px solid #00000052':'',
-                                    borderLeft: column.status == 2 ? '2px solid #00000052':'',
-                                    height:'calc(100vh - 150px)'
-                                }}
-                            >
+                            <Grid item xs={4} key={column_index}>
                                 <Tasklist
                                     column={column}
                                     tasks={columnTasks}

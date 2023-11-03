@@ -7,11 +7,6 @@
     align-items: flex-start;
     justify-content: space-between;
 }
-
-.taskIsDragging{
-    background-color: #99e792;
-}
-
 .task__btns{
     display: grid;
 }

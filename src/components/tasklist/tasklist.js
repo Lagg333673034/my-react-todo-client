@@ -4,14 +4,17 @@ import Task from "../task/task";
 import {Droppable} from 'react-beautiful-dnd';
 
 const Tasklist = ({column,tasks,searchTasksString}) => {
-    /*--------------------------------------------------------------------------*/
-    /*--------------------------------------------------------------------------*/
     return (
-        <Droppable droppableId={column.status}>
+        <Droppable droppableId={column.status} >
             {(provided)=>(
                 <div
                     ref={provided.innerRef}
                     {...provided.droppableProps}
+                    style={{
+                        borderRight: column.status == 2 ? '2px solid #00000052':'',
+                        borderLeft: column.status == 2 ? '2px solid #00000052':'',
+                        height:'calc(100vh - 150px)'
+                    }}
                 >
                     <div className="condition__title">{column.title}</div>
                     {
