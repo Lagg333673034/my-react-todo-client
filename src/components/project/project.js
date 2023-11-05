@@ -28,7 +28,9 @@ const Project = ({project}) => {
         dispatch({type:'PROJECT_MODAL_VISIBLE', payload: true});
     };
     const delCurrentProject = (project) => {
-        dispatch(deleteProject(project._id));
+        //dispatch(deleteProject(project._id));
+        dispatch({type:'PROJECT_CURRENT', payload: project});
+        dispatch({type:'PROJECT_DEL_CONFIRM_MODAL_VISIBLE', payload: true});
     };
     /*----------------------------------------------------------------------------------*/
     return (

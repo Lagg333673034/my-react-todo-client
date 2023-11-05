@@ -3,26 +3,27 @@ import './modal.css';
 import {useDispatch,useSelector} from 'react-redux';
 import {createSubtask,updateSubtask} from "../../actions/subtaskActions";
 
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import SaveIcon from '@mui/icons-material/Save';
+import AddIcon from '@mui/icons-material/Add';
+import CloseIcon from '@mui/icons-material/Close';
+import {ThemeProvider,createTheme} from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+import {inputTheme} from '../../css/inputs';
+
+
 const SubtaskModal = ({show}) => {
     const dispatch = useDispatch();
-    /*--------------------------------------------------------------------------------*/
-    const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
-    const [taskCurrentState, setTaskCurrentState] = useState(taskCurrent);
-    useEffect(()=>{
-        setTaskCurrentState(taskCurrent);
-    },[taskCurrent]);
-    /*--------------------------------------------------------------------------------*/
-    const subtaskCurrent = useSelector((state)=>state.subtaskReducer.subtaskCurrent);
-    const [subtaskCurrentState, setSubtaskCurrentState] = useState(subtaskCurrent);
-    useEffect(()=>{
-        setSubtaskCurrentState(subtaskCurrent);
-    },[subtaskCurrent]);
+    const [taskCurrent,setTaskCurrent] = useState(useSelector((state)=>state.taskReducer.taskCurrent));
+    const [subtaskCurrent,setSubtaskCurrent] = useState(useSelector((state)=>state.subtaskReducer.subtaskCurrent));
     /*--------------------------------------------------------------------------------*/
     const subtaskAdd = (e) => {
-        if(taskCurrentState && taskCurrentState._id) {
+        if(taskCurrent && taskCurrent._id) {
             dispatch(
-                createSubtask(taskCurrentState._id, {
-                    description: String(subtaskCurrentState.description || ''),
+                createSubtask(taskCurrent._id, {
+                    description: String(subtaskCurrent.description || ''),
                     done: String(''),
                 }
             ));
@@ -30,11 +31,11 @@ const SubtaskModal = ({show}) => {
         }
     };
     const subtaskUpd = (e) => {
-        if(subtaskCurrentState && subtaskCurrentState._id) {
+        if(subtaskCurrent && subtaskCurrent._id) {
             dispatch(
                 updateSubtask(
-                    subtaskCurrentState._id, {
-                        description: String(subtaskCurrentState.description || ''),
+                    subtaskCurrent._id, {
+                        description: String(subtaskCurrent.description || ''),
                     }
                 )
             );
@@ -43,42 +44,77 @@ const SubtaskModal = ({show}) => {
     };
     /*--------------------------------------------------------------------------------*/
     const modalClose = () => {
-        setSubtaskCurrentState({});
         dispatch({type:'SUBTASK_MODAL_VISIBLE', payload: false});
         dispatch({type:'SUBTASK_CURRENT', payload: null});
     };
-    document.addEventListener('keyup', function(event){
-        if(event.keyCode === 27) {
-            modalClose();
-        }
-    });
     /*--------------------------------------------------------------------------------*/
     return(
         <div style={(show) ? {display: 'block'} : {display: 'none'}} className="modal">
             <div className="modal-main">
                 <div className="modal-title">
-                    {subtaskCurrentState && subtaskCurrentState._id && subtaskCurrentState._id.length>5 ? 'Редактировать подзадачу' : 'Добавить подзадачу'}
+                    {
+                        subtaskCurrent &&
+                        subtaskCurrent._id &&
+                        subtaskCurrent._id.length>5 ?
+                            'Редактировать подзадачу'
+                            :
+                            'Добавить подзадачу'
+                    }
                 </div>
                 <div className="modal-content">
-                    <div className="inputOut">
-                        Описание
-                        <input
-                            className="inputIn"
-                            type="text"
-                            id="subtaskDescription"
-                            autoComplete="off"
-                            value={subtaskCurrentState && subtaskCurrentState.description ? subtaskCurrentState.description : ''}
-                            onChange={(e) => setSubtaskCurrentState({...subtaskCurrentState, description:e.target.value})}
-                        />
-                    </div>
+                    <Stack spacing={0} direction="column" sx={{width:'100%'}}>
+                        <ThemeProvider theme={inputTheme}>
+                            <TextField
+                                label="Описание подзадачи"
+                                variant="outlined"
+                                size="small"
+                                multiline
+                                rows={4}
+                                autoComplete="off"
+                                value={subtaskCurrent && subtaskCurrent.description ? subtaskCurrent.description : ''}
+                                onChange={(e) => setSubtaskCurrent({...subtaskCurrent, description:e.target.value})}
+                            />
+                        </ThemeProvider>
+                    </Stack>
                 </div>
                 <div className="modal-footer">
-                    <button className="btn btnClose" type="button" onClick={modalClose}>Закрыть</button>
-                    {subtaskCurrentState && subtaskCurrentState._id && subtaskCurrentState._id.length>5 ?
-                        <button className="btn btnAdd" type="button" onClick={subtaskUpd}>Сохранить изменения</button>
-                        :
-                        <button className="btn btnAdd" type="button" onClick={subtaskAdd}>Добавить подзадачу</button>
-                    }
+                    <Grid container direction="row" justifyContent="center" alignItems="center">
+                        <Grid item xs="auto">
+                            {subtaskCurrent && subtaskCurrent._id && subtaskCurrent._id.length>5 ?
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    startIcon={<SaveIcon/>}
+                                    onClick={subtaskUpd}
+                                >
+                                    Сохранить изменения
+                                </Button>
+                                :
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    startIcon={<AddIcon/>}
+                                    onClick={subtaskAdd}
+                                >
+                                    Добавить подзадачу
+                                </Button>
+                            }
+                        </Grid>
+                        <Grid item xs></Grid>
+                        <Grid item xs="auto">
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                                startIcon={<CloseIcon/>}
+                                onClick={modalClose}
+                            >
+                                Закрыть
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </div>
             </div>
         </div>

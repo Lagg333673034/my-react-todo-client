@@ -2,7 +2,7 @@ const defaultState = {
     tasks: [],
     taskCurrent: null,
     taskModalVisible: false,
-    //taskNeedRefresh: false
+    taskDelConfirmModalVisible: false,
 };
 
 export const taskReducer = (state = defaultState, action) => {
@@ -26,8 +26,8 @@ export const taskReducer = (state = defaultState, action) => {
             return {...state, taskCurrent: action.payload};
         case "TASK_MODAL_VISIBLE":
             return {...state, taskModalVisible: action.payload};
-        /*case "TASK_NEED_REFRESH":
-            return {...state, taskNeedRefresh: action.payload};*/
+        case "TASK_DEL_CONFIRM_MODAL_VISIBLE":
+            return {...state, taskDelConfirmModalVisible: action.payload};
 
         default:
             return state;

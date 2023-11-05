@@ -5,6 +5,7 @@ import TaskModal from '../components/modal/taskModal';
 import CommentListModal from '../components/modal/commentListModal';
 import FileListModal from '../components/modal/fileListModal';
 import SubtaskListModal from '../components/modal/subtaskListModal';
+import TaskDelConfirmModal from '../components/modal/taskDelConfirmModal';
 import {fetchTasks,updateTask} from "../actions/taskActions";
 import {useParams} from "react-router-dom";
 import './PageTasks.css';
@@ -36,53 +37,37 @@ const PageTasks = () => {
         return () => clearTimeout(timer)
     }, [searchTasksStringTemp]);
     /*--------------------------------------------------------------------------*/
-    const taskModalVisibleSelector = useSelector((state)=>state.taskReducer.taskModalVisible);
-    const [taskModalVisible, setTaskModalVisible] = useState(taskModalVisibleSelector);
-    useEffect(()=>{
-        setTaskModalVisible(taskModalVisibleSelector);
-    },[taskModalVisibleSelector]);
-    /*--------------------------------------------------------------------------*/
-    const commentListModalVisibleSelector = useSelector((state)=>state.commentReducer.commentListModalVisible);
-    const [commentListModalVisible, setCommentListModalVisible] = useState(commentListModalVisibleSelector);
-    useEffect(()=>{
-        setCommentListModalVisible(commentListModalVisibleSelector);
-    },[commentListModalVisibleSelector]);
-    /*--------------------------------------------------------------------------*/
-    const fileListModalVisibleSelector = useSelector((state)=>state.fileReducer.fileListModalVisible);
-    const [fileListModalVisible, setFileListModalVisible] = useState(fileListModalVisibleSelector);
-    useEffect(()=>{
-        setFileListModalVisible(fileListModalVisibleSelector);
-    },[fileListModalVisibleSelector]);
-    /*--------------------------------------------------------------------------*/
-    const subtaskListModalVisibleSelector = useSelector((state)=>state.subtaskReducer.subtaskListModalVisible);
-    const [subtaskListModalVisible, setSubtaskListModalVisible] = useState(subtaskListModalVisibleSelector);
-    useEffect(()=>{
-        setSubtaskListModalVisible(subtaskListModalVisibleSelector);
-    },[subtaskListModalVisibleSelector]);
-    /*--------------------------------------------------------------------------------*/
+    const taskModalVisible = useSelector((state)=>state.taskReducer.taskModalVisible);
+    const commentListModalVisible = useSelector((state)=>state.commentReducer.commentListModalVisible);
+    const fileListModalVisible = useSelector((state)=>state.fileReducer.fileListModalVisible);
+    const subtaskListModalVisible = useSelector((state)=>state.subtaskReducer.subtaskListModalVisible);
+    const taskDelConfirmModalVisible = useSelector((state)=>state.taskReducer.taskDelConfirmModalVisible);
     const taskFetchAll = useSelector((state)=>state.taskReducer.tasks);
+    /*--------------------------------------------------------------------------------*/
     const [tasks, setTasks] = useState(taskFetchAll);
     const [tasksLoading, setTasksLoading] = useState(false);
     useEffect(()=>{
-        setTasks(taskFetchAll);
-    },[taskFetchAll]);
+        if(!tasksLoading)
+            setTasks(taskFetchAll);
+    },[taskFetchAll,tasksLoading]);
 
     useEffect(()=>{
         if(
             currentProjectId && currentProjectId.length>0 &&
-            !taskModalVisible && !tasksLoading
+            !taskModalVisible && !taskDelConfirmModalVisible &&
+            !tasksLoading
         ) {
             setTasksLoading(true);
             setTasks(taskFetchAll);
             dispatch(fetchTasks(currentProjectId)).finally(() => setTasksLoading(false));
         }
-    },[currentProjectId,taskModalVisible]);
+    },[currentProjectId,taskModalVisible,taskDelConfirmModalVisible]);
     useEffect(()=>{
         const timer = setTimeout(() => {
             if(currentProjectId && currentProjectId.length>0){
                 dispatch(fetchTasks(currentProjectId));
             }
-        }, 1115000);
+        }, 5000);
         return () => clearTimeout(timer);
     });
     /*--------------------------------------------------------------------------*/
@@ -146,6 +131,36 @@ const PageTasks = () => {
         }
     };
     /*--------------------------------------------------------------------------*/
+    const [key,setKey] = useState(false);
+    const subtaskModalVisible = useSelector((state)=>state.subtaskReducer.subtaskModalVisible);
+    const commentModalVisible = useSelector((state)=>state.commentReducer.commentModalVisible);
+    useEffect(() => {
+        window.addEventListener('keydown', (event)=>setKey(event.keyCode));
+        return () => {
+            window.removeEventListener('keydown', (event)=>setKey(event.keyCode));
+        };
+    },[]);
+    useEffect(() => {
+        if(key && key === 27) {
+            if (subtaskModalVisible || commentModalVisible) {
+                if (subtaskModalVisible) {
+                    dispatch({type: 'SUBTASK_MODAL_VISIBLE', payload: false});
+                }
+                if (commentModalVisible) {
+                    dispatch({type: 'COMMENT_MODAL_VISIBLE', payload: false});
+                }
+            } else {
+                dispatch({type: 'SUBTASK_LIST_MODAL_VISIBLE', payload: false});
+                dispatch({type: 'COMMENT_LIST_MODAL_VISIBLE', payload: false});
+                dispatch({type: 'FILE_LIST_MODAL_VISIBLE', payload: false});
+                dispatch({type: 'TASK_MODAL_VISIBLE', payload: false});
+                dispatch({type: 'TASK_DEL_CONFIRM_MODAL_VISIBLE', payload: false});
+                dispatch({type: "TASK_CURRENT", payload: null});
+            }
+        }
+        setKey(false);
+    },[key]);
+    /*--------------------------------------------------------------------------*/
     return(
         <>
         <Grid
@@ -208,6 +223,7 @@ const PageTasks = () => {
         {commentListModalVisible ? <CommentListModal show={commentListModalVisible}/>  : ''}
         {fileListModalVisible ? <FileListModal show={fileListModalVisible}/>  : ''}
         {subtaskListModalVisible ? <SubtaskListModal show={subtaskListModalVisible}/>  : ''}
+        {taskDelConfirmModalVisible ? <TaskDelConfirmModal show={taskDelConfirmModalVisible}/>  : ''}
         </>
     )
 };

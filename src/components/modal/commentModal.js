@@ -1,11 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import './modal.css';
 import {useDispatch,useSelector} from 'react-redux';
-import {fetchTask} from "../../api";
-import {useParams} from "react-router-dom";
 import moment from 'moment';
 import {createComment,fetchComments} from "../../actions/commentActions";
-import Comment from "../comment/comment";
 
 const CommentModal = ({show}) => {
     const dispatch = useDispatch();
@@ -29,20 +26,12 @@ const CommentModal = ({show}) => {
     },[commentToComment]);
     /*--------------------------------------------------------------------------------*/
     const modalClose = () => {
-        setCommentCurrentState({});
         dispatch({type:'COMMENT_MODAL_VISIBLE', payload: false});
         dispatch({type:'COMMENT_CURRENT', payload: null});
         dispatch({type:'COMMENT_TO_COMMENT', payload: null});
     };
-    document.addEventListener('keyup', function(event){
-        if(event.keyCode === 27) {
-            modalClose();
-        }
-    });
     /*--------------------------------------------------------------------------------*/
-    //const [commentData, setCommentData] = useState({username:'',message:''});
     const commentAdd = (e) => {
-        //e.preventDefault();
         if(taskCurrentState && taskCurrentState._id && taskCurrentState._id.length>0) {
             let commentToCommentId = '';
             if (commentToCommentState && commentToCommentState._id && commentToCommentState._id.length > 0) {
@@ -61,7 +50,6 @@ const CommentModal = ({show}) => {
                 )
             );
             setCommentCurrentState({username: '', message: ''});
-            //localStorage.removeItem('selectedCommenId');
             dispatch({type:'COMMENT_TO_COMMENT', payload: null});
             modalClose();
         }

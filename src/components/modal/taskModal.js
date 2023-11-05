@@ -16,19 +16,16 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-
+import {ThemeProvider,createTheme} from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+import {inputTheme} from '../../css/inputs';
 
 
 const TaskModal = ({show}) => {
     const dispatch = useDispatch();
     /*--------------------------------------------------------------------------------*/
     const currentProjectId = useParams().id;
-    /*--------------------------------------------------------------------------------*/
-    const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
-    const [taskCurrentState, setTaskCurrentState] = useState(taskCurrent);
-    useEffect(()=>{
-        setTaskCurrentState(taskCurrent);
-    },[taskCurrent]);
+    const [taskCurrentState, setTaskCurrentState] = useState(useSelector((state)=>state.taskReducer.taskCurrent));
     /*--------------------------------------------------------------------------------*/
     const taskAdd = (e) => {
         dispatch(
@@ -64,16 +61,9 @@ const TaskModal = ({show}) => {
     };
     /*--------------------------------------------------------------------------------*/
     const modalClose = () => {
-        setTaskCurrentState({});
         dispatch({type:"TASK_CURRENT",payload:null});
         dispatch({type:'TASK_MODAL_VISIBLE', payload: false});
-        //dispatch({type:"TASK_NEED_REFRESH",payload:true});
     };
-    document.addEventListener('keyup', function(event){
-        if(event.keyCode === 27) {
-            modalClose();
-        }
-    });
     /*--------------------------------------------------------------------------------*/
     return(
         <div style={(show) ? {display: 'block'} : {display: 'none'}} className="modal">
@@ -89,50 +79,39 @@ const TaskModal = ({show}) => {
                     }
                 </div>
                 <div className="modal-content">
-                    <Grid
-                        container
-                        direction="column"
-                        justifyContent="center"
-                        alignItems="center"
-                        spacing={2}
-                    >
-                        <Grid item xs={12}>
+                    <Stack spacing={0} direction="column" sx={{width:'100%'}}>
+                        <ThemeProvider theme={inputTheme}>
                             <TextField
-                                id="taskNumber"
                                 label="Номер задачи"
                                 variant="outlined"
+                                size="small"
                                 autoComplete="off"
                                 value={taskCurrentState && taskCurrentState.number ? taskCurrentState.number : ''}
                                 onChange={(e) => setTaskCurrentState({...taskCurrentState, number:e.target.value})}
                             />
-                        </Grid>
-                        <Grid item xs={12}>
                             <TextField
-                                id="taskTitle"
                                 label="Заголовок"
                                 variant="outlined"
+                                size="small"
                                 autoComplete="off"
                                 value={taskCurrentState && taskCurrentState.title ? taskCurrentState.title : ''}
                                 onChange={(e) => setTaskCurrentState({...taskCurrentState, title:e.target.value})}
                             />
-                        </Grid>
-                        <Grid item xs={12}>
                             <TextField
-                                id="taskDescription"
-                                label="Описание"
+                                label="Описание задачи"
                                 variant="outlined"
+                                size="small"
+                                multiline
+                                rows={4}
                                 autoComplete="off"
                                 value={taskCurrentState && taskCurrentState.description ? taskCurrentState.description : ''}
                                 onChange={(e) => setTaskCurrentState({...taskCurrentState, description:e.target.value})}
                             />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <FormControl sx={{ m: 1, minWidth: 120 }}>
-                                <InputLabel id="demo-simple-select-helper-label">Приоритет</InputLabel>
+                            <FormControl sx={{ }}>
+                                <InputLabel>Приоритет</InputLabel>
                                 <Select
-                                    labelId="taskPriority-label"
-                                    id="taskPriority"
                                     label="Приоритет"
+                                    size="small"
                                     value={taskCurrentState && taskCurrentState.priority ? taskCurrentState.priority : '2'}
                                     onChange={(e) => setTaskCurrentState({...taskCurrentState, priority:e.target.value})}
                                 >
@@ -141,8 +120,8 @@ const TaskModal = ({show}) => {
                                     <MenuItem value={3}>Высокий</MenuItem>
                                 </Select>
                             </FormControl>
-                        </Grid>
-                    </Grid>
+                        </ThemeProvider>
+                    </Stack>
                 </div>
                 <div className="modal-footer">
                     <Grid

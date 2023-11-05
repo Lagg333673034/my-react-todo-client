@@ -2,7 +2,7 @@ const defaultState = {
     projects: [],
     projectCurrent: null,
     projectModalVisible: false,
-    //projectNeedRefresh: false
+    projectDelConfirmModalVisible: false,
 };
 
 export const projectReducer = (state = defaultState, action) => {
@@ -26,8 +26,9 @@ export const projectReducer = (state = defaultState, action) => {
             return {...state, projectCurrent: action.payload};
         case "PROJECT_MODAL_VISIBLE":
             return {...state, projectModalVisible: action.payload};
-        /*case "PROJECT_NEED_REFRESH":
-            return {...state, projectNeedRefresh: action.payload};*/
+        case "PROJECT_DEL_CONFIRM_MODAL_VISIBLE":
+            return {...state, projectDelConfirmModalVisible: action.payload};
+
 
         default:
             return state;

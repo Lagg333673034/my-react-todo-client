@@ -11,8 +11,7 @@ export const buttonTheme = createTheme({
                 }
             }
         }
-    }
-);
+    });
 export const buttonIconProjectTheme = createTheme({
         components: {
             MuiIconButton: {
@@ -24,8 +23,7 @@ export const buttonIconProjectTheme = createTheme({
                 }
             }
         }
-    }
-);
+    });
 export const buttonIconTaskTheme = createTheme({
         components: {
             MuiIconButton: {
@@ -39,9 +37,8 @@ export const buttonIconTaskTheme = createTheme({
                 }
             }
         }
-    }
-);
-export const buttonIconTaskHover = {
+    });
+export const buttonIconTaskHoverTheme = {
     "&:hover": {
         border:'2px solid blue',
         backgroundColor:'#c6edbe',
@@ -60,6 +57,24 @@ export const buttonIconTaskSettingsTheme = createTheme({
                 }
             }
         }
-    }
-);
-
+    });
+export const buttonIconSmallTheme = createTheme({
+        components: {
+            MuiIconButton: {
+                styleOverrides: {
+                    root: {
+                        border:'1px solid #898989fa',
+                        backgroundColor:'white',
+                        padding:'1px',
+                        margin:'1px',
+                        borderRadius:'20%',
+                    }
+                }
+            }
+        }
+    });
+export const buttonIconSmallHoverTheme = {
+    "&:hover": {
+        backgroundColor:'#c6edbe',
+    },
+};

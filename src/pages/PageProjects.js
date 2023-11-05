@@ -3,6 +3,7 @@ import {useDispatch,useSelector} from 'react-redux';
 import {fetchProjects} from "../actions/projectActions";
 import './PageProjects.css';
 import ProjectModal from '../components/modal/projectModal';
+import ProjectDelConfirmModal from '../components/modal/projectDelConfirmModal';
 import Project from '../components/project/project';
 import Loader from '../components/loader/loader';
 
@@ -32,30 +33,39 @@ const PageProjects = () => {
         return () => clearTimeout(timer)
     }, [searchProjectsStringTemp]);
     /*--------------------------------------------------------------------------------*/
-    const modalVisible = useSelector((state)=>state.projectReducer.projectModalVisible);
-    const [projectModalVisible, setProjectModalVisible] = useState(modalVisible);
-    useEffect(()=>{
-        setProjectModalVisible(modalVisible);
-    },[modalVisible]);
-    /*--------------------------------------------------------------------------------*/
+    const projectModalVisible = useSelector((state)=>state.projectReducer.projectModalVisible);
+    const projectDelConfirmModalVisible = useSelector((state)=>state.projectReducer.projectDelConfirmModalVisible);
     const projectFetchAll = useSelector((state)=>state.projectReducer.projects);
+    /*--------------------------------------------------------------------------------*/
     const [projects, setProjects] = useState(projectFetchAll);
     const [projectsLoading, setProjectsLoading] = useState(false);
     useEffect(()=>{
-        setProjects(projectFetchAll);
-    },[projectFetchAll]);
+        if(!projectsLoading)
+            setProjects(projectFetchAll);
+    },[projectFetchAll,projectsLoading]);
 
     useEffect(()=>{
-        if(!projectModalVisible && !projectsLoading) {
+        if(
+            !projectModalVisible && !projectDelConfirmModalVisible &&
+            !projectsLoading
+        ) {
             setProjectsLoading(true);
             dispatch(fetchProjects()).finally(() => setProjectsLoading(false));
         }
-    },[projectModalVisible]);
+    },[projectModalVisible,projectDelConfirmModalVisible]);
     useEffect(()=>{
         const timer = setTimeout(() => {
             dispatch(fetchProjects());
-        }, 1115000);
+        }, 5000);
         return () => clearTimeout(timer);
+    });
+    /*--------------------------------------------------------------------------------*/
+    document.addEventListener('keyup', function(event){
+        if(event.keyCode === 27) {
+            dispatch({type:"PROJECT_CURRENT", payload:null});
+            dispatch({type:'PROJECT_MODAL_VISIBLE', payload:false});
+            dispatch({type:'PROJECT_DEL_CONFIRM_MODAL_VISIBLE', payload:false});
+        }
     });
     /*--------------------------------------------------------------------------------*/
     return(
@@ -66,13 +76,13 @@ const PageProjects = () => {
             >
                 <Grid item xs="auto">
                     <ThemeProvider theme={buttonTheme}>
-                    <Button
-                        variant="contained" color="primary" size="small"
-                        startIcon={<AddBoxIcon/>}
-                        onClick={() => dispatch({type:'PROJECT_MODAL_VISIBLE', payload: true})}
-                    >
-                        Добавить проект
-                    </Button>
+                        <Button
+                            variant="contained" color="primary" size="small"
+                            startIcon={<AddBoxIcon/>}
+                            onClick={() => dispatch({type:'PROJECT_MODAL_VISIBLE', payload: true})}
+                        >
+                            Добавить проект
+                        </Button>
                     </ThemeProvider>
                 </Grid>
                 <Grid item xs>
@@ -120,6 +130,7 @@ const PageProjects = () => {
             }
             </Grid>
             {projectModalVisible ? <ProjectModal show={projectModalVisible}/>  : ''}
+            {projectDelConfirmModalVisible ? <ProjectDelConfirmModal show={projectDelConfirmModalVisible}/>  : ''}
         </div>
     )
 };

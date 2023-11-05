@@ -1,14 +1,12 @@
 import React,{useState,useEffect} from 'react';
 import './modal.css';
 import {useDispatch,useSelector} from 'react-redux';
-import {useParams} from "react-router-dom";
 import {createFile,fetchFiles} from "../../actions/fileActions";
 import File from '../file/file';
 import {useRef} from 'react';
 
 const FileListModal = ({show}) => {
     const dispatch = useDispatch();
-    let fileListModalVisibleSelector = useSelector((state)=>state.fileReducer.fileListModalVisible);
     /*--------------------------------------------------------------------------------*/
     const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
     const [taskCurrentState, setTaskCurrentState] = useState(taskCurrent);
@@ -17,30 +15,21 @@ const FileListModal = ({show}) => {
     },[taskCurrent]);
     /*--------------------------------------------------------------------------------*/
     const modalClose = () => {
-        fileListModalVisibleSelector = false; //это или убирать/обнулить  -=currentTaskId=-
-        setFiles({});
-        setFile({});
+        dispatch({type:"TASK_CURRENT",payload:null});
         dispatch({type:'FILE_LIST_MODAL_VISIBLE', payload: false});
     };
-    document.addEventListener('keyup', function(event){
-        if(event.keyCode === 27) {
-            modalClose();
-        }
-    });
     /*--------------------------------------------------------------------------------*/
     const fileFetchAll = useSelector((state)=>state.fileReducer.files);
     const [files, setFiles] = useState(fileFetchAll);
     const [filesLoading, setFilesLoading] = useState(false);
     useEffect(()=>{
-        if(fileListModalVisibleSelector) {
-            setFiles(fileFetchAll);
-        }
+        setFiles(fileFetchAll);
     },[fileFetchAll]);
 
     useEffect(()=>{
         if(
             taskCurrentState && taskCurrentState._id && taskCurrentState._id.length>0 &&
-            !filesLoading && fileListModalVisibleSelector
+            !filesLoading
         ) {
             setFilesLoading(true);
             dispatch(fetchFiles(taskCurrentState._id)).finally(() => setFilesLoading(false));
@@ -48,10 +37,7 @@ const FileListModal = ({show}) => {
     },[fileFetchAll]);
     useEffect(()=>{
         const timer = setTimeout(() => {
-            if(
-                taskCurrentState && taskCurrentState._id && taskCurrentState._id.length>0 &&
-                fileListModalVisibleSelector
-            ){
+            if(taskCurrentState && taskCurrentState._id && taskCurrentState._id.length>0){
                 dispatch(fetchFiles(taskCurrentState._id));
             }
         }, 5000);

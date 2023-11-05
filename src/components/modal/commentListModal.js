@@ -1,16 +1,12 @@
 import React,{useState,useEffect} from 'react';
 import './modal.css';
 import {useDispatch,useSelector} from 'react-redux';
-import {fetchTask} from "../../api";
-import {useParams} from "react-router-dom";
-import moment from 'moment';
 import {createComment,fetchComments} from "../../actions/commentActions";
 import Comment from "../comment/comment";
 import CommentModal from './commentModal';
 
 const CommentListModal = ({show}) => {
     const dispatch = useDispatch();
-    let commentListModalVisibleSelector = useSelector((state)=>state.commentReducer.commentListModalVisible);
     /*--------------------------------------------------------------------------*/
     const commentModalVisibleSelector = useSelector((state)=>state.commentReducer.commentModalVisible);
     const [commentModalVisible, setCommentModalVisible] = useState(commentModalVisibleSelector);
@@ -25,27 +21,21 @@ const CommentListModal = ({show}) => {
     },[taskCurrent]);
     /*--------------------------------------------------------------------------------*/
     const commentFetchAll = useSelector((state)=>state.commentReducer.comments);
-    //const [tempComments, setTempComments] = useState(commentFetchAll);
     const [allComments, setAllComments] = useState({});
     const [lvl0Comments, setlvl0Comments] = useState({});
     const [commentsLoading, setCommentsLoading] = useState(false);
     let lvlComment = 0;
 
     useEffect(()=>{
-        if(commentListModalVisibleSelector) {
-            //setTempComments(commentFetchAll);
-            //setAllComments(tempComments);
-            //setlvl0Comments(tempComments);
-
-            setAllComments(commentFetchAll);
-            setlvl0Comments(commentFetchAll);
-        }
+        setAllComments(commentFetchAll);
+        setlvl0Comments(commentFetchAll);
     },[commentFetchAll]);
 
     useEffect(()=>{
         if(
             taskCurrentState && taskCurrentState._id && taskCurrentState._id.length>0 &&
-            !commentModalVisible && !commentsLoading && commentListModalVisibleSelector
+            !commentModalVisible &&
+            !commentsLoading
         ) {
             setCommentsLoading(true);
             dispatch(fetchComments(taskCurrentState._id,"null")).finally(() => setCommentsLoading(false));
@@ -54,10 +44,7 @@ const CommentListModal = ({show}) => {
     },[commentFetchAll]);
     useEffect(()=>{
         const timer = setTimeout(() => {
-            if(
-                taskCurrentState && taskCurrentState._id && taskCurrentState._id.length>0 &&
-                commentListModalVisibleSelector
-            ){
+            if(taskCurrentState && taskCurrentState._id && taskCurrentState._id.length>0){
                 dispatch(fetchComments(taskCurrentState._id,"null"));
             }
         }, 5000);
@@ -65,56 +52,11 @@ const CommentListModal = ({show}) => {
     });
     /*--------------------------------------------------------------------------------*/
     const modalClose = () => {
-        commentListModalVisibleSelector = false;
-
-        //setTempComments({});
-        setAllComments({});
-        setlvl0Comments({});
-
+        dispatch({type:"TASK_CURRENT",payload:null});
         dispatch({type:'COMMENT_FETCH_ALL', payload: []});
         dispatch({type:'COMMENT_LIST_MODAL_VISIBLE', payload: false});
-
-        //localStorage.removeItem('taskCurrentId');
-        //dispatch({type:'COMMENT_LIST_MODAL_VISIBLE', payload: false});
     };
-    document.addEventListener('keyup', function(event){
-        if(event.keyCode === 27) {
-            modalClose();
-        }
-    });
     /*--------------------------------------------------------------------------------*/
-    //const [tempComments, setTempComments] = useState({});
-    //const [allComments, setAllComments] = useState({});
-    //const [lvl0Comments, setlvl0Comments] = useState({});
-
-
-    /*
-    useEffect(()=>{
-        if(taskCurrentState && taskCurrentState._id) {
-            fetchComments(taskCurrentState._id,"null")
-                .then(response => setTempComments(response.data));
-            setAllComments(tempComments);
-            setlvl0Comments(tempComments);
-        }
-    },[taskCurrentState._id,tempComments]);
-    useEffect(()=>{
-        let timerId = setInterval(() => {
-            if(
-                taskCurrentState && taskCurrentState._id &&
-                !commentModalVisible
-            ) {
-                fetchComments(taskCurrentState._id,"null")
-                    .then(response => setTempComments(response.data));
-                setAllComments(tempComments);
-                setlvl0Comments(tempComments);
-            }
-        }, 2000);
-        return ()=>{
-            clearInterval(timerId);
-        }
-    },[taskCurrentState._id,tempComments,commentModalVisible]);
-    */
-
     const showSubComments = (comments,comment,lvl) => {
         let temp_comments = comments;
         let temp_lvl = Number(lvl)+1;

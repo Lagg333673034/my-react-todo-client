@@ -15,7 +15,7 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
-import {buttonIconTaskTheme,buttonIconTaskHover,buttonIconTaskSettingsTheme} from '../../css/buttons';
+import {buttonIconTaskTheme,buttonIconTaskHoverTheme,buttonIconTaskSettingsTheme} from '../../css/buttons';
 
 import Tooltip from '@mui/material/Tooltip';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
@@ -26,8 +26,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import CloseIcon from '@mui/icons-material/Close';
 
 const Task = ({index,task}) => {
-    /*--------------------------------------------------------------------------*/
     const dispatch = useDispatch();
+    /*--------------------------------------------------------------------------*/
     const subtaskListModal = (task) => {
         dispatch({type:"TASK_CURRENT",payload:task});
         dispatch({type:'SUBTASK_LIST_MODAL_VISIBLE', payload: true});
@@ -45,7 +45,9 @@ const Task = ({index,task}) => {
         dispatch({type:'TASK_MODAL_VISIBLE', payload: true});
     };
     const delTask = (task) => {
-        dispatch(deleteTask(task._id));
+        //dispatch(deleteTask(task._id));
+        dispatch({type:'TASK_CURRENT', payload: task});
+        dispatch({type:'TASK_DEL_CONFIRM_MODAL_VISIBLE', payload: true});
     };
     /*--------------------------------------------------------------------------*/
     const [open, setOpen] = React.useState(false);
@@ -80,7 +82,7 @@ const Task = ({index,task}) => {
     };
     /*--------------------------------------------------------------------------*/
     return (
-        <Draggable draggableId={String(task._id)} index={index}>
+        <Draggable draggableId={String(task._id)} index={index} isDragDisabled={open}>
             {(provided,snapshot) => (
                 <div
                     {...provided.draggableProps}
@@ -115,7 +117,7 @@ const Task = ({index,task}) => {
                                         MyTooltip(
                                             <ThemeProvider theme={buttonIconTaskTheme}>
                                                 <IconButton
-                                                    sx={buttonIconTaskHover}
+                                                    sx={buttonIconTaskHoverTheme}
                                                     className="placementOn10"
                                                     color="success"
                                                     size="small"
@@ -127,7 +129,7 @@ const Task = ({index,task}) => {
                                             MyTooltip(
                                                 <ThemeProvider theme={buttonIconTaskTheme}>
                                                     <IconButton
-                                                        sx={buttonIconTaskHover}
+                                                        sx={buttonIconTaskHoverTheme}
                                                         className="placementOn11"
                                                         color="primary"
                                                         size="small"
@@ -139,7 +141,7 @@ const Task = ({index,task}) => {
                                                 MyTooltip(
                                                     <ThemeProvider theme={buttonIconTaskTheme}>
                                                         <IconButton
-                                                            sx={buttonIconTaskHover}
+                                                            sx={buttonIconTaskHoverTheme}
                                                             className="placementOn01"
                                                             color="info"
                                                             size="small"
@@ -151,7 +153,7 @@ const Task = ({index,task}) => {
                                                     MyTooltip(
                                                         <ThemeProvider theme={buttonIconTaskTheme}>
                                                             <IconButton
-                                                                sx={buttonIconTaskHover}
+                                                                sx={buttonIconTaskHoverTheme}
                                                                 className="placementOn02"
                                                                 color="info"
                                                                 size="small"
@@ -163,7 +165,7 @@ const Task = ({index,task}) => {
                                                         MyTooltip(
                                                             <ThemeProvider theme={buttonIconTaskTheme}>
                                                                 <IconButton
-                                                                    sx={buttonIconTaskHover}
+                                                                    sx={buttonIconTaskHoverTheme}
                                                                     className="placementOn06"
                                                                     color="error"
                                                                     size="small"
@@ -173,10 +175,9 @@ const Task = ({index,task}) => {
                                                                 </IconButton>
                                                             </ThemeProvider>,
 
-
                                                             <ThemeProvider theme={buttonIconTaskSettingsTheme}>
                                                                 <IconButton
-                                                                    sx={buttonIconTaskHover}
+                                                                    sx={buttonIconTaskHoverTheme}
                                                                     color="primary"
                                                                     size="small"
                                                                     onClick={handleTooltipOpen}>
