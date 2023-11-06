@@ -4,6 +4,7 @@ import {useDispatch,useSelector} from 'react-redux';
 import {fetchSubtasks} from "../../actions/subtaskActions";
 import Subtask from "../subtask/subtask";
 import SubtaskModal from "./subtaskModal";
+import SubtaskDelConfirmModal from './subtaskDelConfirmModal';
 
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
@@ -17,6 +18,7 @@ const SubtaskListModal = ({show}) => {
     const dispatch = useDispatch();
     /*--------------------------------------------------------------------------------*/
     const subtaskModalVisible = useSelector((state)=>state.subtaskReducer.subtaskModalVisible);
+    const subtaskDelConfirmModalVisible = useSelector((state)=>state.subtaskReducer.subtaskDelConfirmModalVisible);
     const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
     const subtaskFetchAll = useSelector((state)=>state.subtaskReducer.subtasks);
     /*--------------------------------------------------------------------------------*/
@@ -90,6 +92,7 @@ const SubtaskListModal = ({show}) => {
                 </div>
             </div>
             {subtaskModalVisible ? <SubtaskModal show={subtaskModalVisible}/>  : ''}
+            {subtaskDelConfirmModalVisible ? <SubtaskDelConfirmModal show={subtaskDelConfirmModalVisible}/>  : ''}
         </div>
     )
 };

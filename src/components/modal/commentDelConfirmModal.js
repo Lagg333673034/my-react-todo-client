@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import './modal.css';
 import {useDispatch,useSelector} from 'react-redux';
-import {deleteTask} from "../../actions/taskActions";
+import {deleteComment} from "../../actions/commentActions";
+import moment from 'moment';
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -9,34 +10,36 @@ import CloseIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
-const TaskDelConfirmModal = ({show}) => {
+const CommentDelConfirmModal = ({show}) => {
     const dispatch = useDispatch();
-    const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
+    const commentCurrent = useSelector((state)=>state.commentReducer.commentCurrent);
     /*--------------------------------------------------------------------------------*/
-    const taskDelConfirm = () => {
-        if(taskCurrent && taskCurrent._id){
-            dispatch(deleteTask(taskCurrent._id));
+    const commentDelConfirm = () => {
+        if(commentCurrent && commentCurrent._id){
+            dispatch(deleteComment(commentCurrent._id));
             modalClose();
         }
     };
     /*--------------------------------------------------------------------------------*/
     const modalClose = () => {
-        dispatch({type:"TASK_CURRENT",payload:null});
-        dispatch({type:'TASK_DEL_CONFIRM_MODAL_VISIBLE', payload: false});
+        dispatch({type:"COMMENT_CURRENT",payload:null});
+        dispatch({type:'COMMENT_DEL_CONFIRM_MODAL_VISIBLE', payload: false});
     };
     /*--------------------------------------------------------------------------------*/
     return(
         <div style={(show) ? {display: 'block'} : {display: 'none'}} className="modal">
             <div className="modal-main">
                 <div className="modal-title">
-                    Подтвердить удаление задачи ?
+                    Подтвердить удаление комментария ?
                 </div>
                 <div className="modal-content">
                     {
-                        taskCurrent &&
-                        taskCurrent.title ?
+                        commentCurrent &&
+                        commentCurrent.username ?
                             <div style={{width:'100%',fontSize:'1.5em',color:'blue',margin:'0 0 0 0'}}>
-                                {taskCurrent.title}</div>
+                                {commentCurrent.username ? <span>Пользователь: {commentCurrent.username}</span> : ''}
+                                {commentCurrent.dateCreate ? <span>({moment(Number(commentCurrent.dateCreate)).format("DD.MM.YYYY -- HH:mm:ss")})</span> : ''}
+                            </div>
                             :
                             ''
                     }
@@ -49,7 +52,7 @@ const TaskDelConfirmModal = ({show}) => {
                                 color="error"
                                 size="small"
                                 startIcon={<DeleteIcon/>}
-                                onClick={taskDelConfirm}
+                                onClick={commentDelConfirm}
                             >
                                 Удалить
                             </Button>
@@ -73,4 +76,4 @@ const TaskDelConfirmModal = ({show}) => {
     )
 };
 
-export default TaskDelConfirmModal;
+export default CommentDelConfirmModal;

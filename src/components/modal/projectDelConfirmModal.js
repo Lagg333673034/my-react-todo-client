@@ -11,7 +11,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const ProjectDelConfirmModal = ({show}) => {
     const dispatch = useDispatch();
-    /*--------------------------------------------------------------------------------*/
     const projectCurrent = useSelector((state)=>state.projectReducer.projectCurrent);
     /*--------------------------------------------------------------------------------*/
     const projectDelConfirm = () => {

@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import './modal.css';
 import {useDispatch,useSelector} from 'react-redux';
-import {deleteTask} from "../../actions/taskActions";
+import {deleteFile} from "../../actions/fileActions";
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -9,34 +9,38 @@ import CloseIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
-const TaskDelConfirmModal = ({show}) => {
+const FileDelConfirmModal = ({show}) => {
     const dispatch = useDispatch();
+    const fileCurrent = useSelector((state)=>state.fileReducer.fileCurrent);
     const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
     /*--------------------------------------------------------------------------------*/
-    const taskDelConfirm = () => {
-        if(taskCurrent && taskCurrent._id){
-            dispatch(deleteTask(taskCurrent._id));
+    const fileDelConfirm = () => {
+        if(
+            taskCurrent && taskCurrent._id &&
+            fileCurrent && fileCurrent.fileNameUuid
+        ){
+            dispatch(deleteFile(taskCurrent._id,fileCurrent.fileNameUuid));
             modalClose();
         }
     };
     /*--------------------------------------------------------------------------------*/
     const modalClose = () => {
-        dispatch({type:"TASK_CURRENT",payload:null});
-        dispatch({type:'TASK_DEL_CONFIRM_MODAL_VISIBLE', payload: false});
+        dispatch({type:"FILE_CURRENT",payload:null});
+        dispatch({type:'FILE_DEL_CONFIRM_MODAL_VISIBLE', payload: false});
     };
     /*--------------------------------------------------------------------------------*/
     return(
         <div style={(show) ? {display: 'block'} : {display: 'none'}} className="modal">
             <div className="modal-main">
                 <div className="modal-title">
-                    Подтвердить удаление задачи ?
+                    Подтвердить удаление файла ?
                 </div>
                 <div className="modal-content">
                     {
-                        taskCurrent &&
-                        taskCurrent.title ?
+                        fileCurrent &&
+                        fileCurrent.fileName ?
                             <div style={{width:'100%',fontSize:'1.5em',color:'blue',margin:'0 0 0 0'}}>
-                                {taskCurrent.title}</div>
+                                {fileCurrent.fileName}</div>
                             :
                             ''
                     }
@@ -49,7 +53,7 @@ const TaskDelConfirmModal = ({show}) => {
                                 color="error"
                                 size="small"
                                 startIcon={<DeleteIcon/>}
-                                onClick={taskDelConfirm}
+                                onClick={fileDelConfirm}
                             >
                                 Удалить
                             </Button>
@@ -73,4 +77,4 @@ const TaskDelConfirmModal = ({show}) => {
     )
 };
 
-export default TaskDelConfirmModal;
+export default FileDelConfirmModal;

@@ -1,7 +1,8 @@
 const defaultState = {
     files: [],
-    fileListModalVisible: false
-
+    fileCurrent: null,
+    fileListModalVisible: false,
+    fileDelConfirmModalVisible: false,
 };
 
 export const fileReducer = (state = defaultState, action) => {
@@ -18,8 +19,14 @@ export const fileReducer = (state = defaultState, action) => {
                     file.fileNameUuid !== action.payload.fileNameUuid
                 ))
             };
+
+        case "FILE_CURRENT":
+            return {...state, fileCurrent: action.payload};
+
         case "FILE_LIST_MODAL_VISIBLE":
             return {...state, fileListModalVisible: action.payload};
+        case "FILE_DEL_CONFIRM_MODAL_VISIBLE":
+            return {...state, fileDelConfirmModalVisible: action.payload};
 
 
         default:

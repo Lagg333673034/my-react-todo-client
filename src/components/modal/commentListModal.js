@@ -4,28 +4,29 @@ import {useDispatch,useSelector} from 'react-redux';
 import {createComment,fetchComments} from "../../actions/commentActions";
 import Comment from "../comment/comment";
 import CommentModal from './commentModal';
+import CommentDelConfirmModal from './commentDelConfirmModal';
+
+import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
+import {ThemeProvider,createTheme} from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+import {buttonTheme} from '../../css/buttons';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+
 
 const CommentListModal = ({show}) => {
     const dispatch = useDispatch();
     /*--------------------------------------------------------------------------*/
-    const commentModalVisibleSelector = useSelector((state)=>state.commentReducer.commentModalVisible);
-    const [commentModalVisible, setCommentModalVisible] = useState(commentModalVisibleSelector);
-    useEffect(()=>{
-        setCommentModalVisible(commentModalVisibleSelector);
-    },[commentModalVisibleSelector]);
-    /*--------------------------------------------------------------------------*/
+    const commentModalVisible = useSelector((state)=>state.commentReducer.commentModalVisible);
+    const commentDelConfirmModalVisible = useSelector((state)=>state.commentReducer.commentDelConfirmModalVisible);
     const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
-    const [taskCurrentState, setTaskCurrentState] = useState(taskCurrent);
-    useEffect(()=>{
-        setTaskCurrentState(taskCurrent);
-    },[taskCurrent]);
-    /*--------------------------------------------------------------------------------*/
     const commentFetchAll = useSelector((state)=>state.commentReducer.comments);
+    /*--------------------------------------------------------------------------------*/
+    const [commentsLoading, setCommentsLoading] = useState(false);
+
     const [allComments, setAllComments] = useState({});
     const [lvl0Comments, setlvl0Comments] = useState({});
-    const [commentsLoading, setCommentsLoading] = useState(false);
     let lvlComment = 0;
-
     useEffect(()=>{
         setAllComments(commentFetchAll);
         setlvl0Comments(commentFetchAll);
@@ -33,19 +34,19 @@ const CommentListModal = ({show}) => {
 
     useEffect(()=>{
         if(
-            taskCurrentState && taskCurrentState._id && taskCurrentState._id.length>0 &&
+            taskCurrent && taskCurrent._id && taskCurrent._id.length>0 &&
             !commentModalVisible &&
             !commentsLoading
         ) {
             setCommentsLoading(true);
-            dispatch(fetchComments(taskCurrentState._id,"null")).finally(() => setCommentsLoading(false));
+            dispatch(fetchComments(taskCurrent._id,"null")).finally(() => setCommentsLoading(false));
 
         }
     },[commentFetchAll]);
     useEffect(()=>{
         const timer = setTimeout(() => {
-            if(taskCurrentState && taskCurrentState._id && taskCurrentState._id.length>0){
-                dispatch(fetchComments(taskCurrentState._id,"null"));
+            if(taskCurrent && taskCurrent._id && taskCurrent._id.length>0){
+                dispatch(fetchComments(taskCurrent._id,"null"));
             }
         }, 5000);
         return () => clearTimeout(timer);
@@ -75,11 +76,21 @@ const CommentListModal = ({show}) => {
     return(
         <div style={(show) ? {display: 'block'} : {display: 'none'}} className="modal">
             <div className="modal-main">
-                <div className="modal-title"></div>
+                <div className="modal-title">
+                    Комментарии
+                </div>
                 <div className="modal-content">
-                    <div style={{width:'100%'}}>
-                        <div className="title"></div>
-                        <div style={{height:'300px',border:'1px solid gray', overflowY:'auto'}}>
+                    <Stack spacing={0} direction="column" sx={{width:'100%'}}>
+                        <ThemeProvider theme={buttonTheme}>
+                            <Button
+                                variant="contained" color="primary" size="small"
+                                startIcon={<AddBoxIcon/>}
+                                onClick={() => dispatch({type:'COMMENT_MODAL_VISIBLE', payload: true})}
+                            >
+                                Добавить коммент
+                            </Button>
+                        </ThemeProvider>
+                        <div style={{height:'300px',margin:'10px 0px 0px 0px',border:'1px solid gray',overflowY:'auto'}}>
                             {
                                 lvl0Comments &&
                                 lvl0Comments.length > 0 &&
@@ -90,24 +101,25 @@ const CommentListModal = ({show}) => {
                                             <Comment comment={comment} lvl={lvlComment}/>
                                             {showSubComments(allComments,comment,lvlComment)}
                                         </div>
-                                )
-
+                                    )
                             }
                         </div>
-                    </div>
-                    <button
-                        className="btn btnAdd"
-                        type="button"
-                        onClick={() => dispatch({type:'COMMENT_MODAL_VISIBLE', payload: true})}
-                    >
-                        Добавить коммент
-                    </button>
+                    </Stack>
                 </div>
                 <div className="modal-footer">
-                    <button className="btn btnClose" type="button" onClick={modalClose}>Закрыть</button>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        startIcon={<CloseIcon/>}
+                        onClick={modalClose}
+                    >
+                        Закрыть
+                    </Button>
                 </div>
             </div>
             {commentModalVisible ? <CommentModal show={commentModalVisible}/>  : ''}
+            {commentDelConfirmModalVisible ? <CommentDelConfirmModal show={commentDelConfirmModalVisible}/>  : ''}
         </div>
     )
 };

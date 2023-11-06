@@ -30,7 +30,9 @@ const Subtask = ({subtask}) => {
         }
     };
     const delSubtask = (subtask) => {
-        dispatch(deleteSubtask(subtask._id));
+        //dispatch(deleteSubtask(subtask._id));
+        dispatch({type:'SUBTASK_CURRENT', payload: subtask});
+        dispatch({type:'SUBTASK_DEL_CONFIRM_MODAL_VISIBLE', payload: true});
     };
     /*--------------------------------------------------------------------------*/
     return (

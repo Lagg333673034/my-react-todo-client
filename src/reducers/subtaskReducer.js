@@ -2,8 +2,8 @@ const defaultState = {
     subtasks: [],
     subtaskCurrent: null,
     subtaskListModalVisible: false,
-    //subtaskListNeedRefresh: false,
-    subtaskModalVisible: false
+    subtaskModalVisible: false,
+    subtaskDelConfirmModalVisible: false,
 };
 
 export const subtaskReducer = (state = defaultState, action) => {
@@ -25,12 +25,13 @@ export const subtaskReducer = (state = defaultState, action) => {
 
         case "SUBTASK_CURRENT":
             return {...state, subtaskCurrent: action.payload};
+
         case "SUBTASK_LIST_MODAL_VISIBLE":
             return {...state, subtaskListModalVisible: action.payload};
-        /*case "SUBTASK_LIST_NEED_REFRESH":
-            return {...state, subtaskListNeedRefresh: action.payload};*/
         case "SUBTASK_MODAL_VISIBLE":
             return {...state, subtaskModalVisible: action.payload};
+        case "SUBTASK_DEL_CONFIRM_MODAL_VISIBLE":
+            return {...state, subtaskDelConfirmModalVisible: action.payload};
 
 
         default:

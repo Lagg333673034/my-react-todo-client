@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import './modal.css';
 import {useDispatch,useSelector} from 'react-redux';
-import {deleteTask} from "../../actions/taskActions";
+import {deleteSubtask} from "../../actions/subtaskActions";
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -9,34 +9,34 @@ import CloseIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
-const TaskDelConfirmModal = ({show}) => {
+const SubtaskDelConfirmModal = ({show}) => {
     const dispatch = useDispatch();
-    const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
+    const subtaskCurrent = useSelector((state)=>state.subtaskReducer.subtaskCurrent);
     /*--------------------------------------------------------------------------------*/
-    const taskDelConfirm = () => {
-        if(taskCurrent && taskCurrent._id){
-            dispatch(deleteTask(taskCurrent._id));
+    const subtaskDelConfirm = () => {
+        if(subtaskCurrent && subtaskCurrent._id){
+            dispatch(deleteSubtask(subtaskCurrent._id));
             modalClose();
         }
     };
     /*--------------------------------------------------------------------------------*/
     const modalClose = () => {
-        dispatch({type:"TASK_CURRENT",payload:null});
-        dispatch({type:'TASK_DEL_CONFIRM_MODAL_VISIBLE', payload: false});
+        dispatch({type:"SUBTASK_CURRENT",payload:null});
+        dispatch({type:'SUBTASK_DEL_CONFIRM_MODAL_VISIBLE', payload: false});
     };
     /*--------------------------------------------------------------------------------*/
     return(
         <div style={(show) ? {display: 'block'} : {display: 'none'}} className="modal">
             <div className="modal-main">
                 <div className="modal-title">
-                    Подтвердить удаление задачи ?
+                    Подтвердить удаление подзадачи ?
                 </div>
                 <div className="modal-content">
                     {
-                        taskCurrent &&
-                        taskCurrent.title ?
+                        subtaskCurrent &&
+                        subtaskCurrent.description ?
                             <div style={{width:'100%',fontSize:'1.5em',color:'blue',margin:'0 0 0 0'}}>
-                                {taskCurrent.title}</div>
+                                {subtaskCurrent.description}</div>
                             :
                             ''
                     }
@@ -49,7 +49,7 @@ const TaskDelConfirmModal = ({show}) => {
                                 color="error"
                                 size="small"
                                 startIcon={<DeleteIcon/>}
-                                onClick={taskDelConfirm}
+                                onClick={subtaskDelConfirm}
                             >
                                 Удалить
                             </Button>
@@ -73,4 +73,4 @@ const TaskDelConfirmModal = ({show}) => {
     )
 };
 
-export default TaskDelConfirmModal;
+export default SubtaskDelConfirmModal;

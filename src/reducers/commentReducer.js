@@ -3,6 +3,7 @@ const defaultState = {
     commentCurrent: null,
     commentListModalVisible: false,
     commentModalVisible: false,
+    commentDelConfirmModalVisible: false,
     commentToComment: null
 };
 
@@ -20,12 +21,17 @@ export const commentReducer = (state = defaultState, action) => {
 
         case "COMMENT_CURRENT":
             return {...state, commentCurrent: action.payload};
+
         case "COMMENT_LIST_MODAL_VISIBLE":
             return {...state, commentListModalVisible: action.payload};
         case "COMMENT_MODAL_VISIBLE":
             return {...state, commentModalVisible: action.payload};
+        case "COMMENT_DEL_CONFIRM_MODAL_VISIBLE":
+            return {...state, commentDelConfirmModalVisible: action.payload};
+
         case "COMMENT_TO_COMMENT":
             return {...state, commentToComment: action.payload};
+
 
 
         default:
