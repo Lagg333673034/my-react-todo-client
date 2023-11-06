@@ -4,12 +4,5 @@ npm install react-router-dom react-redux redux redux-thunk redux-saga axios mome
 npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
 npm install react-beautiful-dnd --save
 
-npm install @mui/material @emotion/react @emotion/styled --legacy-peer-deps
-npm install @mui/icons-material --legacy-peer-deps
-
-//->  npm install @mui/styles --legacy-peer-deps   <-/// eto ne nyjno
-//-> npm install -f material-ui-popup-state      <-/// eto ne nyjno
-
-
 https://app.netlify.com/sites/silver-cucurucho-d41282/deploys
 
