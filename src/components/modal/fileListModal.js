@@ -34,14 +34,16 @@ const FileListModal = ({show}) => {
         ) {
             setFilesLoading(true);
             dispatch(fetchFiles(taskCurrent._id)).finally(() => setFilesLoading(false));
+            console.log("=f-list=1");
         }
     },[fileFetchAll]);
     useEffect(()=>{
         const timer = setTimeout(() => {
             if(taskCurrent && taskCurrent._id && taskCurrent._id.length>0){
                 dispatch(fetchFiles(taskCurrent._id));
+                console.log("=f-list=2");
             }
-        }, 5000);
+        }, 10000);
         return () => clearTimeout(timer);
     });
     /*--------------------------------------------------------------------------------*/

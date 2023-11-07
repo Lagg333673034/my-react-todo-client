@@ -83,7 +83,7 @@ const ProjectModal = ({show}) => {
                                     startIcon={<SaveIcon/>}
                                     onClick={projectUpd}
                                 >
-                                    Сохранить изменения
+                                    Сохранить
                                 </Button>
                                 :
                                 <Button
@@ -93,7 +93,7 @@ const ProjectModal = ({show}) => {
                                     startIcon={<AddIcon/>}
                                     onClick={projectAdd}
                                 >
-                                    Добавить проект
+                                    Добавить
                                 </Button>
                             }
                         </Grid>

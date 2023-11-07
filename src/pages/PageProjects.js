@@ -51,22 +51,34 @@ const PageProjects = () => {
         ) {
             setProjectsLoading(true);
             dispatch(fetchProjects()).finally(() => setProjectsLoading(false));
+            console.log("==1");
         }
     },[projectModalVisible,projectDelConfirmModalVisible]);
     useEffect(()=>{
         const timer = setTimeout(() => {
-            dispatch(fetchProjects());
-        }, 5000);
+            if(!projectsLoading) {
+                dispatch(fetchProjects());
+                console.log("==2");
+            }
+        }, 10000);
         return () => clearTimeout(timer);
     });
     /*--------------------------------------------------------------------------------*/
-    document.addEventListener('keyup', function(event){
-        if(event.keyCode === 27) {
+    const [key,setKey] = useState(false);
+    useEffect(() => {
+        window.addEventListener('keydown', (event)=>setKey(event.keyCode));
+        return () => {
+            window.removeEventListener('keydown', (event)=>setKey(event.keyCode));
+        };
+    },[]);
+    useEffect(() => {
+        if(key && key === 27) {
             dispatch({type:"PROJECT_CURRENT", payload:null});
             dispatch({type:'PROJECT_MODAL_VISIBLE', payload:false});
             dispatch({type:'PROJECT_DEL_CONFIRM_MODAL_VISIBLE', payload:false});
         }
-    });
+        setKey(false);
+    },[key]);
     /*--------------------------------------------------------------------------------*/
     return(
         <div>

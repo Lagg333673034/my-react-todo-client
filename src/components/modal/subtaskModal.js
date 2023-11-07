@@ -88,7 +88,7 @@ const SubtaskModal = ({show}) => {
                                     startIcon={<SaveIcon/>}
                                     onClick={subtaskUpd}
                                 >
-                                    Сохранить изменения
+                                    Сохранить
                                 </Button>
                                 :
                                 <Button
@@ -98,7 +98,7 @@ const SubtaskModal = ({show}) => {
                                     startIcon={<AddIcon/>}
                                     onClick={subtaskAdd}
                                 >
-                                    Добавить подзадачу
+                                    Добавить
                                 </Button>
                             }
                         </Grid>

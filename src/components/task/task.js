@@ -1,6 +1,5 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {deleteTask} from "../../actions/taskActions";
 import './task.css';
 import moment from 'moment';
 import {Draggable} from 'react-beautiful-dnd';
@@ -8,22 +7,20 @@ import {Draggable} from 'react-beautiful-dnd';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-import MessageIcon from '@mui/icons-material/Message';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
 import {buttonIconTaskTheme,buttonIconTaskHoverTheme,buttonIconTaskSettingsTheme} from '../../css/buttons';
-
-import Tooltip from '@mui/material/Tooltip';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
-import '../../css/tooltip.css';
-import Zoom from '@mui/material/Zoom';
-import Box from "@mui/material/Box/Box";
-import SettingsIcon from '@mui/icons-material/Settings';
 import CloseIcon from '@mui/icons-material/Close';
+import {MyTooltip} from  '../tooltip/tooltip';
+import FlagTwoToneIcon from '@mui/icons-material/FlagTwoTone';
+import AccessTimeTwoToneIcon from '@mui/icons-material/AccessTimeTwoTone';
+import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
+import ChatTwoToneIcon from '@mui/icons-material/ChatTwoTone';
+import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone';
+import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
+
 
 const Task = ({index,task}) => {
     const dispatch = useDispatch();
@@ -45,12 +42,11 @@ const Task = ({index,task}) => {
         dispatch({type:'TASK_MODAL_VISIBLE', payload: true});
     };
     const delTask = (task) => {
-        //dispatch(deleteTask(task._id));
         dispatch({type:'TASK_CURRENT', payload: task});
         dispatch({type:'TASK_DEL_CONFIRM_MODAL_VISIBLE', payload: true});
     };
     /*--------------------------------------------------------------------------*/
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleTooltipClose = () => {
         setOpen(false);
     };
@@ -60,25 +56,6 @@ const Task = ({index,task}) => {
         }else{
             setOpen(true)
         }
-    };
-    const MyTooltip = (title,children) => {
-        return (
-            <Box>
-                <Tooltip
-                    PopperProps={{
-                        disablePortal: true,
-                    }}
-                    disableFocusListener disableHoverListener disableTouchListener
-                    open={open} onClose={handleTooltipClose}
-                    TransitionComponent={Zoom}
-                    title={title}
-                >
-                    <Box>
-                        {children}
-                    </Box>
-                </Tooltip>
-            </Box>
-        )
     };
     /*--------------------------------------------------------------------------*/
     return (
@@ -91,30 +68,48 @@ const Task = ({index,task}) => {
                 >
                     <Card
                         sx={{
-                            margin:'5px',padding:'5px 5px 0px 5px',border:'2px solid #565bf76e',
+                            margin:'2px',padding:'2px 2px 2px 2px',border:'2px solid #565bf76e',
                             borderRadius:'15px',backgroundColor: snapshot.isDragging ? "#99e792" : "none"
                         }}
                         className={snapshot.isDragging ? "taskIsDragging" : ""}
                     >
                         <Grid container direction="row" justifyContent="center" alignItems="flex-start">
                             <Grid item xs={12} sx={{padding:'5px 5px 0px 5px'}}>
-                                {task.number ? <Typography variant="body2">{task.number}</Typography> : ''}
-                                {task.title ? <Typography variant="body2">{task.title}</Typography> : ''}
-                                {task.description ? <Typography variant="body2">{task.description}</Typography> : ''}
-                                {task.timeInWork ? <Typography variant="body2">в работе ({
-                                    moment.duration(Number(task.timeInWork)).days() + " дн., " +
-                                    moment.duration(Number(task.timeInWork)).hours() + " ч., " +
-                                    moment.duration(Number(task.timeInWork)).minutes() + " мин., " +
-                                    moment.duration(Number(task.timeInWork)).seconds() + " сек."
-                                })</Typography>:''}
-                                {task.dateFinish ? <Typography variant="body2">завершено ({
-                                    moment(Number(task.dateFinish)).format("DD.MM.YYYY  HH:mm:ss")
-                                })</Typography> :''}
+                                {task.number ? <div style={{margin:'3px 0px 0px 0px',color:'green'}}>{task.number}</div> : ''}
+                                {task.title ? <div style={{margin:'3px 0px 0px 0px',color:'blue',fontWeight:'700'}}>{task.title}</div> : ''}
+                                {task.description ? <div style={{margin:'3px 0px 0px 0px',color:'black'}}>{task.description}</div> : ''}
+                                {task.timeInWork ?
+                                    <div style={{padding:'2px 0px 2px 0px',borderTop:'1px dashed #80808082',color:'gray'}}>
+                                        <Grid container direction="row" justifyContent="flex-start" alignItems="center">
+                                            <Grid item xs="auto">
+                                                <AccessTimeTwoToneIcon style={{fontSize:'0.9rem'}}/>&nbsp;
+                                            </Grid>
+                                            <Grid item xs style={{fontSize:'0.8rem'}}>
+                                                {
+                                                    moment.duration(Number(task.timeInWork)).days() + " дн. " +
+                                                    moment.utc(Number(task.timeInWork)).format("HH:mm:ss")
+                                                }
+                                            </Grid>
+                                        </Grid>
+                                    </div> : ''}
+                                {task.dateFinish ?
+                                    <div style={{padding:'2px 0px 2px 0px',borderTop:'1px dashed #80808082',color:'gray'}}>
+                                        <Grid container direction="row" justifyContent="flex-start" alignItems="center">
+                                            <Grid item xs="auto">
+                                                <FlagTwoToneIcon style={{fontSize:'1rem'}}/>&nbsp;
+                                            </Grid>
+                                            <Grid item xs style={{fontSize:'0.8rem',lineHeight:'0.9'}}>
+                                                {moment(Number(task.dateFinish)).format("DD.MM.YYYY HH:mm:ss")}
+                                            </Grid>
+                                        </Grid>
+                                    </div> : ''}
                             </Grid>
                             <Grid item xs={12} sx={{display:'flex',justifyContent:'space-around',alignContent:'center',flexWrap:'wrap'}}>
                                 <ClickAwayListener onClickAway={handleTooltipClose}>
                                     {
                                         MyTooltip(
+                                            open,
+                                            handleTooltipClose,
                                             <ThemeProvider theme={buttonIconTaskTheme}>
                                                 <IconButton
                                                     sx={buttonIconTaskHoverTheme}
@@ -123,10 +118,12 @@ const Task = ({index,task}) => {
                                                     size="small"
                                                     onClick={() => {updTask(task);handleTooltipClose()}}
                                                 >
-                                                    <EditIcon />
+                                                    <EditTwoToneIcon />
                                                 </IconButton>
                                             </ThemeProvider>,
                                             MyTooltip(
+                                                open,
+                                                handleTooltipClose,
                                                 <ThemeProvider theme={buttonIconTaskTheme}>
                                                     <IconButton
                                                         sx={buttonIconTaskHoverTheme}
@@ -139,6 +136,8 @@ const Task = ({index,task}) => {
                                                     </IconButton>
                                                 </ThemeProvider>,
                                                 MyTooltip(
+                                                    open,
+                                                    handleTooltipClose,
                                                     <ThemeProvider theme={buttonIconTaskTheme}>
                                                         <IconButton
                                                             sx={buttonIconTaskHoverTheme}
@@ -147,10 +146,12 @@ const Task = ({index,task}) => {
                                                             size="small"
                                                             onClick={() => {commentListModal(task);handleTooltipClose()}}
                                                         >
-                                                            <MessageIcon />
+                                                            <ChatTwoToneIcon />
                                                         </IconButton>
                                                     </ThemeProvider>,
                                                     MyTooltip(
+                                                        open,
+                                                        handleTooltipClose,
                                                         <ThemeProvider theme={buttonIconTaskTheme}>
                                                             <IconButton
                                                                 sx={buttonIconTaskHoverTheme}
@@ -163,6 +164,8 @@ const Task = ({index,task}) => {
                                                             </IconButton>
                                                         </ThemeProvider>,
                                                         MyTooltip(
+                                                            open,
+                                                            handleTooltipClose,
                                                             <ThemeProvider theme={buttonIconTaskTheme}>
                                                                 <IconButton
                                                                     sx={buttonIconTaskHoverTheme}
@@ -171,7 +174,7 @@ const Task = ({index,task}) => {
                                                                     size="small"
                                                                     onClick={() => {delTask(task);handleTooltipClose()}}
                                                                 >
-                                                                    <DeleteIcon />
+                                                                    <DeleteForeverTwoToneIcon />
                                                                 </IconButton>
                                                             </ThemeProvider>,
 
@@ -181,7 +184,7 @@ const Task = ({index,task}) => {
                                                                     color="primary"
                                                                     size="small"
                                                                     onClick={handleTooltipOpen}>
-                                                                    {open ? <CloseIcon /> : <SettingsIcon />}
+                                                                    {open ? <CloseIcon /> : <SettingsTwoToneIcon />}
                                                                 </IconButton>
                                                             </ThemeProvider>
 

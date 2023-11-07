@@ -40,15 +40,16 @@ const CommentListModal = ({show}) => {
         ) {
             setCommentsLoading(true);
             dispatch(fetchComments(taskCurrent._id,"null")).finally(() => setCommentsLoading(false));
-
+            console.log("=c-list=1");
         }
     },[commentFetchAll]);
     useEffect(()=>{
         const timer = setTimeout(() => {
             if(taskCurrent && taskCurrent._id && taskCurrent._id.length>0){
                 dispatch(fetchComments(taskCurrent._id,"null"));
+                console.log("=c-list=2");
             }
-        }, 5000);
+        }, 10000);
         return () => clearTimeout(timer);
     });
     /*--------------------------------------------------------------------------------*/

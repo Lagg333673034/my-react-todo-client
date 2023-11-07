@@ -31,14 +31,16 @@ const SubtaskListModal = ({show}) => {
         ) {
             setSubtasksLoading(true);
             dispatch(fetchSubtasks(taskCurrent._id)).finally(() => setSubtasksLoading(false));
+            console.log("=st-list=1");
         }
     },[subtaskFetchAll]);
     useEffect(()=>{
         const timer = setTimeout(() => {
             if(taskCurrent && taskCurrent._id && taskCurrent._id.length>0){
                 dispatch(fetchSubtasks(taskCurrent._id));
+                console.log("=st-list=2");
             }
-        }, 5000);
+        }, 10000);
         return () => clearTimeout(timer);
     });
     /*--------------------------------------------------------------------------------*/

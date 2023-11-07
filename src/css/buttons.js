@@ -51,8 +51,8 @@ export const buttonIconTaskSettingsTheme = createTheme({
                     root: {
                         border:'2px solid #80808057',
                         backgroundColor:'#00000021',
-                        padding:'5px',
-                        margin:'5px',
+                        padding:'1px',
+                        margin:'0px',
                     }
                 }
             }

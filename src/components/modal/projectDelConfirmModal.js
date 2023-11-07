@@ -33,12 +33,19 @@ const ProjectDelConfirmModal = ({show}) => {
                 </div>
                 <div className="modal-content">
                     {
-                        projectCurrent &&
-                        projectCurrent.title ?
+                        projectCurrent  ?
                             <div style={{width:'100%',fontSize:'1.5em',color:'blue',margin:'0 0 0 0'}}>
-                                {projectCurrent.title}</div>
-                            :
-                            ''
+                                {
+                                    projectCurrent.title.length>0 ?
+                                        projectCurrent.title
+                                        :
+                                        projectCurrent.description.length>0 ?
+                                            projectCurrent.description
+                                            :
+                                            ''
+                                }
+                            </div> : ''
+
                     }
                 </div>
                 <div className="modal-footer">

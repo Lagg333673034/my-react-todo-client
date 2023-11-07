@@ -36,6 +36,11 @@ const TaskModal = ({show}) => {
                     title: String(taskCurrentState.title || ''),
                     description: String(taskCurrentState.description || ''),
                     dateCreate: String(moment(new Date(), "YYYY-MM-DD").valueOf()),
+
+                    timeInWorkStart: String(""),
+                    timeInWork: String("0"),
+                    timeInWorkFinish: String(""),
+
                     priority: String(taskCurrentState.priority || '2'),
                     status: String('1')
                 }
@@ -139,7 +144,7 @@ const TaskModal = ({show}) => {
                                     startIcon={<SaveIcon/>}
                                     onClick={taskUpd}
                                 >
-                                    Сохранить изменения
+                                    Сохранить
                                 </Button>
                                 :
                                 <Button
@@ -149,7 +154,7 @@ const TaskModal = ({show}) => {
                                     startIcon={<AddIcon/>}
                                     onClick={taskAdd}
                                 >
-                                    Добавить задачу
+                                    Добавить
                                 </Button>
                             }
                         </Grid>

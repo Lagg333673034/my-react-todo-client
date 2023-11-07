@@ -8,26 +8,26 @@ div.MuiTooltip-tooltip{
 
 .placementOn10{
     position: relative;
-    top: 10px;
-    right: 73px;
+    top: 0.5rem;
+    right: 4.15rem;
 }
 .placementOn11{
     position: relative;
-    top: -27px;
-    right: 50px;
+    top: -1.5rem;
+    right: 2.75rem;
 }
 .placementOn01{
     position: relative;
-    top: -27px;
-    left: 0px;
+    top: -1.5rem;
+    left: -0.15rem;
 }
 .placementOn02{
     position: relative;
-    top: 10px;
-    left: 25px;
+    top: 0.5rem;
+    left: 1.20rem;
 }
 .placementOn06{
     position: relative;
-    top: 60px;
-    right: 24px;
+    top: 4rem;
+    right: 1.5rem;
 }

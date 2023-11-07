@@ -28,6 +28,15 @@ const PageTasks = () => {
         dispatch({type:"TASK_CURRENT",payload:null});
     },[]);
     /*--------------------------------------------------------------------------*/
+    const documentVisible = useSelector((state)=>state.websiteReducer.documentVisible);
+    const documentVisibility = () => {
+        if (document.hidden) {
+            dispatch({type: 'DOCUMENT_VISIBLE', payload: false});
+        } else {
+            dispatch({type: 'DOCUMENT_VISIBLE', payload: true});
+        }
+    };
+    /*--------------------------------------------------------------------------*/
     const [searchTasksString,setSearchTasksString] = useState('');
     const [searchTasksStringTemp, setSearchTasksStringTemp] = useState('');
     useEffect(() => {
@@ -53,6 +62,7 @@ const PageTasks = () => {
 
     useEffect(()=>{
         if(
+            documentVisible &&
             currentProjectId && currentProjectId.length>0 &&
             !taskModalVisible && !taskDelConfirmModalVisible &&
             !tasksLoading
@@ -64,18 +74,19 @@ const PageTasks = () => {
     },[currentProjectId,taskModalVisible,taskDelConfirmModalVisible]);
     useEffect(()=>{
         const timer = setTimeout(() => {
-            if(currentProjectId && currentProjectId.length>0){
+            if(
+                documentVisible &&
+                currentProjectId && currentProjectId.length>0 &&
+                !tasksLoading
+            ){
                 dispatch(fetchTasks(currentProjectId));
+                console.log("==2");
             }
         }, 5000);
         return () => clearTimeout(timer);
     });
     /*--------------------------------------------------------------------------*/
     const projectCurrent = useSelector((state)=>state.projectReducer.projectCurrent);
-    const [projectCurrentState, setProjectCurrentState] = useState(projectCurrent);
-    useEffect(()=>{
-        setProjectCurrentState(projectCurrent);
-    },[projectCurrent]);
     /*--------------------------------------------------------------------------*/
     const columns = [
         {title:"В очереди",status:"1"},
@@ -99,20 +110,24 @@ const PageTasks = () => {
             tasks.length>0 &&
             tasks.filter(task => task._id === draggableId)[0];
 
-        if(draggableTask) {
+        if(draggableTask && draggableTask.timeInWork) {
             if (column === '1') {
+                draggableTask.timeInWork = String(
+                    Number(draggableTask.timeInWork.length > 0 ?
+                        Number(draggableTask.timeInWork)
+                        : Number(0))
+                    +
+                    Number(draggableTask.timeInWorkStart.length > 0 ?
+                        Number(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf() - Number(draggableTask.timeInWorkStart))
+                        : Number(0))
+                );
                 draggableTask.timeInWorkStart = '';
                 draggableTask.timeInWorkFinish = '';
-                draggableTask.timeInWork = String(
-                    (draggableTask.timeInWork && draggableTask.timeInWork.length > 0 ? Number(draggableTask.timeInWork) : 0)
-                    +
-                    (draggableTask.timeInWorkStart && draggableTask.timeInWorkStart.length > 0 ? (moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf() - Number(draggableTask.timeInWorkStart)) : 0)
-                );
                 draggableTask.dateFinish = '';
                 draggableTask.status = column;
             }
             if (column === '2') {
-                draggableTask.timeInWorkStart = String(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf());
+                draggableTask.timeInWorkStart = moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf();
                 draggableTask.timeInWorkFinish = '';
                 draggableTask.dateFinish = '';
                 draggableTask.status = column;
@@ -132,34 +147,55 @@ const PageTasks = () => {
     };
     /*--------------------------------------------------------------------------*/
     const [key,setKey] = useState(false);
+
+    const subtaskDelConfirmModalVisible = useSelector((state)=>state.subtaskReducer.subtaskDelConfirmModalVisible);
+    const commentDelConfirmModalVisible = useSelector((state)=>state.commentReducer.commentDelConfirmModalVisible);
+    const fileDelConfirmModalVisible = useSelector((state)=>state.fileReducer.fileDelConfirmModalVisible);
+
     const subtaskModalVisible = useSelector((state)=>state.subtaskReducer.subtaskModalVisible);
     const commentModalVisible = useSelector((state)=>state.commentReducer.commentModalVisible);
-    useEffect(() => {
-        window.addEventListener('keydown', (event)=>setKey(event.keyCode));
-        return () => {
-            window.removeEventListener('keydown', (event)=>setKey(event.keyCode));
-        };
-    },[]);
+
     useEffect(() => {
         if(key && key === 27) {
-            if (subtaskModalVisible || commentModalVisible) {
-                if (subtaskModalVisible) {
+            switch(true){
+                case subtaskDelConfirmModalVisible:
+                    dispatch({type: 'SUBTASK_DEL_CONFIRM_MODAL_VISIBLE', payload: false});
+                    break;
+                case commentDelConfirmModalVisible:
+                    dispatch({type: 'COMMENT_DEL_CONFIRM_MODAL_VISIBLE', payload: false});
+                    break;
+                case fileDelConfirmModalVisible:
+                    dispatch({type: 'FILE_DEL_CONFIRM_MODAL_VISIBLE', payload: false});
+                    break;
+
+                case subtaskModalVisible:
                     dispatch({type: 'SUBTASK_MODAL_VISIBLE', payload: false});
-                }
-                if (commentModalVisible) {
+                    break;
+                case commentModalVisible:
                     dispatch({type: 'COMMENT_MODAL_VISIBLE', payload: false});
-                }
-            } else {
-                dispatch({type: 'SUBTASK_LIST_MODAL_VISIBLE', payload: false});
-                dispatch({type: 'COMMENT_LIST_MODAL_VISIBLE', payload: false});
-                dispatch({type: 'FILE_LIST_MODAL_VISIBLE', payload: false});
-                dispatch({type: 'TASK_MODAL_VISIBLE', payload: false});
-                dispatch({type: 'TASK_DEL_CONFIRM_MODAL_VISIBLE', payload: false});
-                dispatch({type: "TASK_CURRENT", payload: null});
+                    break;
+
+                default:
+                    dispatch({type: 'SUBTASK_LIST_MODAL_VISIBLE', payload: false});
+                    dispatch({type: 'COMMENT_LIST_MODAL_VISIBLE', payload: false});
+                    dispatch({type: 'FILE_LIST_MODAL_VISIBLE', payload: false});
+                    dispatch({type: 'TASK_MODAL_VISIBLE', payload: false});
+                    dispatch({type: 'TASK_DEL_CONFIRM_MODAL_VISIBLE', payload: false});
+                    dispatch({type: "TASK_CURRENT", payload: null});
+                    break;
             }
         }
         setKey(false);
     },[key]);
+    /*--------------------------------------------------------------------------*/
+    useEffect(() => {
+        window.addEventListener('keydown', (event)=>setKey(event.keyCode));
+        document.addEventListener( 'visibilitychange' , documentVisibility, false );
+        return () => {
+            window.removeEventListener('keydown', (event)=>setKey(event.keyCode));
+            document.removeEventListener( 'visibilitychange' , documentVisibility, false );
+        };
+    },[]);
     /*--------------------------------------------------------------------------*/
     return(
         <>
@@ -194,7 +230,7 @@ const PageTasks = () => {
             </Grid>
         </Grid>
         <div className="titleTask">
-            {projectCurrentState && projectCurrentState.title}
+            {projectCurrent && projectCurrent.title ? projectCurrent.title : ''}
         </div>
         <DragDropContext onDragEnd={onDragEnd}>
             <Grid container direction="row" justifyContent="center" alignItems="flex-start">

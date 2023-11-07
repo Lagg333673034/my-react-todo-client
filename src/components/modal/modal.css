@@ -8,8 +8,8 @@
 }
 .modal-main {
     position:fixed;
-    background: white;
-    width: 80%;
+    background: #efefef;
+    width: 95%;
     height: auto;
     top:50%;
     left:50%;
@@ -23,7 +23,7 @@
     border-bottom: 1px solid gray;
 }
 .modal-content{
-    padding: 10px 15px 10px 15px;
+    padding: 10px 10px 10px 10px;
     font-size: 1em;
     border-bottom: 1px solid gray;
     display: flex;

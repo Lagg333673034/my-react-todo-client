@@ -33,12 +33,21 @@ const TaskDelConfirmModal = ({show}) => {
                 </div>
                 <div className="modal-content">
                     {
-                        taskCurrent &&
-                        taskCurrent.title ?
+                        taskCurrent ?
                             <div style={{width:'100%',fontSize:'1.5em',color:'blue',margin:'0 0 0 0'}}>
-                                {taskCurrent.title}</div>
-                            :
-                            ''
+                                {
+                                    taskCurrent.title.length>0 ?
+                                        taskCurrent.title
+                                        :
+                                        taskCurrent.description.length>0 ?
+                                            taskCurrent.description
+                                            :
+                                            taskCurrent.number.length>0 ?
+                                                taskCurrent.number
+                                                :
+                                                ''
+                                }
+                            </div> : ''
                     }
                 </div>
                 <div className="modal-footer">
