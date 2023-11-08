@@ -11,7 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import Card from '@mui/material/Card';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
-import {buttonIconSmallTheme,buttonIconSmallHoverTheme} from '../../css/buttons';
+import {buttonIconSmallTheme,buttonIconSmallHoverTheme} from '../../css/button';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import UnpublishedIcon from '@mui/icons-material/Unpublished';
 
@@ -37,7 +37,7 @@ const Subtask = ({subtask}) => {
     /*--------------------------------------------------------------------------*/
     return (
         <Card
-            sx={{margin:'3px 3px 3px 3px',padding:'5px 10px 5px 10px',border:'1px solid #565bf76e',borderRadius:'10px'}}
+            sx={{margin:'3px 3px 3px 3px',padding:'5px 5px 5px 5px',border:'1px solid #565bf76e',borderRadius:'10px'}}
             style={subtask.done && subtask.done !== 'false' ? {textDecoration:'line-through',background: '#b4b4b4'} : {}}
         >
             <Grid container direction="row" justifyContent="center" alignItems="flex-start">
@@ -46,7 +46,7 @@ const Subtask = ({subtask}) => {
                             {subtask.description}</div> : ''}
                 </Grid>
                 <Grid item xs="auto">
-                    <Stack spacing={1} direction="row">
+                    <Stack spacing={0.5} direction="row">
                         <ThemeProvider theme={buttonIconSmallTheme}>
                             <IconButton color="primary" size="medium" sx={buttonIconSmallHoverTheme} onClick={() => doneSubtask(subtask)}>
                                 {subtask.done && subtask.done !== 'false' ? <UnpublishedIcon /> : <CheckCircleIcon />}

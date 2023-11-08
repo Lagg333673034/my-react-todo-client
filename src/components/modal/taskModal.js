@@ -18,7 +18,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import {inputTheme} from '../../css/inputs';
+import {inputTheme} from '../../css/input';
 
 
 const TaskModal = ({show}) => {

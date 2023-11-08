@@ -11,7 +11,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import {inputTheme} from '../../css/inputs';
+import {inputTheme} from '../../css/input';
 
 
 const SubtaskModal = ({show}) => {

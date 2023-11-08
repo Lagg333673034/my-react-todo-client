@@ -1,11 +1,15 @@
 const defaultState = {
-    documentVisible: true,
+    websiteVisible: true,
+    websiteInfoModalVisible: false,
 };
 
 export const websiteReducer = (state = defaultState, action) => {
     switch(action.type){
-        case "DOCUMENT_VISIBLE":
-            return {...state, documentVisible: action.payload};
+        case "WEBSITE_VISIBLE":
+            return {...state, websiteVisible: action.payload};
+        case "WEBSITE_INFO_MODAL_VISIBLE":
+            return {...state, websiteInfoModalVisible: action.payload};
+
 
         default:
             return state;

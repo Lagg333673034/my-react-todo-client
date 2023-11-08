@@ -3,6 +3,7 @@ const defaultState = {
     projectCurrent: null,
     projectModalVisible: false,
     projectDelConfirmModalVisible: false,
+    projectSettingsMenuOpen: false,
 };
 
 export const projectReducer = (state = defaultState, action) => {
@@ -28,6 +29,8 @@ export const projectReducer = (state = defaultState, action) => {
             return {...state, projectModalVisible: action.payload};
         case "PROJECT_DEL_CONFIRM_MODAL_VISIBLE":
             return {...state, projectDelConfirmModalVisible: action.payload};
+        case "PROJECT_SETTINGS_MENU_OPEN":
+            return {...state, projectSettingsMenuOpen: action.payload};
 
 
         default:

@@ -19,7 +19,7 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
-import {buttonTheme} from '../css/buttons';
+import {buttonTheme} from '../css/button';
 
 const PageTasks = () => {
     const dispatch = useDispatch();
@@ -28,12 +28,12 @@ const PageTasks = () => {
         dispatch({type:"TASK_CURRENT",payload:null});
     },[]);
     /*--------------------------------------------------------------------------*/
-    const documentVisible = useSelector((state)=>state.websiteReducer.documentVisible);
-    const documentVisibility = () => {
+    const websiteVisible = useSelector((state)=>state.websiteReducer.websiteVisible);
+    const websiteVisibility = () => {
         if (document.hidden) {
-            dispatch({type: 'DOCUMENT_VISIBLE', payload: false});
+            dispatch({type: 'WEBSITE_VISIBLE', payload: false});
         } else {
-            dispatch({type: 'DOCUMENT_VISIBLE', payload: true});
+            dispatch({type: 'WEBSITE_VISIBLE', payload: true});
         }
     };
     /*--------------------------------------------------------------------------*/
@@ -47,11 +47,12 @@ const PageTasks = () => {
     }, [searchTasksStringTemp]);
     /*--------------------------------------------------------------------------*/
     const taskModalVisible = useSelector((state)=>state.taskReducer.taskModalVisible);
+    const taskDelConfirmModalVisible = useSelector((state)=>state.taskReducer.taskDelConfirmModalVisible);
     const commentListModalVisible = useSelector((state)=>state.commentReducer.commentListModalVisible);
     const fileListModalVisible = useSelector((state)=>state.fileReducer.fileListModalVisible);
     const subtaskListModalVisible = useSelector((state)=>state.subtaskReducer.subtaskListModalVisible);
-    const taskDelConfirmModalVisible = useSelector((state)=>state.taskReducer.taskDelConfirmModalVisible);
     const taskFetchAll = useSelector((state)=>state.taskReducer.tasks);
+    const taskSettingsMenuOpen = useSelector((state)=>state.taskReducer.taskSettingsMenuOpen);
     /*--------------------------------------------------------------------------------*/
     const [tasks, setTasks] = useState(taskFetchAll);
     const [tasksLoading, setTasksLoading] = useState(false);
@@ -62,27 +63,32 @@ const PageTasks = () => {
 
     useEffect(()=>{
         if(
-            documentVisible &&
+            websiteVisible &&
+            !taskSettingsMenuOpen &&
             currentProjectId && currentProjectId.length>0 &&
-            !taskModalVisible && !taskDelConfirmModalVisible &&
+            !taskModalVisible && !taskDelConfirmModalVisible && !commentListModalVisible && !fileListModalVisible && !subtaskListModalVisible &&
             !tasksLoading
         ) {
             setTasksLoading(true);
-            setTasks(taskFetchAll);
             dispatch(fetchTasks(currentProjectId)).finally(() => setTasksLoading(false));
         }
-    },[currentProjectId,taskModalVisible,taskDelConfirmModalVisible]);
+    },[
+        currentProjectId,
+        taskModalVisible,taskDelConfirmModalVisible, commentListModalVisible,fileListModalVisible,subtaskListModalVisible
+    ]);
     useEffect(()=>{
         const timer = setTimeout(() => {
             if(
-                documentVisible &&
+                websiteVisible &&
+                !taskSettingsMenuOpen &&
                 currentProjectId && currentProjectId.length>0 &&
+                !taskModalVisible && !taskDelConfirmModalVisible &&
+                !commentListModalVisible && !fileListModalVisible && !subtaskListModalVisible &&
                 !tasksLoading
             ){
                 dispatch(fetchTasks(currentProjectId));
-                console.log("==2");
             }
-        }, 5000);
+        }, 10000);
         return () => clearTimeout(timer);
     });
     /*--------------------------------------------------------------------------*/
@@ -190,10 +196,10 @@ const PageTasks = () => {
     /*--------------------------------------------------------------------------*/
     useEffect(() => {
         window.addEventListener('keydown', (event)=>setKey(event.keyCode));
-        document.addEventListener( 'visibilitychange' , documentVisibility, false );
+        document.addEventListener('visibilitychange',websiteVisibility, false );
         return () => {
             window.removeEventListener('keydown', (event)=>setKey(event.keyCode));
-            document.removeEventListener( 'visibilitychange' , documentVisibility, false );
+            document.removeEventListener('visibilitychange',websiteVisibility, false );
         };
     },[]);
     /*--------------------------------------------------------------------------*/
@@ -201,7 +207,7 @@ const PageTasks = () => {
         <>
         <Grid
             container direction="row" justifyContent="flex-start" alignItems="center"
-            spacing={2} sx={{padding:'5px 5px 5px 5px'}}
+            spacing={0.5} sx={{padding:'5px 5px 5px 5px'}}
         >
             <Grid item xs="auto">
                 <ThemeProvider theme={buttonTheme}>
@@ -210,13 +216,15 @@ const PageTasks = () => {
                         startIcon={<AddBoxIcon/>}
                         onClick={() => dispatch({type:'TASK_MODAL_VISIBLE', payload: true})}
                     >
-                        Добавить задачу
+                        задача
                     </Button>
                 </ThemeProvider>
             </Grid>
             <Grid item xs>
                 <TextField
-                    hiddenLabel placeholder="поиск ..."
+                    hiddenLabel
+                    variant="standard"
+                    placeholder="поиск ..."
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
@@ -224,7 +232,8 @@ const PageTasks = () => {
                             </InputAdornment>
                         ),
                     }}
-                    variant="standard" sx={{width:'100%'}}
+
+                    sx={{width:'100%'}}
                     onChange={(e) => setSearchTasksStringTemp(e.target.value)}
                 />
             </Grid>

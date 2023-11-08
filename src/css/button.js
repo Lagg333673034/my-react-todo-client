@@ -1,12 +1,14 @@
 import {ThemeProvider,createTheme} from '@mui/material/styles';
+import './button.css';
 
 export const buttonTheme = createTheme({
         components: {
             MuiButton: {
                 styleOverrides: {
                     root: {
-                        fontSize: '0.8em',
-                        alignItems:'flex-start',
+                        fontSize: '0.9em',
+                        alignItems: 'flex-start',
+                        color: '#e5e5e5',
                     }
                 }
             }
@@ -31,8 +33,8 @@ export const buttonIconTaskTheme = createTheme({
                     root: {
                         border:'2px solid #898989fa',
                         backgroundColor:'#ffeea1',
-                        padding:'5px',
-                        margin:'5px',
+                        padding:'3px',
+                        margin:'3px',
                     }
                 }
             }

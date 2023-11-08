@@ -1,10 +1,10 @@
 .myLoader{
-    width: 20px;
-    height: 20px;
+    width: 0.8rem;
+    height: 0.8rem;
     border: 5px dashed;
     border-radius: 50%;
     animation: change 0.5s infinite linear;
-    margin: 9px 5px 5px 5px;
+    margin: 8px 5px 5px 5px;
     padding: 3px;
 }
 @keyframes change{

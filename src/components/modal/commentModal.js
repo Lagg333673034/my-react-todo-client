@@ -11,9 +11,9 @@ import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import {inputTheme} from '../../css/inputs';
+import {inputTheme} from '../../css/input';
 import IconButton from '@mui/material/IconButton';
-import {buttonIconSmallHoverTheme} from '../../css/buttons';
+import {buttonIconSmallHoverTheme} from '../../css/button';
 
 const CommentModal = ({show}) => {
     const dispatch = useDispatch();
@@ -89,7 +89,7 @@ const CommentModal = ({show}) => {
                                 startIcon={<AddIcon/>}
                                 onClick={commentAdd}
                             >
-                                Добавить комментарий
+                                Добавить
                             </Button>
                             <div>
                                 {
@@ -97,7 +97,7 @@ const CommentModal = ({show}) => {
                                     commentToComment._id &&
                                     commentToComment._id.length>0 ?
                                         <div>
-                                            к комментарию:
+                                            к комм.:
                                             {commentToComment && commentToComment.username}
                                             ({moment(Number(commentToComment.dateCreate)).format("DD.MM.YYYY -- HH:mm:ss")})
                                             <IconButton

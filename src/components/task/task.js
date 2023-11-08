@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import {useDispatch} from 'react-redux';
+import React,{useState,useEffect} from 'react';
+import {useDispatch,useSelector} from 'react-redux';
 import './task.css';
 import moment from 'moment';
 import {Draggable} from 'react-beautiful-dnd';
@@ -10,7 +10,7 @@ import Card from '@mui/material/Card';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
-import {buttonIconTaskTheme,buttonIconTaskHoverTheme,buttonIconTaskSettingsTheme} from '../../css/buttons';
+import {buttonIconTaskTheme,buttonIconTaskHoverTheme,buttonIconTaskSettingsTheme} from '../../css/button';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import CloseIcon from '@mui/icons-material/Close';
 import {MyTooltip} from  '../tooltip/tooltip';
@@ -52,11 +52,18 @@ const Task = ({index,task}) => {
     };
     const handleTooltipOpen = () => {
         if(open){
-            setOpen(false)
+            setOpen(false);
         }else{
-            setOpen(true)
+            setOpen(true);
         }
     };
+    useEffect(()=>{
+        if(open){
+            dispatch({type:'TASK_SETTINGS_MENU_OPEN', payload: true});
+        }else{
+            dispatch({type:'TASK_SETTINGS_MENU_OPEN', payload: false});
+        }
+    },[open]);
     /*--------------------------------------------------------------------------*/
     return (
         <Draggable draggableId={String(task._id)} index={index} isDragDisabled={open}>
@@ -74,17 +81,23 @@ const Task = ({index,task}) => {
                         className={snapshot.isDragging ? "taskIsDragging" : ""}
                     >
                         <Grid container direction="row" justifyContent="center" alignItems="flex-start">
-                            <Grid item xs={12} sx={{padding:'5px 5px 0px 5px'}}>
-                                {task.number ? <div style={{margin:'3px 0px 0px 0px',color:'green'}}>{task.number}</div> : ''}
-                                {task.title ? <div style={{margin:'3px 0px 0px 0px',color:'blue',fontWeight:'700'}}>{task.title}</div> : ''}
-                                {task.description ? <div style={{margin:'3px 0px 0px 0px',color:'black'}}>{task.description}</div> : ''}
+                            <Grid item xs={12} sx={{padding:'1px 2px 1px 2px',lineHeight:'1.1'}}>
+                                {task.number ?
+                                    <div style={{marginTop:'2px',color:'green',maxHeight:'2rem',overflowY:'hidden'}}>
+                                        {task.number}</div> : ''}
+                                {task.title ?
+                                    <div style={{marginTop:'2px',color:'blue',maxHeight:'2rem',overflowY:'hidden',fontWeight:'700'}}>
+                                        {task.title}</div> : ''}
+                                {task.description ?
+                                    <div style={{marginTop:'2px',color:'black',maxHeight:'4rem',overflowY:'hidden'}}>
+                                        {task.description}</div> : ''}
                                 {task.timeInWork ?
                                     <div style={{padding:'2px 0px 2px 0px',borderTop:'1px dashed #80808082',color:'gray'}}>
                                         <Grid container direction="row" justifyContent="flex-start" alignItems="center">
                                             <Grid item xs="auto">
-                                                <AccessTimeTwoToneIcon style={{fontSize:'0.9rem'}}/>&nbsp;
+                                                <AccessTimeTwoToneIcon style={{fontSize:'1.1rem'}}/>&nbsp;
                                             </Grid>
-                                            <Grid item xs style={{fontSize:'0.8rem'}}>
+                                            <Grid item xs style={{fontSize:'0.7rem'}}>
                                                 {
                                                     moment.duration(Number(task.timeInWork)).days() + " дн. " +
                                                     moment.utc(Number(task.timeInWork)).format("HH:mm:ss")
@@ -96,9 +109,9 @@ const Task = ({index,task}) => {
                                     <div style={{padding:'2px 0px 2px 0px',borderTop:'1px dashed #80808082',color:'gray'}}>
                                         <Grid container direction="row" justifyContent="flex-start" alignItems="center">
                                             <Grid item xs="auto">
-                                                <FlagTwoToneIcon style={{fontSize:'1rem'}}/>&nbsp;
+                                                <FlagTwoToneIcon style={{fontSize:'1.2rem'}}/>&nbsp;
                                             </Grid>
-                                            <Grid item xs style={{fontSize:'0.8rem',lineHeight:'0.9'}}>
+                                            <Grid item xs style={{fontSize:'0.7rem'}}>
                                                 {moment(Number(task.dateFinish)).format("DD.MM.YYYY HH:mm:ss")}
                                             </Grid>
                                         </Grid>
@@ -177,7 +190,6 @@ const Task = ({index,task}) => {
                                                                     <DeleteForeverTwoToneIcon />
                                                                 </IconButton>
                                                             </ThemeProvider>,
-
                                                             <ThemeProvider theme={buttonIconTaskSettingsTheme}>
                                                                 <IconButton
                                                                     sx={buttonIconTaskHoverTheme}

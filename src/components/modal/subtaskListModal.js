@@ -10,12 +10,20 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import {buttonTheme} from '../../css/buttons';
+import {buttonTheme} from '../../css/button';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
 
 const SubtaskListModal = ({show}) => {
     const dispatch = useDispatch();
+    const websiteVisible = useSelector((state)=>state.websiteReducer.websiteVisible);
+    const websiteVisibility = () => {
+        if (document.hidden) {
+            dispatch({type: 'WEBSITE_VISIBLE', payload: false});
+        } else {
+            dispatch({type: 'WEBSITE_VISIBLE', payload: true});
+        }
+    };
     /*--------------------------------------------------------------------------------*/
     const subtaskModalVisible = useSelector((state)=>state.subtaskReducer.subtaskModalVisible);
     const subtaskDelConfirmModalVisible = useSelector((state)=>state.subtaskReducer.subtaskDelConfirmModalVisible);
@@ -25,22 +33,28 @@ const SubtaskListModal = ({show}) => {
     const [subtasksLoading, setSubtasksLoading] = useState(false);
     useEffect(()=>{
         if(
+            websiteVisible &&
             taskCurrent && taskCurrent._id && taskCurrent._id.length>0 &&
             !subtaskModalVisible &&
             !subtasksLoading
         ) {
             setSubtasksLoading(true);
             dispatch(fetchSubtasks(taskCurrent._id)).finally(() => setSubtasksLoading(false));
-            console.log("=st-list=1");
+            //console.log("=st-list=1");
         }
     },[subtaskFetchAll]);
     useEffect(()=>{
         const timer = setTimeout(() => {
-            if(taskCurrent && taskCurrent._id && taskCurrent._id.length>0){
+            if(
+                websiteVisible &&
+                taskCurrent && taskCurrent._id && taskCurrent._id.length>0 &&
+                !subtaskModalVisible &&
+                !subtasksLoading
+            ){
                 dispatch(fetchSubtasks(taskCurrent._id));
-                console.log("=st-list=2");
+                //console.log("=st-list=2");
             }
-        }, 10000);
+        }, 5000);
         return () => clearTimeout(timer);
     });
     /*--------------------------------------------------------------------------------*/
@@ -49,6 +63,13 @@ const SubtaskListModal = ({show}) => {
         dispatch({type:'SUBTASK_FETCH_ALL', payload: []});
         dispatch({type:'SUBTASK_LIST_MODAL_VISIBLE', payload: false});
     };
+    /*--------------------------------------------------------------------------------*/
+    useEffect(() => {
+        document.addEventListener('visibilitychange',websiteVisibility, false );
+        return () => {
+            document.removeEventListener('visibilitychange',websiteVisibility, false );
+        };
+    },[]);
     /*--------------------------------------------------------------------------------*/
     return(
         <div style={(show) ? {display: 'block'} : {display: 'none'}} className="modal">

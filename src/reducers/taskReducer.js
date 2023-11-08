@@ -3,6 +3,7 @@ const defaultState = {
     taskCurrent: null,
     taskModalVisible: false,
     taskDelConfirmModalVisible: false,
+    taskSettingsMenuOpen: false,
 };
 
 export const taskReducer = (state = defaultState, action) => {
@@ -28,6 +29,8 @@ export const taskReducer = (state = defaultState, action) => {
             return {...state, taskModalVisible: action.payload};
         case "TASK_DEL_CONFIRM_MODAL_VISIBLE":
             return {...state, taskDelConfirmModalVisible: action.payload};
+        case "TASK_SETTINGS_MENU_OPEN":
+            return {...state, taskSettingsMenuOpen: action.payload};
 
         default:
             return state;

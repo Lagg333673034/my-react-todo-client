@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import {useDispatch} from 'react-redux';
+import React,{useState,useEffect} from 'react';
+import {useDispatch,useSelector} from 'react-redux';
 import './project.css';
 import {useNavigate} from "react-router-dom";
 import {TASKS_ROUTE} from "../../routes/consts";
@@ -12,7 +12,7 @@ import {ThemeProvider,createTheme} from '@mui/material/styles';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import CloseIcon from '@mui/icons-material/Close';
 import {MyTooltip} from  '../tooltip/tooltip';
-import {buttonIconTaskTheme,buttonIconTaskHoverTheme,buttonIconTaskSettingsTheme} from '../../css/buttons';
+import {buttonIconTaskTheme,buttonIconTaskHoverTheme,buttonIconTaskSettingsTheme} from '../../css/button';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone';
 import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
@@ -35,21 +35,29 @@ const Project = ({project}) => {
         dispatch({type:'PROJECT_DEL_CONFIRM_MODAL_VISIBLE', payload: true});
     };
     /*----------------------------------------------------------------------------------*/
+    //const projectSettingsMenuOpen = useSelector((state)=>state.projectReducer.projectSettingsMenuOpen);
     const [open, setOpen] = useState(false);
     const handleTooltipClose = () => {
         setOpen(false);
     };
     const handleTooltipOpen = () => {
         if(open){
-            setOpen(false)
+            setOpen(false);
         }else{
-            setOpen(true)
+            setOpen(true);
         }
     };
+    useEffect(()=>{
+        if(open){
+            dispatch({type:'PROJECT_SETTINGS_MENU_OPEN', payload: true});
+        }else{
+            dispatch({type:'PROJECT_SETTINGS_MENU_OPEN', payload: false});
+        }
+    },[open]);
     /*----------------------------------------------------------------------------------*/
     return (
         <Card sx={{padding:'5px 10px 5px 10px',border:'2px solid #565bf76e',borderRadius:'15px'}}>
-            <Grid container direction="column" justifyContent="center" alignItems="center">
+            <Grid container direction="row">
                 <Grid item xs={12} sx={{padding:'5px'}}>
                     {project.title ?
                         <div style={{width:'100%',fontSize:'1.5em',color:'blue',margin:'0 0 5px 0'}}>
@@ -59,73 +67,82 @@ const Project = ({project}) => {
                             {project.description}</div> : ''}
                 </Grid>
                 <Grid item xs={12}>
-                    <ClickAwayListener onClickAway={handleTooltipClose}>
-                        {
-                            MyTooltip(
-                                open,
-                                handleTooltipClose,
-                                <ThemeProvider theme={buttonIconTaskTheme}>
-                                    <IconButton
-                                        sx={buttonIconTaskHoverTheme}
-                                        className="placementOn11"
-                                        color="success"
-                                        size="small"
-                                        onClick={() => {
-                                            updCurrentProject();
-                                            handleTooltipClose()
-                                        }}
-                                    >
-                                        <EditTwoToneIcon/>
-                                    </IconButton>
-                                </ThemeProvider>,
-                                MyTooltip(
-                                    open,
-                                    handleTooltipClose,
-                                    <ThemeProvider theme={buttonIconTaskTheme}>
-                                        <IconButton
-                                            sx={buttonIconTaskHoverTheme}
-                                            className="placementOn01"
-                                            color="primary"
-                                            size="small"
-                                            onClick={() => {
-                                                selectCurrentProject();
-                                                handleTooltipClose()
-                                            }}
-                                        >
-                                            <FormatListNumberedIcon/>
-                                        </IconButton>
-                                    </ThemeProvider>,
-                                    MyTooltip(
-                                        open,
-                                        handleTooltipClose,
-                                        <ThemeProvider theme={buttonIconTaskTheme}>
-                                            <IconButton
-                                                sx={buttonIconTaskHoverTheme}
-                                                className="placementOn06"
-                                                color="error"
-                                                size="small"
-                                                onClick={() => {
-                                                    delCurrentProject(project);
-                                                    handleTooltipClose()
-                                                }}
-                                            >
-                                                <DeleteForeverTwoToneIcon/>
-                                            </IconButton>
-                                        </ThemeProvider>,
-                                        <ThemeProvider theme={buttonIconTaskSettingsTheme}>
-                                            <IconButton
-                                                sx={buttonIconTaskHoverTheme}
-                                                color="primary"
-                                                size="small"
-                                                onClick={handleTooltipOpen}>
-                                                {open ? <CloseIcon/> : <SettingsTwoToneIcon/>}
-                                            </IconButton>
-                                        </ThemeProvider>
-                                    )
-                                )
-                            )
-                        }
-                    </ClickAwayListener>
+
+                    <div style={{textAlign:'center'}}>
+                        <ClickAwayListener onClickAway={handleTooltipClose}>
+                          {
+                              MyTooltip(
+                                  open,
+                                  handleTooltipClose,
+                                  <ThemeProvider theme={buttonIconTaskTheme}>
+                                      <IconButton
+                                          sx={buttonIconTaskHoverTheme}
+                                          className="placementOn11"
+                                          color="success"
+                                          size="small"
+                                          onClick={() => {
+                                              updCurrentProject();
+                                              handleTooltipClose()
+                                          }}
+                                      >
+                                          <EditTwoToneIcon/>
+                                      </IconButton>
+                                  </ThemeProvider>,
+                                  MyTooltip(
+                                      open,
+                                      handleTooltipClose,
+                                      <ThemeProvider theme={buttonIconTaskTheme}>
+                                          <IconButton
+                                              sx={buttonIconTaskHoverTheme}
+                                              className="placementOn01"
+                                              color="primary"
+                                              size="small"
+                                              onClick={() => {
+                                                  selectCurrentProject();
+                                                  handleTooltipClose()
+                                              }}
+                                          >
+                                              <FormatListNumberedIcon/>
+                                          </IconButton>
+                                      </ThemeProvider>,
+                                      MyTooltip(
+                                          open,
+                                          handleTooltipClose,
+                                          <ThemeProvider theme={buttonIconTaskTheme}>
+                                              <IconButton
+                                                  sx={buttonIconTaskHoverTheme}
+                                                  className="placementOn06"
+                                                  color="error"
+                                                  size="small"
+                                                  onClick={() => {
+                                                      delCurrentProject(project);
+                                                      handleTooltipClose()
+                                                  }}
+                                              >
+                                                  <DeleteForeverTwoToneIcon/>
+                                              </IconButton>
+                                          </ThemeProvider>,
+                                          <ThemeProvider theme={buttonIconTaskSettingsTheme}>
+                                              <IconButton
+                                                  sx={buttonIconTaskHoverTheme}
+                                                  color="primary"
+                                                  size="small"
+                                                  onClick={handleTooltipOpen}>
+                                                  {
+                                                      open ?
+                                                          <CloseIcon/>
+                                                          :
+                                                          <SettingsTwoToneIcon/>
+                                                  }
+                                              </IconButton>
+                                          </ThemeProvider>
+                                      )
+                                  )
+                              )
+                          }
+                        </ClickAwayListener>
+                    </div>
+
 
                 </Grid>
             </Grid>

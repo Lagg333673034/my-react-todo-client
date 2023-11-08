@@ -10,12 +10,19 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import {buttonTheme} from '../../css/buttons';
+import {buttonTheme} from '../../css/button';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-
 
 const CommentListModal = ({show}) => {
     const dispatch = useDispatch();
+    const websiteVisible = useSelector((state)=>state.websiteReducer.websiteVisible);
+    const websiteVisibility = () => {
+        if (document.hidden) {
+            dispatch({type: 'WEBSITE_VISIBLE', payload: false});
+        } else {
+            dispatch({type: 'WEBSITE_VISIBLE', payload: true});
+        }
+    };
     /*--------------------------------------------------------------------------*/
     const commentModalVisible = useSelector((state)=>state.commentReducer.commentModalVisible);
     const commentDelConfirmModalVisible = useSelector((state)=>state.commentReducer.commentDelConfirmModalVisible);
@@ -34,22 +41,28 @@ const CommentListModal = ({show}) => {
 
     useEffect(()=>{
         if(
+            websiteVisible &&
             taskCurrent && taskCurrent._id && taskCurrent._id.length>0 &&
             !commentModalVisible &&
             !commentsLoading
         ) {
             setCommentsLoading(true);
             dispatch(fetchComments(taskCurrent._id,"null")).finally(() => setCommentsLoading(false));
-            console.log("=c-list=1");
+            //console.log("=c-list=1");
         }
     },[commentFetchAll]);
     useEffect(()=>{
         const timer = setTimeout(() => {
-            if(taskCurrent && taskCurrent._id && taskCurrent._id.length>0){
+            if(
+                websiteVisible &&
+                taskCurrent && taskCurrent._id && taskCurrent._id.length>0 &&
+                !commentModalVisible &&
+                !commentsLoading
+            ){
                 dispatch(fetchComments(taskCurrent._id,"null"));
-                console.log("=c-list=2");
+                //console.log("=c-list=2");
             }
-        }, 10000);
+        }, 5000);
         return () => clearTimeout(timer);
     });
     /*--------------------------------------------------------------------------------*/
@@ -74,6 +87,13 @@ const CommentListModal = ({show}) => {
         )
     };
     /*--------------------------------------------------------------------------------*/
+    useEffect(() => {
+        document.addEventListener('visibilitychange',websiteVisibility, false );
+        return () => {
+            document.removeEventListener('visibilitychange',websiteVisibility, false );
+        };
+    },[]);
+    /*--------------------------------------------------------------------------------*/
     return(
         <div style={(show) ? {display: 'block'} : {display: 'none'}} className="modal">
             <div className="modal-main">
@@ -88,7 +108,7 @@ const CommentListModal = ({show}) => {
                                 startIcon={<AddBoxIcon/>}
                                 onClick={() => dispatch({type:'COMMENT_MODAL_VISIBLE', payload: true})}
                             >
-                                Добавить коммент
+                                Добавить комментарий
                             </Button>
                         </ThemeProvider>
                         <div style={{height:'300px',margin:'10px 0px 0px 0px',border:'1px solid gray',overflowY:'auto'}}>

@@ -14,7 +14,7 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
-import {buttonTheme} from '../css/buttons';
+import {buttonTheme} from '../css/button';
 
 const PageProjects = () => {
     const dispatch = useDispatch();
@@ -23,6 +23,15 @@ const PageProjects = () => {
         dispatch({type:"TASK_CURRENT",payload:null});
         dispatch({type:'TASK_FETCH_ALL', payload: []});
     },[]);
+    /*--------------------------------------------------------------------------------*/
+    const websiteVisible = useSelector((state)=>state.websiteReducer.websiteVisible);
+    const websiteVisibility = () => {
+        if (document.hidden) {
+            dispatch({type: 'WEBSITE_VISIBLE', payload: false});
+        } else {
+            dispatch({type: 'WEBSITE_VISIBLE', payload: true});
+        }
+    };
     /*--------------------------------------------------------------------------------*/
     const [searchProjectsString,setSearchProjectsString] = useState('');
     const [searchProjectsStringTemp, setSearchProjectsStringTemp] = useState('');
@@ -36,6 +45,7 @@ const PageProjects = () => {
     const projectModalVisible = useSelector((state)=>state.projectReducer.projectModalVisible);
     const projectDelConfirmModalVisible = useSelector((state)=>state.projectReducer.projectDelConfirmModalVisible);
     const projectFetchAll = useSelector((state)=>state.projectReducer.projects);
+    const projectSettingsMenuOpen = useSelector((state)=>state.projectReducer.projectSettingsMenuOpen);
     /*--------------------------------------------------------------------------------*/
     const [projects, setProjects] = useState(projectFetchAll);
     const [projectsLoading, setProjectsLoading] = useState(false);
@@ -46,31 +56,29 @@ const PageProjects = () => {
 
     useEffect(()=>{
         if(
+            websiteVisible &&
+            !projectSettingsMenuOpen &&
             !projectModalVisible && !projectDelConfirmModalVisible &&
             !projectsLoading
         ) {
-            setProjectsLoading(true);
             dispatch(fetchProjects()).finally(() => setProjectsLoading(false));
-            console.log("==1");
         }
     },[projectModalVisible,projectDelConfirmModalVisible]);
     useEffect(()=>{
         const timer = setTimeout(() => {
-            if(!projectsLoading) {
+            if(
+                websiteVisible &&
+                !projectSettingsMenuOpen &&
+                !projectModalVisible && !projectDelConfirmModalVisible &&
+                !projectsLoading
+            ) {
                 dispatch(fetchProjects());
-                console.log("==2");
             }
         }, 10000);
         return () => clearTimeout(timer);
     });
     /*--------------------------------------------------------------------------------*/
     const [key,setKey] = useState(false);
-    useEffect(() => {
-        window.addEventListener('keydown', (event)=>setKey(event.keyCode));
-        return () => {
-            window.removeEventListener('keydown', (event)=>setKey(event.keyCode));
-        };
-    },[]);
     useEffect(() => {
         if(key && key === 27) {
             dispatch({type:"PROJECT_CURRENT", payload:null});
@@ -80,11 +88,20 @@ const PageProjects = () => {
         setKey(false);
     },[key]);
     /*--------------------------------------------------------------------------------*/
+    useEffect(() => {
+        window.addEventListener('keydown', (event)=>setKey(event.keyCode));
+        document.addEventListener('visibilitychange',websiteVisibility, false );
+        return () => {
+            window.removeEventListener('keydown', (event)=>setKey(event.keyCode));
+            document.removeEventListener('visibilitychange',websiteVisibility, false );
+        };
+    },[]);
+    /*--------------------------------------------------------------------------------*/
     return(
-        <div>
+        <>
             <Grid
                 container direction="row" justifyContent="flex-start" alignItems="center"
-                spacing={2} sx={{padding:'5px 5px 5px 5px'}}
+                spacing={0.5} sx={{padding:'5px 5px 5px 5px'}}
             >
                 <Grid item xs="auto">
                     <ThemeProvider theme={buttonTheme}>
@@ -93,7 +110,7 @@ const PageProjects = () => {
                             startIcon={<AddBoxIcon/>}
                             onClick={() => dispatch({type:'PROJECT_MODAL_VISIBLE', payload: true})}
                         >
-                            Добавить проект
+                            проект
                         </Button>
                     </ThemeProvider>
                 </Grid>
@@ -143,7 +160,7 @@ const PageProjects = () => {
             </Grid>
             {projectModalVisible ? <ProjectModal show={projectModalVisible}/>  : ''}
             {projectDelConfirmModalVisible ? <ProjectDelConfirmModal show={projectDelConfirmModalVisible}/>  : ''}
-        </div>
+        </>
     )
 };
 

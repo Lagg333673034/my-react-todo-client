@@ -1,21 +1,15 @@
 import React from 'react';
 import './comment.css';
-import {deleteComment} from "../../actions/commentActions";
 import {useDispatch} from 'react-redux';
 import moment from 'moment';
 
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import Card from '@mui/material/Card';
 import {ThemeProvider,createTheme} from '@mui/material/styles';
-import {buttonIconSmallTheme,buttonIconSmallHoverTheme} from '../../css/buttons';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import UnpublishedIcon from '@mui/icons-material/Unpublished';
-import AddBoxIcon from '@mui/icons-material/AddBox';
+import {buttonIconSmallTheme,buttonIconSmallHoverTheme} from '../../css/button';
 import AddCommentIcon from '@mui/icons-material/AddComment';
 
 const Comment = ({comment,lvl}) => {
