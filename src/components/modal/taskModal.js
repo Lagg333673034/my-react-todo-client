@@ -53,6 +53,7 @@ const TaskModal = ({show}) => {
     const taskUpd = (e) => {
         dispatch(
             updateTask(
+                currentProjectId,
                 taskCurrentState._id,
                 {
                     number: String(taskCurrentState.number || ''),

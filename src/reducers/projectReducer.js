@@ -1,4 +1,5 @@
 const defaultState = {
+    projectsLoading: false,
     projects: [],
     projectCurrent: null,
     projectModalVisible: false,
@@ -8,6 +9,8 @@ const defaultState = {
 
 export const projectReducer = (state = defaultState, action) => {
     switch(action.type){
+        case "PROJECTS_LOADING":
+            return {...state, projectsLoading: action.payload};
         case "PROJECT_FETCH_ALL":
             return {...state, projects: action.payload};
         case "PROJECT_CREATE":
@@ -31,6 +34,8 @@ export const projectReducer = (state = defaultState, action) => {
             return {...state, projectDelConfirmModalVisible: action.payload};
         case "PROJECT_SETTINGS_MENU_OPEN":
             return {...state, projectSettingsMenuOpen: action.payload};
+
+
 
 
         default:

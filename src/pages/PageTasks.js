@@ -7,10 +7,12 @@ import FileListModal from '../components/modal/fileListModal';
 import SubtaskListModal from '../components/modal/subtaskListModal';
 import TaskDelConfirmModal from '../components/modal/taskDelConfirmModal';
 import {fetchTasks,updateTask} from "../actions/taskActions";
+import {fetchProjects} from "../actions/projectActions";
 import {useParams} from "react-router-dom";
 import './PageTasks.css';
 import moment from 'moment';
 import {DragDropContext} from 'react-beautiful-dnd';
+import Loader from '../components/loader/loader';
 
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import SearchIcon from '@mui/icons-material/Search';
@@ -23,10 +25,14 @@ import {buttonTheme} from '../css/button';
 
 const PageTasks = () => {
     const dispatch = useDispatch();
-    const currentProjectId = useParams().id;
     useEffect(()=>{
         dispatch({type:"TASK_CURRENT",payload:null});
     },[]);
+    /*--------------------------------------------------------------------------*/
+    const currentProjectId = useParams().id;
+    useEffect(()=>{dispatch(fetchProjects());},[]);
+    const currentProject = useSelector((state)=>state.projectReducer.projects)
+        .filter(project => String(project._id) === currentProjectId)[0];
     /*--------------------------------------------------------------------------*/
     const websiteVisible = useSelector((state)=>state.websiteReducer.websiteVisible);
     const websiteVisibility = () => {
@@ -52,38 +58,26 @@ const PageTasks = () => {
     const fileListModalVisible = useSelector((state)=>state.fileReducer.fileListModalVisible);
     const subtaskListModalVisible = useSelector((state)=>state.subtaskReducer.subtaskListModalVisible);
     const taskFetchAll = useSelector((state)=>state.taskReducer.tasks);
+    const tasksLoading = useSelector((state)=>state.taskReducer.tasksLoading);
     const taskSettingsMenuOpen = useSelector((state)=>state.taskReducer.taskSettingsMenuOpen);
     /*--------------------------------------------------------------------------------*/
     const [tasks, setTasks] = useState(taskFetchAll);
-    const [tasksLoading, setTasksLoading] = useState(false);
     useEffect(()=>{
         if(!tasksLoading)
             setTasks(taskFetchAll);
     },[taskFetchAll,tasksLoading]);
-
     useEffect(()=>{
-        if(
-            websiteVisible &&
-            !taskSettingsMenuOpen &&
-            currentProjectId && currentProjectId.length>0 &&
-            !taskModalVisible && !taskDelConfirmModalVisible && !commentListModalVisible && !fileListModalVisible && !subtaskListModalVisible &&
-            !tasksLoading
-        ) {
-            setTasksLoading(true);
-            dispatch(fetchTasks(currentProjectId)).finally(() => setTasksLoading(false));
+        if(currentProjectId && currentProjectId.length>0) {
+            dispatch(fetchTasks(currentProjectId));
         }
-    },[
-        currentProjectId,
-        taskModalVisible,taskDelConfirmModalVisible, commentListModalVisible,fileListModalVisible,subtaskListModalVisible
-    ]);
+    },[currentProjectId]);
     useEffect(()=>{
         const timer = setTimeout(() => {
             if(
                 websiteVisible &&
                 !taskSettingsMenuOpen &&
                 currentProjectId && currentProjectId.length>0 &&
-                !taskModalVisible && !taskDelConfirmModalVisible &&
-                !commentListModalVisible && !fileListModalVisible && !subtaskListModalVisible &&
+                !taskModalVisible && !taskDelConfirmModalVisible && !commentListModalVisible && !fileListModalVisible && !subtaskListModalVisible &&
                 !tasksLoading
             ){
                 dispatch(fetchTasks(currentProjectId));
@@ -91,8 +85,6 @@ const PageTasks = () => {
         }, 10000);
         return () => clearTimeout(timer);
     });
-    /*--------------------------------------------------------------------------*/
-    const projectCurrent = useSelector((state)=>state.projectReducer.projectCurrent);
     /*--------------------------------------------------------------------------*/
     const columns = [
         {title:"В очереди",status:"1"},
@@ -148,7 +140,7 @@ const PageTasks = () => {
                 draggableTask.dateFinish = String(moment(new Date(), "YYYY-MM-DD-HH-mm-ss").valueOf());
                 draggableTask.status = column;
             }
-            dispatch(updateTask(draggableTask._id, draggableTask));
+            dispatch(updateTask(currentProjectId,draggableTask._id,draggableTask));
         }
     };
     /*--------------------------------------------------------------------------*/
@@ -239,7 +231,8 @@ const PageTasks = () => {
             </Grid>
         </Grid>
         <div className="titleTask">
-            {projectCurrent && projectCurrent.title ? projectCurrent.title : ''}
+            {currentProject && currentProject.title ? currentProject.title : ''}
+            {tasksLoading ? <div><Loader/></div> : <div style={{visibility: 'hidden'}}><Loader/></div>}
         </div>
         <DragDropContext onDragEnd={onDragEnd}>
             <Grid container direction="row" justifyContent="center" alignItems="flex-start">

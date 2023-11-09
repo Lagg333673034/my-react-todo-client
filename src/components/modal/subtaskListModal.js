@@ -5,6 +5,7 @@ import {fetchSubtasks} from "../../actions/subtaskActions";
 import Subtask from "../subtask/subtask";
 import SubtaskModal from "./subtaskModal";
 import SubtaskDelConfirmModal from './subtaskDelConfirmModal';
+import Loader from '../../components/loader/loader';
 
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
@@ -28,21 +29,19 @@ const SubtaskListModal = ({show}) => {
     const subtaskModalVisible = useSelector((state)=>state.subtaskReducer.subtaskModalVisible);
     const subtaskDelConfirmModalVisible = useSelector((state)=>state.subtaskReducer.subtaskDelConfirmModalVisible);
     const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
-    const subtaskFetchAll = useSelector((state)=>state.subtaskReducer.subtasks);
+    const subtasksLoading = useSelector((state)=>state.subtaskReducer.subtasksLoading);
+    const subtasksFetchAll = useSelector((state)=>state.subtaskReducer.subtasks);
     /*--------------------------------------------------------------------------------*/
-    const [subtasksLoading, setSubtasksLoading] = useState(false);
+    const [subtasks, setSubtasks] = useState(subtasksFetchAll);
     useEffect(()=>{
-        if(
-            websiteVisible &&
-            taskCurrent && taskCurrent._id && taskCurrent._id.length>0 &&
-            !subtaskModalVisible &&
-            !subtasksLoading
-        ) {
-            setSubtasksLoading(true);
-            dispatch(fetchSubtasks(taskCurrent._id)).finally(() => setSubtasksLoading(false));
-            //console.log("=st-list=1");
+        if(!subtasksLoading)
+            setSubtasks(subtasksFetchAll);
+    },[subtasksFetchAll,subtasksLoading]);
+    useEffect(()=>{
+        if(taskCurrent && taskCurrent._id && taskCurrent._id.length>0) {
+            dispatch(fetchSubtasks(taskCurrent._id));
         }
-    },[subtaskFetchAll]);
+    },[taskCurrent]);
     useEffect(()=>{
         const timer = setTimeout(() => {
             if(
@@ -52,7 +51,6 @@ const SubtaskListModal = ({show}) => {
                 !subtasksLoading
             ){
                 dispatch(fetchSubtasks(taskCurrent._id));
-                //console.log("=st-list=2");
             }
         }, 5000);
         return () => clearTimeout(timer);
@@ -76,6 +74,7 @@ const SubtaskListModal = ({show}) => {
             <div className="modal-main">
                 <div className="modal-title">
                     Список подзадач
+                    {subtasksLoading ? <div><Loader/></div> : <div style={{visibility: 'hidden'}}><Loader/></div>}
                 </div>
                 <div className="modal-content">
                     <Stack spacing={0} direction="column" sx={{width:'100%'}}>
@@ -90,9 +89,9 @@ const SubtaskListModal = ({show}) => {
                         </ThemeProvider>
                         <div style={{height:'300px',margin:'10px 0px 0px 0px',border:'1px solid gray',overflowY:'auto'}}>
                             {
-                                subtaskFetchAll &&
-                                subtaskFetchAll.length > 0 &&
-                                subtaskFetchAll.map((subtask, subtask_index) =>
+                                subtasks &&
+                                subtasks.length > 0 &&
+                                subtasks.map((subtask, subtask_index) =>
                                     <Subtask
                                         key={subtask_index}
                                         subtask={subtask}

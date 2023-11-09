@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import './modal.css';
 import {useDispatch,useSelector} from 'react-redux';
 import {deleteTask} from "../../actions/taskActions";
+import {useParams} from "react-router-dom";
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -10,12 +11,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const TaskDelConfirmModal = ({show}) => {
+    const currentProjectId = useParams().id;
     const dispatch = useDispatch();
     const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
     /*--------------------------------------------------------------------------------*/
     const taskDelConfirm = () => {
         if(taskCurrent && taskCurrent._id){
-            dispatch(deleteTask(taskCurrent._id));
+            dispatch(deleteTask(currentProjectId,taskCurrent._id));
             modalClose();
         }
     };

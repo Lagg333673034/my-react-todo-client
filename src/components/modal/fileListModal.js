@@ -5,6 +5,7 @@ import {createFile,fetchFiles} from "../../actions/fileActions";
 import File from '../file/file';
 import {useRef} from 'react';
 import FileDelConfirmModal from './fileDelConfirmModal';
+import Loader from '../../components/loader/loader';
 
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
@@ -32,20 +33,20 @@ const FileListModal = ({show}) => {
         dispatch({type:'FILE_LIST_MODAL_VISIBLE', payload: false});
     };
     /*--------------------------------------------------------------------------------*/
-    const fileFetchAll = useSelector((state)=>state.fileReducer.files);
-    const [filesLoading, setFilesLoading] = useState(false);
+    const filesLoading = useSelector((state)=>state.fileReducer.filesLoading);
+    const filesFetchAll = useSelector((state)=>state.fileReducer.files);
+    /*--------------------------------------------------------------------------------*/
+    const [files, setFiles] = useState(filesFetchAll);
 
     useEffect(()=>{
-        if(
-            websiteVisible &&
-            taskCurrent && taskCurrent._id && taskCurrent._id.length>0 &&
-            !filesLoading
-        ) {
-            setFilesLoading(true);
-            dispatch(fetchFiles(taskCurrent._id)).finally(() => setFilesLoading(false));
-            //console.log("=f-list=1");
+        if(!filesLoading)
+            setFiles(filesFetchAll);
+    },[filesFetchAll,filesLoading]);
+    useEffect(()=>{
+        if(taskCurrent && taskCurrent._id && taskCurrent._id.length>0) {
+            dispatch(fetchFiles(taskCurrent._id));
         }
-    },[fileFetchAll]);
+    },[]);
     useEffect(()=>{
         const timer = setTimeout(() => {
             if(
@@ -54,7 +55,6 @@ const FileListModal = ({show}) => {
                 !filesLoading
             ){
                 dispatch(fetchFiles(taskCurrent._id));
-                //console.log("=f-list=2");
             }
         }, 5000);
         return () => clearTimeout(timer);
@@ -67,12 +67,11 @@ const FileListModal = ({show}) => {
             const formData = new FormData();
             formData.append('taskId', taskCurrent._id);
             formData.append('file', file);
-            dispatch(createFile(formData));
+            dispatch(createFile(taskCurrent._id,formData));
             fileRef.current.value = null;
             setFile(null);
         }
     };
-
     useEffect(()=>{
         if(file && file !== null){
             uploadFile();
@@ -91,14 +90,15 @@ const FileListModal = ({show}) => {
             <div className="modal-main">
                 <div className="modal-title">
                     Прикреплённые файлы
+                    {filesLoading ? <div><Loader/></div> : <div style={{visibility: 'hidden'}}><Loader/></div>}
                 </div>
                 <div className="modal-content">
                     <Stack spacing={0} direction="column" sx={{width:'100%'}}>
                         <div style={{height:'300px',border:'1px solid gray', overflowY:'auto'}}>
                             {
-                                fileFetchAll &&
-                                fileFetchAll.length > 0 &&
-                                fileFetchAll.map((file, file_index) =>
+                                files &&
+                                files.length > 0 &&
+                                files.map((file, file_index) =>
                                     <File key={file_index} file={file}/>
                                 )
                             }

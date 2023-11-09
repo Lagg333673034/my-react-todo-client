@@ -45,25 +45,17 @@ const PageProjects = () => {
     const projectModalVisible = useSelector((state)=>state.projectReducer.projectModalVisible);
     const projectDelConfirmModalVisible = useSelector((state)=>state.projectReducer.projectDelConfirmModalVisible);
     const projectFetchAll = useSelector((state)=>state.projectReducer.projects);
+    const projectsLoading = useSelector((state)=>state.projectReducer.projectsLoading);
     const projectSettingsMenuOpen = useSelector((state)=>state.projectReducer.projectSettingsMenuOpen);
     /*--------------------------------------------------------------------------------*/
     const [projects, setProjects] = useState(projectFetchAll);
-    const [projectsLoading, setProjectsLoading] = useState(false);
     useEffect(()=>{
         if(!projectsLoading)
             setProjects(projectFetchAll);
     },[projectFetchAll,projectsLoading]);
-
     useEffect(()=>{
-        if(
-            websiteVisible &&
-            !projectSettingsMenuOpen &&
-            !projectModalVisible && !projectDelConfirmModalVisible &&
-            !projectsLoading
-        ) {
-            dispatch(fetchProjects()).finally(() => setProjectsLoading(false));
-        }
-    },[projectModalVisible,projectDelConfirmModalVisible]);
+        dispatch(fetchProjects());
+    },[]);
     useEffect(()=>{
         const timer = setTimeout(() => {
             if(

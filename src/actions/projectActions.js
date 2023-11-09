@@ -2,8 +2,15 @@ import * as api from '../api';
 
 export const createProject = (newProject) => async(dispatch) => {
     try {
-        dispatch({type:"PROJECT_CREATE",payload:newProject});
-        const {data} = await api.createProject(newProject);
+        dispatch({type:"PROJECTS_LOADING",payload: true});
+        await api.createProject(newProject).then(
+                async() => await api.fetchProjects().then(
+                        ({data}) => {
+                            dispatch({type:"PROJECT_FETCH_ALL",payload:data});
+                            dispatch({type:"PROJECTS_LOADING",payload: false});
+                        }
+                )
+        );
     } catch (e) {
         console.log(e);
     }
@@ -11,8 +18,15 @@ export const createProject = (newProject) => async(dispatch) => {
 export const updateProject = (id,updatedProject) => async(dispatch) => {
     try {
         if(id && id.length>0) {
-            dispatch({type: "PROJECT_UPDATE", payload: updatedProject});
-            await api.updateProject(id, updatedProject);
+            dispatch({type:"PROJECTS_LOADING",payload: true});
+            await api.updateProject(id, updatedProject).then(
+                async() => await api.fetchProjects().then(
+                    ({data}) => {
+                        dispatch({type:"PROJECT_FETCH_ALL",payload:data});
+                        dispatch({type:"PROJECTS_LOADING",payload: false});
+                    }
+                )
+            );
         }
     } catch (e) {
         console.log(e);
@@ -21,8 +35,15 @@ export const updateProject = (id,updatedProject) => async(dispatch) => {
 export const deleteProject = (id) => async(dispatch) => {
     try {
         if(id && id.length>0) {
-            await api.deleteProject(id);
-            dispatch({type: "PROJECT_DELETE", payload: id});
+            dispatch({type:"PROJECTS_LOADING",payload: true});
+            await api.deleteProject(id).then(
+                async() => await api.fetchProjects().then(
+                    ({data}) => {
+                        dispatch({type:"PROJECT_FETCH_ALL",payload:data});
+                        dispatch({type:"PROJECTS_LOADING",payload: false});
+                    }
+                )
+            );
         }
     } catch (e) {
         console.log(e);

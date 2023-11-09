@@ -17,20 +17,24 @@ import UnpublishedIcon from '@mui/icons-material/Unpublished';
 
 const Subtask = ({subtask}) => {
     const dispatch = useDispatch();
+    const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
     /*--------------------------------------------------------------------------*/
     const updSubtask = (subtask) => {
         dispatch({type:'SUBTASK_CURRENT', payload: subtask});
         dispatch({type:'SUBTASK_MODAL_VISIBLE', payload: true});
     };
     const doneSubtask = (subtask) => {
-        if(subtask && subtask._id && subtask.done && subtask.done === 'true'){
-            dispatch(updateSubtask(subtask._id, {done: 'false'}));
+        if(
+            taskCurrent && taskCurrent._id &&
+            subtask && subtask._id &&
+            subtask.done && subtask.done === 'true'
+        ){
+            dispatch(updateSubtask(taskCurrent._id, subtask._id, {done: 'false'}));
         }else{
-            dispatch(updateSubtask(subtask._id, {done: 'true'}));
+            dispatch(updateSubtask(taskCurrent._id, subtask._id, {done: 'true'}));
         }
     };
     const delSubtask = (subtask) => {
-        //dispatch(deleteSubtask(subtask._id));
         dispatch({type:'SUBTASK_CURRENT', payload: subtask});
         dispatch({type:'SUBTASK_DEL_CONFIRM_MODAL_VISIBLE', payload: true});
     };

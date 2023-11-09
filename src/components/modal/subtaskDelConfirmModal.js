@@ -12,10 +12,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const SubtaskDelConfirmModal = ({show}) => {
     const dispatch = useDispatch();
     const subtaskCurrent = useSelector((state)=>state.subtaskReducer.subtaskCurrent);
+    const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
     /*--------------------------------------------------------------------------------*/
     const subtaskDelConfirm = () => {
-        if(subtaskCurrent && subtaskCurrent._id){
-            dispatch(deleteSubtask(subtaskCurrent._id));
+        if(
+            taskCurrent && taskCurrent._id &&
+            subtaskCurrent && subtaskCurrent._id
+        ){
+            dispatch(deleteSubtask(taskCurrent._id,subtaskCurrent._id));
             modalClose();
         }
     };

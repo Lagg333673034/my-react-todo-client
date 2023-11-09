@@ -17,10 +17,13 @@
     border-radius: 15px;
 }
 .modal-title{
-    padding: 10px 10px 10px 20px;
+    padding: 5px 10px 5px 20px;
     font-size: 1.3em;
     font-weight: 700;
     border-bottom: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 .modal-content{
     padding: 10px 10px 10px 10px;

@@ -27,12 +27,12 @@ const WebsiteInfo = ({show}) => {
                             <thead></thead>
                             <tbody>
                             <tr>
-                                <th colspan="2" style={{textAlign:'center'}}>
+                                <th colSpan="2" style={{textAlign:'center'}}>
                                    Система "Планировщик задач"
                                 </th>
                             </tr>
                             <tr>
-                                <th colspan="2">
+                                <th colSpan="2">
                                     Клиентская часть (React.js)
                                 </th>
                             </tr>
@@ -72,7 +72,7 @@ const WebsiteInfo = ({show}) => {
                             </tr>
 
                             <tr>
-                                <th colspan="2">
+                                <th colSpan="2">
                                     Серверная часть (Node.js)
                                 </th>
                             </tr>

@@ -1,4 +1,5 @@
 const defaultState = {
+    filesLoading: false,
     files: [],
     fileCurrent: null,
     fileListModalVisible: false,
@@ -7,6 +8,8 @@ const defaultState = {
 
 export const fileReducer = (state = defaultState, action) => {
     switch(action.type){
+        case "FILES_LOADING":
+            return {...state, filesLoading: action.payload};
         case "FILE_FETCH_ALL":
             return {...state, files: action.payload};
         case "FILE_CREATE":

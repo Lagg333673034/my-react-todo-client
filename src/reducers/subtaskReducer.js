@@ -1,4 +1,5 @@
 const defaultState = {
+    subtasksLoading: false,
     subtasks: [],
     subtaskCurrent: null,
     subtaskListModalVisible: false,
@@ -8,6 +9,8 @@ const defaultState = {
 
 export const subtaskReducer = (state = defaultState, action) => {
     switch(action.type){
+        case "SUBTASKS_LOADING":
+            return {...state, subtasksLoading: action.payload};
         case "SUBTASK_FETCH_ALL":
             return {...state, subtasks: action.payload};
         case "SUBTASK_CREATE":

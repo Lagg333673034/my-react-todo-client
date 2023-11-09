@@ -1,4 +1,5 @@
 const defaultState = {
+    tasksLoading: false,
     tasks: [],
     taskCurrent: null,
     taskModalVisible: false,
@@ -8,6 +9,8 @@ const defaultState = {
 
 export const taskReducer = (state = defaultState, action) => {
     switch(action.type){
+        case "TASKS_LOADING":
+            return {...state, tasksLoading: action.payload};
         case "TASK_FETCH_ALL":
             return {...state, tasks: action.payload};
         case "TASK_CREATE":

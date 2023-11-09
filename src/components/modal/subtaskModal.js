@@ -31,9 +31,13 @@ const SubtaskModal = ({show}) => {
         }
     };
     const subtaskUpd = (e) => {
-        if(subtaskCurrent && subtaskCurrent._id) {
+        if(
+            taskCurrent && taskCurrent._id &&
+            subtaskCurrent && subtaskCurrent._id
+        ) {
             dispatch(
                 updateSubtask(
+                    taskCurrent._id,
                     subtaskCurrent._id, {
                         description: String(subtaskCurrent.description || ''),
                     }

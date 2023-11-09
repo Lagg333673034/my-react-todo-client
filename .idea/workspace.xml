@@ -2,44 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99d0e2a4-5540-4689-89de-678df89c606f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/modal/websiteInfo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/button.css" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/css/main.67f7eb8d.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/css/main.67f7eb8d.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/js/main.ecd45af3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/js/main.ecd45af3.js.LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/js/main.ecd45af3.js.map" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/css/buttons.js" afterPath="$PROJECT_DIR$/src/css/button.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/css/inputs.js" afterPath="$PROJECT_DIR$/src/css/input.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/asset-manifest.json" afterPath="$PROJECT_DIR$/build/asset-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/index.html" afterPath="$PROJECT_DIR$/build/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.css" afterPath="$PROJECT_DIR$/src/App.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/index.js" afterPath="$PROJECT_DIR$/src/api/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/comment/comment.js" afterPath="$PROJECT_DIR$/src/components/comment/comment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/file/file.js" afterPath="$PROJECT_DIR$/src/components/file/file.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/loader/loader.css" afterPath="$PROJECT_DIR$/src/components/loader/loader.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/commentActions.js" afterPath="$PROJECT_DIR$/src/actions/commentActions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/fileActions.js" afterPath="$PROJECT_DIR$/src/actions/fileActions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/projectActions.js" afterPath="$PROJECT_DIR$/src/actions/projectActions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/subtaskActions.js" afterPath="$PROJECT_DIR$/src/actions/subtaskActions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/taskActions.js" afterPath="$PROJECT_DIR$/src/actions/taskActions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/commentDelConfirmModal.js" afterPath="$PROJECT_DIR$/src/components/modal/commentDelConfirmModal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/commentListModal.js" afterPath="$PROJECT_DIR$/src/components/modal/commentListModal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/commentModal.js" afterPath="$PROJECT_DIR$/src/components/modal/commentModal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/fileListModal.js" afterPath="$PROJECT_DIR$/src/components/modal/fileListModal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/modal.css" afterPath="$PROJECT_DIR$/src/components/modal/modal.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/projectModal.js" afterPath="$PROJECT_DIR$/src/components/modal/projectModal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/subtaskDelConfirmModal.js" afterPath="$PROJECT_DIR$/src/components/modal/subtaskDelConfirmModal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/subtaskListModal.js" afterPath="$PROJECT_DIR$/src/components/modal/subtaskListModal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/subtaskModal.js" afterPath="$PROJECT_DIR$/src/components/modal/subtaskModal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/taskDelConfirmModal.js" afterPath="$PROJECT_DIR$/src/components/modal/taskDelConfirmModal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/taskModal.js" afterPath="$PROJECT_DIR$/src/components/modal/taskModal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/navbar/Navbar.js" afterPath="$PROJECT_DIR$/src/components/navbar/Navbar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/project/project.css" afterPath="$PROJECT_DIR$/src/components/project/project.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/project/project.js" afterPath="$PROJECT_DIR$/src/components/project/project.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal/websiteInfo.js" afterPath="$PROJECT_DIR$/src/components/modal/websiteInfo.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/subtask/subtask.js" afterPath="$PROJECT_DIR$/src/components/subtask/subtask.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/task/task.css" afterPath="$PROJECT_DIR$/src/components/task/task.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/task/task.js" afterPath="$PROJECT_DIR$/src/components/task/task.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/tooltip/tooltip.css" afterPath="$PROJECT_DIR$/src/components/tooltip/tooltip.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/PageProjects.js" afterPath="$PROJECT_DIR$/src/pages/PageProjects.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/PageTasks.css" afterPath="$PROJECT_DIR$/src/pages/PageTasks.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/PageTasks.js" afterPath="$PROJECT_DIR$/src/pages/PageTasks.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/commentReducer.js" afterPath="$PROJECT_DIR$/src/reducers/commentReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/fileReducer.js" afterPath="$PROJECT_DIR$/src/reducers/fileReducer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/projectReducer.js" afterPath="$PROJECT_DIR$/src/reducers/projectReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/subtaskReducer.js" afterPath="$PROJECT_DIR$/src/reducers/subtaskReducer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/taskReducer.js" afterPath="$PROJECT_DIR$/src/reducers/taskReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/websiteReducer.js" afterPath="$PROJECT_DIR$/src/reducers/websiteReducer.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,10 +39,22 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/api/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
+            <state relative-caret-position="17">
               <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
               <folding>
                 <element signature="e#2540#3004#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="websiteInfo.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/modal/websiteInfo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="877">
+              <caret line="74" column="43" lean-forward="false" selection-start-line="74" selection-start-column="43" selection-end-line="74" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#47#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -66,13 +64,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fontSize</find>
-      <find>font-size</find>
-      <find>@mui/styles</find>
-      <find>makeStyles</find>
-      <find>currentProjectId</find>
-      <find>oneOf</find>
-      <find>placement</find>
       <find>hover</find>
       <find>commentListModalVisible</find>
       <find>proj</find>
@@ -96,6 +87,13 @@
       <find>documentVisib</find>
       <find>srcsrc</find>
       <find>DOCUMENT_VISIBLE</find>
+      <find>websiteVisible</find>
+      <find>.projectReducer.projectCurrent</find>
+      <find>projectCurrent</find>
+      <find>deleteTask(</find>
+      <find>updateTask(</find>
+      <find>COMMENT_FETCH_ALL</find>
+      <find>COMMENT_LOAD</find>
     </findStrings>
     <dirStrings>
       <dir>C:\OpServ\OSPanel\domains\my-react-todo-client\src</dir>
@@ -107,44 +105,25 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/css/speedDial.css" />
-        <option value="$PROJECT_DIR$/src/components/tasklist/tasklist.js" />
-        <option value="$PROJECT_DIR$/src/css/tooltip.css" />
-        <option value="$PROJECT_DIR$/src/components/modal/requestConfirmationModal.js" />
-        <option value="$PROJECT_DIR$/src/reducers/reqAddUpdDelConfirmReducer.js" />
         <option value="$PROJECT_DIR$/src/reducers/reqConfirmReducer.js" />
         <option value="$PROJECT_DIR$/src/components/modal/reqDelConfirmModal.js" />
         <option value="$PROJECT_DIR$/src/css/input.css" />
         <option value="$PROJECT_DIR$/src/css/inputs.js" />
         <option value="$PROJECT_DIR$/src/pages/PageProjects2.js" />
-        <option value="$PROJECT_DIR$/src/reducers/subtaskReducer.js" />
-        <option value="$PROJECT_DIR$/src/reducers/commentReducer.js" />
-        <option value="$PROJECT_DIR$/src/components/modal/subtaskDelConfirmModal.js" />
-        <option value="$PROJECT_DIR$/src/components/modal/commentDelConfirmModal.js" />
-        <option value="$PROJECT_DIR$/src/reducers/fileReducer.js" />
         <option value="$PROJECT_DIR$/src/components/modal/fileDelConfirmModal.js" />
         <option value="$PROJECT_DIR$/my-react-todo-client.txt" />
         <option value="$PROJECT_DIR$/src/components/tooltip/tooltip.js" />
-        <option value="$PROJECT_DIR$/src/components/modal/taskDelConfirmModal.js" />
         <option value="$PROJECT_DIR$/src/components/modal/projectDelConfirmModal.js" />
         <option value="$PROJECT_DIR$/src/reducers/index.js" />
-        <option value="$PROJECT_DIR$/src/reducers/taskReducer.js" />
-        <option value="$PROJECT_DIR$/src/reducers/projectReducer.js" />
         <option value="$PROJECT_DIR$/src/components/task/task.css" />
         <option value="$PROJECT_DIR$/src/css/buttons.js" />
-        <option value="$PROJECT_DIR$/src/components/modal/taskModal.js" />
-        <option value="$PROJECT_DIR$/src/components/modal/subtaskModal.js" />
-        <option value="$PROJECT_DIR$/src/components/modal/subtaskListModal.js" />
         <option value="$PROJECT_DIR$/src/components/modal/projectModal.js" />
-        <option value="$PROJECT_DIR$/src/components/modal/fileListModal.js" />
         <option value="$PROJECT_DIR$/src/components/modal/commentModal.js" />
-        <option value="$PROJECT_DIR$/src/components/modal/commentListModal.js" />
         <option value="$PROJECT_DIR$/src/components/file/file.js" />
         <option value="$PROJECT_DIR$/src/components/comment/comment.js" />
         <option value="$PROJECT_DIR$/src/pages/PageTasks.css" />
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/src/components/loader/loader.css" />
-        <option value="$PROJECT_DIR$/src/components/subtask/subtask.js" />
         <option value="$PROJECT_DIR$/src/reducers/websiteReducer.js" />
         <option value="$PROJECT_DIR$/src/css/button.js" />
         <option value="$PROJECT_DIR$/src/components/navbar/Navbar.js" />
@@ -152,12 +131,31 @@
         <option value="$PROJECT_DIR$/src/components/project/project.css" />
         <option value="$PROJECT_DIR$/src/components/tooltip/tooltip.css" />
         <option value="$PROJECT_DIR$/src/components/project/project.js" />
-        <option value="$PROJECT_DIR$/src/pages/PageProjects.js" />
-        <option value="$PROJECT_DIR$/src/pages/PageTasks.js" />
         <option value="$PROJECT_DIR$/src/css/button.css" />
-        <option value="$PROJECT_DIR$/src/components/modal/modal.css" />
-        <option value="$PROJECT_DIR$/src/components/modal/websiteInfo.js" />
+        <option value="$PROJECT_DIR$/src/reducers/projectReducer.js" />
+        <option value="$PROJECT_DIR$/src/reducers/taskReducer.js" />
+        <option value="$PROJECT_DIR$/src/actions/projectActions.js" />
+        <option value="$PROJECT_DIR$/src/pages/PageProjects.js" />
+        <option value="$PROJECT_DIR$/src/components/modal/taskDelConfirmModal.js" />
+        <option value="$PROJECT_DIR$/src/components/modal/taskModal.js" />
+        <option value="$PROJECT_DIR$/src/pages/PageTasks.js" />
         <option value="$PROJECT_DIR$/src/api/index.js" />
+        <option value="$PROJECT_DIR$/src/actions/taskActions.js" />
+        <option value="$PROJECT_DIR$/src/components/modal/subtaskDelConfirmModal.js" />
+        <option value="$PROJECT_DIR$/src/components/modal/subtaskModal.js" />
+        <option value="$PROJECT_DIR$/src/components/subtask/subtask.js" />
+        <option value="$PROJECT_DIR$/src/reducers/subtaskReducer.js" />
+        <option value="$PROJECT_DIR$/src/components/modal/modal.css" />
+        <option value="$PROJECT_DIR$/src/actions/subtaskActions.js" />
+        <option value="$PROJECT_DIR$/src/components/modal/commentDelConfirmModal.js" />
+        <option value="$PROJECT_DIR$/src/actions/commentActions.js" />
+        <option value="$PROJECT_DIR$/src/reducers/fileReducer.js" />
+        <option value="$PROJECT_DIR$/src/components/modal/commentListModal.js" />
+        <option value="$PROJECT_DIR$/src/reducers/commentReducer.js" />
+        <option value="$PROJECT_DIR$/src/components/modal/subtaskListModal.js" />
+        <option value="$PROJECT_DIR$/src/actions/fileActions.js" />
+        <option value="$PROJECT_DIR$/src/components/modal/fileListModal.js" />
+        <option value="$PROJECT_DIR$/src/components/modal/websiteInfo.js" />
       </list>
     </option>
   </component>
@@ -238,7 +236,52 @@
               <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
               <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="actions" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="api" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="comment" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="modal" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="subtask" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="pages" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="my-react-todo-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my-react-todo-client" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="reducers" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -322,20 +365,22 @@
       <workItem from="1699333309839" duration="14222000" />
       <workItem from="1699367256360" duration="12550000" />
       <workItem from="1699422398981" duration="15053000" />
-      <workItem from="1699460750055" duration="6761000" />
+      <workItem from="1699460750055" duration="6886000" />
+      <workItem from="1699518538243" duration="10108000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="224408000" />
+    <option name="totallyTimeSpent" value="234641000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27231467" sideWeight="0.48984772" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27609682" sideWeight="0.48984772" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22692889" sideWeight="0.5101523" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -348,7 +393,6 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -366,87 +410,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-990">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/tasklist/tasklist.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/tasklist/tasklist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#26#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/subtaskReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="32" column="49" lean-forward="true" selection-start-line="32" selection-start-column="49" selection-end-line="32" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/commentReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/fileReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="27" column="32" lean-forward="false" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/actions/taskActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modal/taskDelConfirmModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="49" column="39" lean-forward="true" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -478,36 +445,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/projectReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="71" lean-forward="true" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/tooltip/tooltip.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modal/subtaskModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="41" lean-forward="false" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modal/fileListModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="43" lean-forward="false" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-          <folding>
-            <element signature="e#995#1189#0" expanded="false" />
-            <element signature="e#3215#3425#0" expanded="false" />
-            <element signature="e#3540#5540#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -519,29 +460,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modal/commentListModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="43" lean-forward="false" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-          <folding>
-            <element signature="e#842#1036#0" expanded="false" />
-            <element signature="e#3821#4031#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/file/file.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="78" lean-forward="true" selection-start-line="12" selection-start-column="78" selection-end-line="12" selection-end-column="78" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/comment/comment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="80" lean-forward="false" selection-start-line="11" selection-start-column="80" selection-end-line="11" selection-end-column="80" />
         </state>
       </provider>
     </entry>
@@ -563,15 +486,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="17" column="16" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -587,35 +501,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/subtask/subtask.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-31">
-          <caret line="41" column="9" lean-forward="true" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#37#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modal/subtaskListModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="95" column="41" lean-forward="false" selection-start-line="95" selection-start-column="41" selection-end-line="95" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#47#0" expanded="false" />
-            <element signature="e#829#1023#0" expanded="false" />
-            <element signature="e#2945#3155#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/taskReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="28" column="23" lean-forward="false" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -676,7 +561,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -684,26 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="229" column="0" lean-forward="true" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modal/projectModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-119">
-          <caret line="38" column="87" lean-forward="true" selection-start-line="38" selection-start-column="87" selection-end-line="38" selection-end-column="87" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modal/taskModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-952">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -717,61 +581,264 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modal/subtaskDelConfirmModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="57" column="39" lean-forward="false" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/PageTasks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="218" column="30" lean-forward="false" selection-start-line="218" selection-start-column="30" selection-end-line="218" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/css/button.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="16" lean-forward="true" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modal/projectModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="34" column="63" lean-forward="true" selection-start-line="34" selection-start-column="63" selection-end-line="34" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#47#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/projectReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="63" lean-forward="true" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actions/projectActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-619">
+          <caret line="9" column="79" lean-forward="false" selection-start-line="9" selection-start-column="79" selection-end-line="9" selection-end-column="79" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/PageProjects.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1497">
-          <caret line="16" column="42" lean-forward="false" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+        <state relative-caret-position="50">
+          <caret line="57" column="10" lean-forward="true" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
+            <element signature="e#920#1094#0" expanded="false" />
+            <element signature="e#1311#1505#0" expanded="false" />
+            <element signature="e#1771#1939#0" expanded="false" />
+            <element signature="e#2714#2792#0" expanded="false" />
+            <element signature="e#2847#2889#0" expanded="false" />
+            <element signature="e#2913#3296#0" expanded="false" />
+            <element signature="e#3450#3734#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modal/taskModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="55" column="33" lean-forward="false" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modal/taskDelConfirmModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#47#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modal/subtaskModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+            <element signature="e#1037#1343#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/subtask/subtask.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="36" column="37" lean-forward="false" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/taskReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="60" lean-forward="true" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actions/taskActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="59" lean-forward="true" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="26" column="24" lean-forward="true" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modal/modal.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="19" column="25" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/PageTasks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-789">
+          <caret line="68" column="18" lean-forward="false" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/comment/comment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-68">
+          <caret line="11" column="80" lean-forward="false" selection-start-line="11" selection-start-column="80" selection-end-line="11" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modal/subtaskDelConfirmModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="11" column="44" lean-forward="true" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modal/commentDelConfirmModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="22" column="57" lean-forward="false" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actions/commentActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="26" column="40" lean-forward="true" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modal/commentListModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="64" column="31" lean-forward="false" selection-start-line="64" selection-start-column="31" selection-end-line="64" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/commentReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="25" lean-forward="true" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/subtaskReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="63" lean-forward="true" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actions/subtaskActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="14" lean-forward="true" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actions/fileActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="9" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/fileReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modal/fileListModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="37" column="88" lean-forward="false" selection-start-line="37" selection-start-column="88" selection-end-line="37" selection-end-column="88" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+            <element signature="e#1048#1242#0" expanded="false" />
+            <element signature="e#1362#1491#0" expanded="false" />
+            <element signature="e#1897#1967#0" expanded="false" />
+            <element signature="e#2017#2158#0" expanded="false" />
+            <element signature="e#2182#2532#0" expanded="false" />
+            <element signature="e#2730#3091#0" expanded="false" />
+            <element signature="e#3111#3189#0" expanded="false" />
+            <element signature="e#3316#3526#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/modal/subtaskListModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="34" column="63" lean-forward="true" selection-start-line="34" selection-start-column="63" selection-end-line="34" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+            <element signature="e#882#1076#0" expanded="false" />
+            <element signature="e#1797#1876#0" expanded="false" />
+            <element signature="e#1932#2076#0" expanded="false" />
+            <element signature="e#2111#2507#0" expanded="false" />
+            <element signature="e#2628#2819#0" expanded="false" />
+            <element signature="e#2930#3140#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modal/websiteInfo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="43" column="54" lean-forward="false" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
+        <state relative-caret-position="877">
+          <caret line="74" column="43" lean-forward="false" selection-start-line="74" selection-start-column="43" selection-end-line="74" selection-end-column="43" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/modal/modal.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="78" column="7" lean-forward="false" selection-start-line="78" selection-start-column="1" selection-end-line="78" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
+        <state relative-caret-position="17">
           <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
           <folding>
             <element signature="e#2540#3004#0" expanded="false" />

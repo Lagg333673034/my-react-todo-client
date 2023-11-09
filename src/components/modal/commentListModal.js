@@ -5,6 +5,8 @@ import {createComment,fetchComments} from "../../actions/commentActions";
 import Comment from "../comment/comment";
 import CommentModal from './commentModal';
 import CommentDelConfirmModal from './commentDelConfirmModal';
+import Loader from '../../components/loader/loader';
+
 
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
@@ -27,30 +29,23 @@ const CommentListModal = ({show}) => {
     const commentModalVisible = useSelector((state)=>state.commentReducer.commentModalVisible);
     const commentDelConfirmModalVisible = useSelector((state)=>state.commentReducer.commentDelConfirmModalVisible);
     const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
-    const commentFetchAll = useSelector((state)=>state.commentReducer.comments);
+    const commentsLoading = useSelector((state)=>state.commentReducer.commentsLoading);
+    const commentsFetchAll = useSelector((state)=>state.commentReducer.comments);
     /*--------------------------------------------------------------------------------*/
-    const [commentsLoading, setCommentsLoading] = useState(false);
-
     const [allComments, setAllComments] = useState({});
     const [lvl0Comments, setlvl0Comments] = useState({});
     let lvlComment = 0;
     useEffect(()=>{
-        setAllComments(commentFetchAll);
-        setlvl0Comments(commentFetchAll);
-    },[commentFetchAll]);
-
-    useEffect(()=>{
-        if(
-            websiteVisible &&
-            taskCurrent && taskCurrent._id && taskCurrent._id.length>0 &&
-            !commentModalVisible &&
-            !commentsLoading
-        ) {
-            setCommentsLoading(true);
-            dispatch(fetchComments(taskCurrent._id,"null")).finally(() => setCommentsLoading(false));
-            //console.log("=c-list=1");
+        if(!commentsLoading) {
+            setAllComments(commentsFetchAll);
+            setlvl0Comments(commentsFetchAll);
         }
-    },[commentFetchAll]);
+    },[commentsFetchAll,commentsLoading]);
+    useEffect(()=>{
+        if(taskCurrent && taskCurrent._id && taskCurrent._id.length>0) {
+            dispatch(fetchComments(taskCurrent._id,"null"));
+        }
+    },[]);
     useEffect(()=>{
         const timer = setTimeout(() => {
             if(
@@ -60,7 +55,6 @@ const CommentListModal = ({show}) => {
                 !commentsLoading
             ){
                 dispatch(fetchComments(taskCurrent._id,"null"));
-                //console.log("=c-list=2");
             }
         }, 5000);
         return () => clearTimeout(timer);
@@ -99,6 +93,7 @@ const CommentListModal = ({show}) => {
             <div className="modal-main">
                 <div className="modal-title">
                     Комментарии
+                    {commentsLoading ? <div><Loader/></div> : <div style={{visibility: 'hidden'}}><Loader/></div>}
                 </div>
                 <div className="modal-content">
                     <Stack spacing={0} direction="column" sx={{width:'100%'}}>

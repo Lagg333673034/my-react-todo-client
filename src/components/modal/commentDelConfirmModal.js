@@ -13,10 +13,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const CommentDelConfirmModal = ({show}) => {
     const dispatch = useDispatch();
     const commentCurrent = useSelector((state)=>state.commentReducer.commentCurrent);
+    const taskCurrent = useSelector((state)=>state.taskReducer.taskCurrent);
     /*--------------------------------------------------------------------------------*/
     const commentDelConfirm = () => {
-        if(commentCurrent && commentCurrent._id){
-            dispatch(deleteComment(commentCurrent._id));
+        if(
+            taskCurrent && taskCurrent._id &&
+            commentCurrent && commentCurrent._id
+        ){
+            dispatch(deleteComment(taskCurrent._id,"null",commentCurrent._id));
             modalClose();
         }
     };

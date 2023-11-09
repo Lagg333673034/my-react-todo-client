@@ -1,4 +1,5 @@
 const defaultState = {
+    commentsLoading: false,
     comments: [],
     commentCurrent: null,
     commentListModalVisible: false,
@@ -9,6 +10,8 @@ const defaultState = {
 
 export const commentReducer = (state = defaultState, action) => {
     switch(action.type){
+        case "COMMENTS_LOADING":
+            return {...state, commentsLoading: action.payload};
         case "COMMENT_FETCH_ALL":
             return {...state, comments: action.payload};
         case "COMMENT_CREATE":
