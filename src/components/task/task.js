@@ -21,7 +21,6 @@ import ChatTwoToneIcon from '@mui/icons-material/ChatTwoTone';
 import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone';
 import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
 
-
 const Task = ({index,task}) => {
     const dispatch = useDispatch();
     /*--------------------------------------------------------------------------*/

@@ -12,7 +12,11 @@ import {ThemeProvider,createTheme} from '@mui/material/styles';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import CloseIcon from '@mui/icons-material/Close';
 import {MyTooltip} from  '../tooltip/tooltip';
-import {buttonIconTaskTheme,buttonIconTaskHoverTheme,buttonIconTaskSettingsTheme} from '../../css/button';
+import {
+    buttonIconTaskTheme,buttonIconTaskHoverTheme,
+    buttonIconProjectTheme,buttonIconProjectHoverTheme,
+    buttonIconTaskSettingsTheme
+} from '../../css/button';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone';
 import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
@@ -35,7 +39,6 @@ const Project = ({project}) => {
         dispatch({type:'PROJECT_DEL_CONFIRM_MODAL_VISIBLE', payload: true});
     };
     /*----------------------------------------------------------------------------------*/
-    //const projectSettingsMenuOpen = useSelector((state)=>state.projectReducer.projectSettingsMenuOpen);
     const [open, setOpen] = useState(false);
     const handleTooltipClose = () => {
         setOpen(false);
@@ -74,10 +77,10 @@ const Project = ({project}) => {
                               MyTooltip(
                                   open,
                                   handleTooltipClose,
-                                  <ThemeProvider theme={buttonIconTaskTheme}>
+                                  <ThemeProvider theme={buttonIconProjectTheme}>
                                       <IconButton
-                                          sx={buttonIconTaskHoverTheme}
-                                          className="placementOn11"
+                                          sx={buttonIconProjectHoverTheme}
+                                          className="placementOn11Project"
                                           color="success"
                                           size="small"
                                           onClick={() => {
@@ -91,10 +94,10 @@ const Project = ({project}) => {
                                   MyTooltip(
                                       open,
                                       handleTooltipClose,
-                                      <ThemeProvider theme={buttonIconTaskTheme}>
+                                      <ThemeProvider theme={buttonIconProjectTheme}>
                                           <IconButton
-                                              sx={buttonIconTaskHoverTheme}
-                                              className="placementOn01"
+                                              sx={buttonIconProjectHoverTheme}
+                                              className="placementOn01Project"
                                               color="primary"
                                               size="small"
                                               onClick={() => {
@@ -108,10 +111,10 @@ const Project = ({project}) => {
                                       MyTooltip(
                                           open,
                                           handleTooltipClose,
-                                          <ThemeProvider theme={buttonIconTaskTheme}>
+                                          <ThemeProvider theme={buttonIconProjectTheme}>
                                               <IconButton
-                                                  sx={buttonIconTaskHoverTheme}
-                                                  className="placementOn06"
+                                                  sx={buttonIconProjectHoverTheme}
+                                                  className="placementOn06Project"
                                                   color="error"
                                                   size="small"
                                                   onClick={() => {
@@ -124,7 +127,7 @@ const Project = ({project}) => {
                                           </ThemeProvider>,
                                           <ThemeProvider theme={buttonIconTaskSettingsTheme}>
                                               <IconButton
-                                                  sx={buttonIconTaskHoverTheme}
+                                                  sx={buttonIconProjectHoverTheme}
                                                   color="primary"
                                                   size="small"
                                                   onClick={handleTooltipOpen}>

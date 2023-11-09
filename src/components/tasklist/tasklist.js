@@ -13,7 +13,7 @@ const Tasklist = ({column,tasks,searchTasksString}) => {
                     style={{
                         borderRight: column.status == 2 ? '2px solid #00000052':'',
                         borderLeft: column.status == 2 ? '2px solid #00000052':'',
-                        height:'calc(100vh - 150px)'
+                        height:'calc(100vh - 200px)'
                     }}
                 >
                     <div className="condition__title">{column.title}</div>

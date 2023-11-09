@@ -79,15 +79,4 @@
          word-wrap: break-word;
     }
 }
-.mySpan{
-    color: #1200ff;
-    border: 1px solid #1200ff;
-    border-radius: 8px;
-    padding: 2px 3px 3px 3px;
-    margin: 0;
-    background: white;
-    font-weight: 700;
-    font-family: Arial;
-    font-size: 0.8rem;
-}
 /*-----------------------------------------------------------------*/
