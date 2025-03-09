@@ -6,3 +6,35 @@ npm install react-beautiful-dnd --save
 
 https://app.netlify.com/sites/silver-cucurucho-d41282/deploys
 
+
+
+npx create-react-app .
+
+npm i
+
+
+Система "Планировщик задач"
+Клиентская часть (React.js)
+    npx	create-react-app .
+    npm install	react-router-dom
+    react-redux
+    redux
+    redux-thunk
+    axios
+    moment
+    react-beautiful-dnd
+    @mui/material
+    @mui/icons-material
+    @emotion/react
+    @emotion/styled
+Залит на https://www.netlify.com/
+
+Серверная часть (Node.js)
+    npm install	express
+    express-validator
+    express-fileupload
+    mongoose
+    config
+    uuid
+Залит на https://dashboard.render.com/
+

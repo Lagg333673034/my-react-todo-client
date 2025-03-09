@@ -1,0 +1,44 @@
+.myDataTable{
+    width:100%;
+    table-layout: fixed;
+    border-collapse:collapse;
+}
+.myDataTable th{
+    padding:3px;
+    margin:0;
+    font-size:1rem;
+    line-height:1;
+    border:1px solid #bdbdbd;
+    background-color:#d3d3d3;
+    text-align:center;
+    vertical-align: middle;
+}
+.myDataTable td{
+    padding:4px 10px 4px 10px;
+    margin:0;
+    font-size:1.1rem;
+    line-height:1;
+    border:1px solid #bdbdbd;
+    text-align:left;
+}
+.myDataTable td:nth-child(2),
+.myDataTable td:nth-last-child(-n+1){
+    padding:0;
+    text-align:center;
+    vertical-align: middle;
+}
+.myDataTable tr:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+.myDataTable td button {
+    padding:1px;
+}
+.myBtnUpd svg{
+    color: #2e7d32;
+    font-size: 1.4rem;
+}
+.myBtnDel svg{
+    color: #d32f2f;
+    font-size: 1.4rem;
+}
