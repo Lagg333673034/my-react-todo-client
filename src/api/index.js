@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-let host = "http://localhost:5000/api";
-//let host = "https://todo-server-rijd.onrender.com/api";
+//let host = "http://localhost:5000/api";
+let host = "https://todo-server-rijd.onrender.com/api";
+
 
 const urlAuth = `${host}/auth`;
 const urlUser = `${host}/user`;
