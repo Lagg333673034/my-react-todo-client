@@ -29,12 +29,13 @@ npm i
     @emotion/styled
 Залит на https://www.netlify.com/
 
-Серверная часть (Node.js)
-    npm install	express
-    express-validator
-    express-fileupload
-    mongoose
-    config
-    uuid
-Залит на https://dashboard.render.com/
+
+
+
+
+
+
+
+
+
 
