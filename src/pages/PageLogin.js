@@ -22,6 +22,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Link from '@mui/material/Link';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import { Chip, Avatar } from '@mui/material';
+
 
 import Alert from '@mui/material/Alert';
 
@@ -169,6 +171,18 @@ const PageLogin = ()=> {
                                     Войти&nbsp;{loading ? <BtnLoader /> :''}
                                 </Button>
                             </ThemeProvider>
+
+                            <Box sx={{ width: "100%", marginTop:'20px',padding:'0px',fontSize:'1.0rem' }}>
+                                или используйте следующие данные<br/>
+                                Email and Password: <Chip size="small" label="guest@guest.ru"/>
+                            </Box>
+                            
+                            
+                            
+                            
+                            
+
+
                         </Stack>
                     </Box>
                     {messageMsg ? <Box><br/><Alert severity={messageType}>{messageMsg}</Alert></Box> : ""}
