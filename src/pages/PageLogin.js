@@ -177,12 +177,6 @@ const PageLogin = ()=> {
                                 Email and Password: <Chip size="small" label="guest@guest.ru"/>
                             </Box>
                             
-                            
-                            
-                            
-                            
-
-
                         </Stack>
                     </Box>
                     {messageMsg ? <Box><br/><Alert severity={messageType}>{messageMsg}</Alert></Box> : ""}
