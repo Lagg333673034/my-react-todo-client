@@ -85,6 +85,11 @@ const PageLogin = ()=> {
             return () => clearTimeout(timer);
         }
     },[loading,loginButtonDisabled]);
+
+
+    const loginGuestButtonClick = () => {
+        dispatch(login("guest@guest.ru","guest@guest.ru"));
+    };
     /*------------------------------------------------------------------*/
     if(tokenLoading){
         return (
@@ -171,12 +176,19 @@ const PageLogin = ()=> {
                                     Войти&nbsp;{loading ? <BtnLoader /> :''}
                                 </Button>
                             </ThemeProvider>
+                            <br/>
+                            <ThemeProvider theme={buttonTheme}>
+                                <Button
+                                    disabled={loginButtonDisabled}
+                                    variant="contained"
+                                    color="secondary"
+                                    size="small"
+                                    onClick={()=> loginGuestButtonClick()}
+                                >
+                                    or Login as a Guest
+                                </Button>
+                            </ThemeProvider>
 
-                            <Box sx={{ width: "100%", marginTop:'20px',padding:'0px',fontSize:'1.0rem' }}>
-                                или используйте следующие данные<br/>
-                                Email and Password: <Chip size="small" label="guest@guest.ru"/>
-                            </Box>
-                            
                         </Stack>
                     </Box>
                     {messageMsg ? <Box><br/><Alert severity={messageType}>{messageMsg}</Alert></Box> : ""}

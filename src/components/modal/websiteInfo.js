@@ -32,75 +32,23 @@ const WebsiteInfo = ({show}) => {
                                 </th>
                             </tr>
                             <tr>
-                                <th colSpan="2">
+                                <th>
                                     Клиентская часть (React.js)
                                 </th>
-                            </tr>
-                            <tr>
-                                <th>
-                                    npx
-                                </th>
                                 <td>
-                                    create-react-app .
+                                    Залит на https://www.netlify.com/
                                 </td>
                             </tr>
                             <tr>
                                 <th>
-                                    npm install
-                                </th>
-                                <td>
-                                    react-router-dom<br/>
-                                    react-redux<br/>
-                                    redux<br/>
-                                    redux-thunk<br/>
-                                    axios<br/>
-                                    moment<br/>
-                                    react-beautiful-dnd<br/>
-                                    @mui/material<br/>
-                                    @mui/icons-material<br/>
-                                    @emotion/react<br/>
-                                    @emotion/styled
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    Залит на
-                                </th>
-                                <td>
-                                    https://www.netlify.com/
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th colSpan="2">
                                     Серверная часть (Node.js)
                                 </th>
-                            </tr>
-                            <tr>
-                                <th>
-                                    npm install
-                                </th>
                                 <td>
-                                    express<br/>
-                                    express-validator<br/>
-                                    express-fileupload<br/>
-                                    mongoose<br/>
-                                    config<br/>
-                                    uuid
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    Залит на
-                                </th>
-                                <td>
-                                    https://dashboard.render.com/
+                                    Залит на https://render.com/
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-
-
                     </div>
                     <div className="modal-footer">
                         <Grid container direction="row" justifyContent="center" alignItems="center">
