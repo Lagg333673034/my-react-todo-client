@@ -18,10 +18,9 @@ $api.interceptors.request.use((config)=>{
     config.headers.authorization = `Bearer ${localStorage.getItem('token')}`;
     return config;
 });
-$api.interceptors.response.use(
-    (config)=>{
-        return config;
-    },
+$api.interceptors.response.use((config)=>{
+    return config;
+},
     async (error) => {
         const originalRequest = error.config;
         //nyjni middleware+exeption, koroche nyjno vse ot chego pitalsa izbavitsa na backende
@@ -42,11 +41,10 @@ $api.interceptors.response.use(
 
 
 
-
 export const login = async (email,password) => $api.post(`${urlAuth}/login`,{email, password});
 export const registration = async (email,password) => $api.post(`${urlAuth}/registration`,{email, password});
 export const logout = async () => $api.post(`${urlAuth}/logout`);
-export const refresh = async () => axios.get(`${urlAuth}/refresh`,{withCredentials: true});
+export const refresh = async () => await axios.get(`${urlAuth}/refresh`,{withCredentials: true});
 export const recoverPasswordEmail = async (email) => $api.post(`${urlAuth}/recoverPasswordEmail`,{email});
 export const recoverPassword = async (randomUuid,password) => $api.post(`${urlAuth}/recoverPassword`,{randomUuid,password});
 

@@ -13,22 +13,6 @@ npx create-react-app .
 npm i
 
 
-Система "Планировщик задач"
-Клиентская часть (React.js)
-    npx	create-react-app .
-    npm install	react-router-dom
-    react-redux
-    redux
-    redux-thunk
-    axios
-    moment
-    react-beautiful-dnd
-    @mui/material
-    @mui/icons-material
-    @emotion/react
-    @emotion/styled
-Залит на https://www.netlify.com/
-
 
 
 
