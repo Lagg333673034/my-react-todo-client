@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-//let host = "http://localhost:5000/api";
-let host = "https://todo-server-rijd.onrender.com/api";
+let host = "http://localhost:5000/api";
+//let host = "https://todo-server-rijd.onrender.com/api";
 
 
 const urlAuth = `${host}/auth`;
@@ -18,6 +18,7 @@ export let $api = axios.create({withCredentials: true, /*baseURL: host,*/ });
 $api.interceptors.request.use((config)=>{
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
     config.withCredentials = true;
+    //config.credentials = 'include';
     return config;
 });
 
@@ -52,7 +53,9 @@ export const logout = async () => await axios.post(`${urlAuth}/logout`,{},{
     withCredentials: true, headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
 });
 export const refresh = async () => await axios.get(`${urlAuth}/refresh`,{
-    withCredentials: true, headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+    withCredentials: true, 
+    credentials: 'include',
+    headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
 });
 export const recoverPasswordEmail = async (email) => await axios.post(`${urlAuth}/recoverPasswordEmail`,{email},{
     withCredentials: true, headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
