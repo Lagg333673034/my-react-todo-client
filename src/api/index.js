@@ -13,23 +13,24 @@ const urlComment = `${host}/comment`;
 const urlFile = `${host}/file`;
 
 
-export let $api = axios.create({withCredentials: true, baseURL: host, });
+export let $api = axios.create({withCredentials: true, /*baseURL: host,*/ });
 
 $api.interceptors.request.use((config)=>{
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+    config.withCredentials = true;
     return config;
 });
 
-$api.interceptors.response.use((config)=>{
-    return config;
-},
+$api.interceptors.response.use(
+    (config) => {return config},
     async (error) => {
         const originalRequest = error.config;
-        //nyjni middleware+exeption, koroche nyjno vse ot chego pitalsa izbavitsa na backende
         if(error.response.status === 401 && error.config && !error.config._isRetry){
             originalRequest._isRetry = true;
             try{
-                const response = await axios.get(`${urlAuth}/refresh`,{withCredentials: true});
+                const response = await axios.get(`${urlAuth}/refresh`,{
+                    withCredentials: true, headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+                });
                 localStorage.setItem('token', response.data.accessToken);
                 return $api.request(originalRequest);
             }catch(e){
@@ -41,21 +42,39 @@ $api.interceptors.response.use((config)=>{
 );
 
 
+export const login = async (email,password) => await axios.post(`${urlAuth}/login`,{email, password},{
+    withCredentials: true, headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+});
+export const registration = async (email,password) => await axios.post(`${urlAuth}/registration`,{email, password},{
+    withCredentials: true, headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+});
+export const logout = async () => await axios.post(`${urlAuth}/logout`,{},{
+    withCredentials: true, headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+});
+export const refresh = async () => await axios.get(`${urlAuth}/refresh`,{
+    withCredentials: true, headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+});
+export const recoverPasswordEmail = async (email) => await axios.post(`${urlAuth}/recoverPasswordEmail`,{email},{
+    withCredentials: true, headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+});
+export const recoverPassword = async (randomUuid,password) => await axios.post(`${urlAuth}/recoverPassword`,{randomUuid,password},{
+    withCredentials: true, headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+});
+
+/*
 export const login = async (email,password) => $api.post(`${urlAuth}/login`,{email, password});
 export const registration = async (email,password) => $api.post(`${urlAuth}/registration`,{email, password});
 export const logout = async () => $api.post(`${urlAuth}/logout`);
 export const refresh = async () => $api.get(`${urlAuth}/refresh`);
 export const recoverPasswordEmail = async (email) => $api.post(`${urlAuth}/recoverPasswordEmail`,{email});
 export const recoverPassword = async (randomUuid,password) => $api.post(`${urlAuth}/recoverPassword`,{randomUuid,password});
-
+*/
 
 export const createUser = async (newUser) => $api.post(urlUser,newUser);
 export const updateUser = async (id,updatedUser) => $api.patch(`${urlUser}/${id}`,updatedUser);
 export const deleteUser = async (id) => $api.delete(`${urlUser}/${id}`);
 export const fetchUsers = async () => $api.get(urlUser);
 export const fetchUser = async (id) => $api.get(`${urlUser}/${id}`);
-
-
 
 export const createProject = async (newProject) => $api.post(urlProject,newProject);
 export const updateProject = async (id,updatedProject) => $api.patch(`${urlProject}/${id}`,updatedProject);

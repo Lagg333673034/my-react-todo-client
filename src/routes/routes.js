@@ -48,11 +48,3 @@ export const notAuthRoutes = [
 ];
 
 
-
-// etot "routes" mojno ydalit chyt pozje, 
-// kogda royting normalnii bydet gotov
-/*export const routes = [
-    {path: PROJECTS_ROUTE, component: <PageProjects/>, exact: true},
-    {path: TASKS_ROUTE+"/:id", component: <PageTasks/>, exact: true},
-    {path: '*', component: <Page404/>, exact: true},
-];*/
